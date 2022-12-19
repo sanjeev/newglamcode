@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Row, Col } from 'react-bootstrap';
-import glame from '../../assets/img/tikg.png'
+import glame from '../../assets/img/glam.png'
 import Image from 'next/image'
 import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
