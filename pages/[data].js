@@ -1,0 +1,110 @@
+
+import React from 'react'
+import { useRouter } from 'next/router';
+import Head from 'next/head'
+import { frontService } from "../_services/front.services";
+import LoadingScreen from "../components/LoadingScreen/loadingScreen"
+import Maincategory from "../components/Maincategory/maincategory"
+import Faqs from "../components/Faqs/index"
+import Serving from "../components/Serving"
+import Knowmore from "../components/Knowmore"
+import Pageslider from "../components/Slider/pageSlider"
+import Preferedservices from "../components/Preferedservices/Preferedservices"
+
+export default function getRoute() {
+    // Calling useRouter() hook
+    const router = useRouter()
+    const slug = router.query.data;
+    const [knowmore, setKnowmore] = React.useState();
+    React.useEffect(() => {
+        frontService.knowDataSlug(slug)
+            .then(
+                res => {
+
+                    if (res.status === 'success') {
+
+                        setKnowmore(res.knowdataslug[0]);
+                        console.log(res.knowdataslug[0]);
+                    } else {
+                        console.log('Something went wrong !!');
+                        //toast.error(res.errors[0], "Fashion Store");
+                    }
+                },
+                error => {
+                    console.log('Something went wrong !!');
+                    //toast.error("Something went wrong !!", "Fashion Store");
+                }
+            )
+    }, [slug]);
+    return (
+
+
+        <>
+
+            <div className='background2'>
+
+
+
+
+
+                {/* <div>
+                    <h1>Sanjeev</h1>
+                    <h2>pathname:- {router.pathname}</h2>
+                    <h2>asPath:- {router.asPath}</h2>
+                </div> */}
+
+
+                {knowmore ? (
+                    <>
+                        <Head>
+                            <title>Glamcode Luxury Home Salon</title>
+                            <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+                            <meta name="title" content={knowmore.seo_title} data-react-helmet="true"></meta>
+                            <meta name="description" content={knowmore.seo_desc} data-react-helmet="true"></meta>
+                            <meta name="keywords" content={knowmore.seo_key} data-react-helmet="true"></meta>
+                            <meta name="robots" content="index, follow" data-react-helmet="true"></meta>
+                            <meta http-equiv="Content-Type" content="text/html; charset=utf-8" data-react-helmet="true"></meta>
+                            <meta name="language" content="English" data-react-helmet="true"></meta>
+                            <meta name="revisit-after" content="1 days" data-react-helmet="true"></meta>
+                            <meta name="author" content="Glamcode" data-react-helmet="true"></meta>
+                            <meta name="zipcode" content={knowmore.zip} data-react-helmet="true"></meta>
+                            <meta name="city" content={knowmore.city} data-react-helmet="true"></meta>
+                            <meta name="country" content="India" data-react-helmet="true"></meta>
+                            <meta name="Geography" content={knowmore.name} data-react-helmet="true"></meta>
+                            <meta name="geo.position" content={`${knowmore.latitude},${knowmore.longitude}`} data-react-helmet="true"></meta>
+                            <meta name="ICBM" content={`${knowmore.latitude},${knowmore.longitude}`} data-react-helmet="true"></meta>
+                        </Head>
+                        <Pageslider />
+                        <div className="col-12 ">
+                            <hr style={{ border: '2px solid #ff6', margin: 10, boxShadow: '0px 0.5px 0.5px rgba(0, 0, 0, 0.25)', backgroundColor: '#FFFFFF' }} />
+                        </div>
+
+
+                        <Maincategory />
+                        <div className="col-12 " style={{ marginTop: '50px' }}>
+                            <hr style={{ border: '2px solid rgb(102, 102, 102)', margin: '10px', boxShadow: 'rgba(0, 0, 0, 0.25) 0px 0.5px 0.5px', backgroundColor: 'rgb(255, 255, 255)' }} />
+                        </div>
+
+                        <Preferedservices />
+                        <div className="col-12 " style={{ marginTop: '50px' }}>
+                            <hr style={{ border: '2px solid rgb(102, 102, 102)', margin: '10px', boxShadow: 'rgba(0, 0, 0, 0.25) 0px 0.5px 0.5px', backgroundColor: 'rgb(255, 255, 255)' }} />
+                        </div>
+
+                        <Faqs />
+                        <div className="col-12 " style={{ marginTop: '50px' }}>
+                            <hr style={{ border: '2px solid rgb(102, 102, 102)', margin: '10px', boxShadow: 'rgba(0, 0, 0, 0.25) 0px 0.5px 0.5px', backgroundColor: 'rgb(255, 255, 255)' }} />
+                        </div>
+
+                        <Serving />
+
+                        <Knowmore />
+                    </>
+                ) : <LoadingScreen />}
+            </div>
+        </>
+
+
+
+
+    )
+}

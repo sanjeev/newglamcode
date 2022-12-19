@@ -1,115 +1,61 @@
+import React from "react"
+import Slider from "../components/Slider/homeSlider"
+import Maincategory from "../components/Maincategory/maincategory"
+import Faqs from "../components/Faqs/index"
+import Serving from "../components/Serving"
+import Knowmore from "../components/Knowmore"
 import Head from 'next/head'
-import styles from '../styles/Home.module.css';
-
 export default function Home() {
+
+
+
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <div className='background2'>
+      <>
+        <Head>
+          <title>Glamcode Luxury Home Salon</title>
+          <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+          <meta name="title" content="Top Salon at Home |Salon Home Service| Home Salon services| Beauty Parlour Services at Home| near me| in Lucknow" data-react-helmet="true"></meta>
+          <meta name="description" content="Bored of random Salon Visits? Book an appointment with GlamCode Luxury Salon at Home at an Affordable price. Offers Salon Home Service and provides professional Home Salon Services and is trending Beauty Parlor Services at Home in Lucknow. Offers Salon Services at Home,  Parlour services at Home, Beauty Services at Home, Salon at Home Services, Salon at Home in Lucknow, home salon in Lucknow, Beauty Parlour Services at Home, Beauty Services at Home in Lucknow, Home Salon near me, Hair Spa, facial and Waxing services, at home Manicure and pedicure Services, Body Massage near me in Lucknow." data-react-helmet="true"></meta>
+          <meta name="keywords" content="Salon at Home,  Salon Home Service, professional Home Salon Services, Beauty Parlor Services at Home, Salon Services at Home, Parlour services at Home, Beauty Services at Home, Salon at Home Services, Salon at Home in Lucknow, home salon in Lucknow, Beauty Services at Home in Lucknow,  Home Salon near me, Hair Spa, Facial and Waxing services, at home Manicure and Pedicure Services, Body Massage near me in Lucknow. salon at home Lucknow, parlour at home, beauty parlour services list, beautician at home, home salon service in Lucknow, home salon in Lucknow, bridal makeup near me, hair spa at home, hair stylist at home,  home salon, home parlour service in Lucknow, home service beauty parlour in Lucknow, Best salon services in lucknow,  beauty parlour services at home, beauty services at home in lucknow, best bridal makeup artist in lucknow, salon in lucknow." data-react-helmet="true"></meta>
+          <meta name="robots" content="index, follow" data-react-helmet="true"></meta>
+          <meta http-equiv="Content-Type" content="text/html; charset=utf-8" data-react-helmet="true"></meta>
+          <meta name="language" content="English" data-react-helmet="true"></meta>
+          <meta name="revisit-after" content="1 days" data-react-helmet="true"></meta>
+          <meta name="author" content="Glamcode" data-react-helmet="true"></meta>
+          <meta name="zipcode" content="201301" data-react-helmet="true"></meta>
+          <meta name="city" content="Noida" data-react-helmet="true"></meta>
+          <meta name="country" content="India" data-react-helmet="true"></meta>
+          <meta name="Geography" content="B1002 Amrapali Zodiac, Sector 120, Noida, Uttar Pradesh 201301" data-react-helmet="true"></meta>
+          <meta name="geo.position" content="28.5839021,77.3959942" data-react-helmet="true"></meta>
+          <meta name="ICBM" content="28.5839021,77.3959942" data-react-helmet="true"></meta>
+        </Head>
 
-      <main>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
 
-        <p className={styles.description}>
-          Get started by editing <code>pages/index.js</code>
-        </p>
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+        <Slider />
+        <div className="col-12 " style={{ marginTop: '50px' }}>
+          <hr style={{ border: '2px solid rgb(102, 102, 102)', margin: '10px', boxShadow: 'rgba(0, 0, 0, 0.25) 0px 0.5px 0.5px', backgroundColor: 'rgb(255, 255, 255)' }} />
         </div>
-      </main>
 
-      <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel" className={styles.logo} />
-        </a>
-      </footer>
 
-      <style jsx>{`
-        main {
-          padding: 5rem 0;
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-        footer {
-          width: 100%;
-          height: 100px;
-          border-top: 1px solid #eaeaea;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-        footer img {
-          margin-left: 0.5rem;
-        }
-        footer a {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          text-decoration: none;
-          color: inherit;
-        }
-        code {
-          background: #fafafa;
-          border-radius: 5px;
-          padding: 0.75rem;
-          font-size: 1.1rem;
-          font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-            DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
-        }
-      `}</style>
+        <Maincategory />
+        <div className="col-12 " style={{ marginTop: '50px' }}>
+          <hr style={{ border: '2px solid rgb(102, 102, 102)', margin: '10px', boxShadow: 'rgba(0, 0, 0, 0.25) 0px 0.5px 0.5px', backgroundColor: 'rgb(255, 255, 255)' }} />
+        </div>
 
-      <style jsx global>{`
-        html,
-        body {
-          padding: 0;
-          margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-            sans-serif;
-        }
-        * {
-          box-sizing: border-box;
-        }
-      `}</style>
+
+        <Faqs />
+        <div className="col-12 " style={{ marginTop: '50px' }}>
+          <hr style={{ border: '2px solid rgb(102, 102, 102)', margin: '10px', boxShadow: 'rgba(0, 0, 0, 0.25) 0px 0.5px 0.5px', backgroundColor: 'rgb(255, 255, 255)' }} />
+        </div>
+
+        <Serving />
+
+        <Knowmore />
+      </>
+
+
     </div>
   )
 }
