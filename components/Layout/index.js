@@ -5,20 +5,31 @@ import LoadingScreen from "../LoadingScreen/loadingScreen";
 import { frontService } from "../../_services/front.services";
 import { menuSave, mainCategory, mainLocation } from '../../store/actions/index';
 import { useDispatch, useSelector } from 'react-redux';
+import { responsiveReturn } from '../../responsiveCheck'
 function Layout({ children }) {
     const dispatch = useDispatch();
-
+    const val = responsiveReturn("D", "M", 991);
     const [loading, setLoading] = React.useState(true);
     React.useEffect(() => {
+
+        localStorage.setItem('devise', val);
 
         setTimeout(() => {
             setLoading(false)
         }, 200);
+
+
+
+
     }, []);
 
 
 
     React.useEffect(() => {
+
+
+
+
         frontService.allSlider()
             .then(
                 res => {
@@ -69,14 +80,18 @@ function Layout({ children }) {
 
     return (
         <>
-            {!loading ? (<>
-                <Header />
-                <div className="allsection">{children}</div>
-                <Footer />
-            </>
-            ) : (
-                <><LoadingScreen /></>
-            )}
+            {!loading ?
+                (
+                    <>
+                        <Header />
+                        <div className="allsection">{children}</div>
+                        <Footer />
+                    </>
+                ) : (
+                    <>
+                        <LoadingScreen />
+                    </>
+                )}
         </>
     );
 }

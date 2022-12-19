@@ -1,5 +1,6 @@
 import React from "react"
 import "../styles/globals.css";
+import "../styles/mobilepage.css";
 import 'bootstrap/dist/css/bootstrap.css'
 import { Provider } from "react-redux";
 import store from "../store/store";

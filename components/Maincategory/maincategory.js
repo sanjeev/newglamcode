@@ -8,14 +8,19 @@ export default function Maincategory() {
 
     return (
         <Row>
+
+
             {datacat.maincategory?.map((item, index) => {
                 return (
                     <Col lg="2" md="4" className="mt-5" key={index} >
-                        <Card name={item.name} image={item.image} />
+                        <Card name={item.name} image={item.image} slug={item.slug} />
                     </Col>
 
                 );
             })}
+
+
+
         </Row>
     )
 }
