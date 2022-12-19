@@ -16,7 +16,7 @@ function Slider() {
                     <Row className='slidesection'>
                         <Col lg="4" md="12">
                             <div>
-                                <Image src={glame} alt="loading" style={{ width: "80px" }} />
+                                <img src={glame} alt="loading" style={{ width: "80px" }} />
                                 <h1>Salon at Home for Women</h1>
                                 <p className="spanp"><span className="fa fa-star faimg"></span>4.76(978k)</p>
                             </div>
