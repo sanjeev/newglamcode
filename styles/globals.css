@@ -310,7 +310,7 @@ a:hover {
     border-radius: 50%;
   }
   .modal-content {
-    width: 77% !important;
+    width: 100% !important;
   }
 }
 @media (min-width: 992px) {
