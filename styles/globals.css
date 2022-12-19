@@ -275,7 +275,7 @@ a:hover {
 }
 @media only screen and (min-width: 1px) and (max-width: 991px) {
   .slideimage {
-    height: 170px !important;
+    height: 250px !important;
     margin-bottom: 0px !important;
     margin-left: 0px !important;
     margin-top: 0px !important;
