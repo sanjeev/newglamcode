@@ -1,5 +1,5 @@
 import Global from '../_helpers/global';
-import { SessionGet, SessionSet } from '../sessionStorage';
+
 export const frontService = {
     allSlider,
     maincategory,
@@ -25,7 +25,7 @@ async function maincategory() {
         method: 'GET',
 
     };
-    return fetch(Global.BASE_API_PATH + `/maincategory/${SessionGet("id") ? SessionGet("id") : '2'}`, requestOptions)
+    return fetch(Global.BASE_API_PATH + `/maincategory/${localStorage.getItem("id") ? localStorage.getItem("id") : '2'}`, requestOptions)
         .then(handleResponse)
         .then(res => {
             return res;
@@ -47,7 +47,7 @@ async function knowData() {
         method: 'GET',
 
     };
-    return fetch(Global.BASE_API_PATH + `/knowdata/${SessionGet("id") ? SessionGet("id") : '2'}`, requestOptions)
+    return fetch(Global.BASE_API_PATH + `/knowdata/${localStorage.getItem("id") ? localStorage.getItem("id") : '2'}`, requestOptions)
         .then(handleResponse)
         .then(res => {
             return res;
@@ -69,7 +69,7 @@ async function allfaqs() {
         method: 'GET',
 
     };
-    return fetch(Global.BASE_API_PATH + `/faqs/${SessionGet("id") ? SessionGet("id") : '2'}`, requestOptions)
+    return fetch(Global.BASE_API_PATH + `/faqs/${localStorage.getItem("id") ? localStorage.getItem("id") : '2'}`, requestOptions)
         .then(handleResponse)
         .then(res => {
             return res;

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useSelector } from 'react-redux';
-import { SessionGet, SessionSet } from '../../sessionStorage';
 import Router from 'next/router'
 import { useRouter } from "next/navigation";
 function Modalpup(props) {
@@ -14,12 +13,11 @@ function Modalpup(props) {
 
     const selecthandleclick = (locId, locName, locAddress, locationslug) => {
 
-        SessionSet("id", locId);
-        SessionSet("cityname", locName);
-        SessionSet("locAddress", locAddress);
-        console.log(locAddress);
-        //console.log(`session get ids`+SessionGet(sessionLocationName));
-        //console.log(`session get ids` + SessionGet(sessionLocationID));
+
+        localStorage.setItem("id", locId);
+        localStorage.setItem("cityname", locName);
+        localStorage.setItem("locAddress", locAddress);
+
 
         Router.push('/' + locationslug);
         window.location.href = '/' + locationslug;

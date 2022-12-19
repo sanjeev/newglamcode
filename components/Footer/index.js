@@ -1,4 +1,4 @@
-import { SessionGet } from '../../sessionStorage';
+
 function Footer() {
 
     return (
@@ -43,7 +43,7 @@ function Footer() {
                         <hr style={{ border: "1px solid rgb(255, 255, 255)" }} />
                     </div>
                     <div className="col-12">
-                        <p className="footer-text">{SessionGet("locAddress") ? SessionGet("locAddress") : 'Amrapali Zodiac, Sector 120, Noida, Uttar Pradesh, India'}</p>
+                        <p className="footer-text">{localStorage.getItem("locAddress") ? localStorage.getItem("locAddress") : 'Amrapali Zodiac, Sector 120, Noida, Uttar Pradesh, India'}</p>
                     </div>
                 </div>
             </footer>

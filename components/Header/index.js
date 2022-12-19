@@ -4,7 +4,6 @@ import Image from 'next/image'
 import Logo from "../../glamcode.png"
 import Dropdown from 'react-bootstrap/Dropdown';
 import Modalpup from '../Modal/loction';
-import { SessionGet } from '../../sessionStorage';
 function Header() {
     const [showResults, setShowResults] = useState(false);
     const onClick = () => setShowResults(value => !value);
@@ -21,7 +20,7 @@ function Header() {
                             <div className='selectloction'>
                                 <div>
                                     <button onClick={() => setModalShow(true)} className="dropdown-toggle dropdownborder" type="button" id="dropdownMenuButton" >
-                                        {SessionGet("cityname") ? SessionGet("cityname") : 'Select your Location'}
+                                        {localStorage.getItem("cityname") ? localStorage.getItem("cityname") : 'Select your Location'}
                                     </button>
                                     <Modalpup show={modalShow} onHide={() => setModalShow(false)} />
 
