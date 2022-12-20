@@ -288,6 +288,47 @@ a:hover {
   background-color: transparent !important;
   text-align: justify;
 }
+.offcanvas-menu {
+  margin: 20px 0;
+}
+.offcanvas-menu > ul > li {
+  border-bottom: 1px solid transparent;
+}
+.offcanvas-menu li {
+  position: relative;
+  padding: 7px 0;
+}
+.offcanvas-menu ul {
+  padding-left: 1rem;
+  padding-right: 1em;
+}
+.offcanvas-menu li a {
+  display: block;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.side-menu-box .side-text .icon-m {
+  padding: 0 20px 0 5px;
+  text-transform: unset !important;
+}
+.side-menu-box .side-text {
+  font-family: "Alata";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 22px;
+  color: #000;
+}
+.offcanvas-menu li a {
+  display: block;
+  text-decoration: none;
+  text-transform: unset !important;
+}
+.side-menu-box {
+  background: #fff;
+  padding: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25) !important;
+  border-radius: 5px;
+}
 .removeknowmore h3 {
   background-color: transparent !important;
   text-align: justify;

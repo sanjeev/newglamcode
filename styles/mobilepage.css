@@ -75,6 +75,28 @@
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
 }
+.offcanvas-close {
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  width: 45px;
+  height: 45px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+}
+.offcanvas-close {
+  width: 27px !important;
+  height: 27px !important;
+  position: absolute !important;
+  top: 1% !important;
+  right: 2% !important;
+  background: #fff;
+  border-radius: 19px !important;
+}
+.offcanvas-close {
+  padding: 0px !important;
+}
 .salonehome-all-Categorym
   .salonehome-all-Category-box
   .salonehome-all-Category-images {
