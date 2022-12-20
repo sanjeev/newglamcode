@@ -33,7 +33,7 @@ export default function Knowmore() {
                 </h2>
             </div>
             {knowmore ? (<>
-                <div key={0} dangerouslySetInnerHTML={{ __html: knowmore }} style={{ padding: 30, fontFamily: 'Alata', fontStyle: 'normals', fontSize: 16, textAlign: 'center', }} />
+                <div className="removeknowmore" key={0} dangerouslySetInnerHTML={{ __html: knowmore }} style={{ padding: 30, fontFamily: 'Alata', fontStyle: 'normals', fontSize: 16, textAlign: 'center', }} />
             </>) : <LoadingScreen />}
 
 

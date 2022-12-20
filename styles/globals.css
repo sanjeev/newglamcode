@@ -276,6 +276,26 @@ a:hover {
 .hr-white {
   border: 1px solid #fff !important;
 }
+.removeknowmore p {
+  background-color: transparent !important;
+  text-align: justify;
+}
+.removeknowmore h2 {
+  background-color: transparent !important;
+  text-align: justify;
+}
+.removeknowmore h1 {
+  background-color: transparent !important;
+  text-align: justify;
+}
+.removeknowmore h3 {
+  background-color: transparent !important;
+  text-align: justify;
+}
+.removeknowmore h4 {
+  background-color: transparent !important;
+  text-align: justify;
+}
 @media only screen and (min-width: 1px) and (max-width: 991px) {
   .slideimage {
     height: 250px !important;
