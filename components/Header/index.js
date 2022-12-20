@@ -4,10 +4,12 @@ import Image from 'next/image'
 import Logo from "../../glamcode.png"
 import Dropdown from 'react-bootstrap/Dropdown';
 import Modalpup from '../Modal/loction';
+import MSideMenu from '../Header/msidemenu';
 function Header() {
     const [showResults, setShowResults] = useState(false);
     const onClick = () => setShowResults(value => !value);
-    const [modalShow, setModalShow] = useState(false);
+
+
     return (
         <>
             {localStorage.getItem('devise') === 'D' ? (
@@ -71,7 +73,9 @@ function Header() {
                                     <a
                                         area-label="mobile menu offcanvas svg icon"
                                         className="btn btn--size-33-33 btn--center btn--round btn--color-radical-red btn--bg-white btn--box-shadow main-menu offcanvas-toggle offside-menu"
+
                                     >
+
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             width={16}
@@ -135,7 +139,7 @@ function Header() {
                                     <button onClick={() => setModalShow(true)} className="dropdown-toggle dropdownborder" type="button" id="dropdownMenuButton" >
                                         {localStorage.getItem("cityname") ? localStorage.getItem("cityname") : 'Select your Location'}
                                     </button>
-                                    <Modalpup show={modalShow} onHide={() => setModalShow(false)} />
+
 
                                 </div>
                             </div>
@@ -143,6 +147,11 @@ function Header() {
                         </div>
 
                     </Container>
+
+
+
+
+
                 </>
             )
             }

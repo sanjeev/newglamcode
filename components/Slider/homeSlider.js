@@ -77,7 +77,7 @@ function Slider() {
                                                     <div className='slideimage'>
                                                         <img src={item.slider_image_base_url} alt="loading" style={{
                                                             borderRadius: "10px",
-                                                            width: 750,
+
                                                         }} />
                                                     </div>
                                                 </SwiperSlide>
