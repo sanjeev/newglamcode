@@ -60,3 +60,36 @@
   line-height: 1.5;
   margin-top: 10px;
 }
+.salonehome-all-Categorym {
+  width: 30% !important;
+  float: left;
+  margin-left: 9px;
+  margin-bottom: 15px;
+}
+.salonehome-all-Categorym .salonehome-all-Category-box {
+  width: 100%;
+  margin-left: 5%;
+  margin-right: 5%;
+  height: auto;
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.25));
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+}
+.salonehome-all-Categorym
+  .salonehome-all-Category-box
+  .salonehome-all-Category-images {
+  width: 90%;
+  height: auto;
+  margin: auto;
+  padding: 10px;
+  -webkit-filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.25));
+}
+.salonehome-all-Categorym .salone-all-category-text {
+  font-family: "Alata";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  color: #000;
+  text-align: center;
+}

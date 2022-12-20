@@ -1,6 +1,7 @@
 import React from "react"
 import Slider from "../components/Slider/homeSlider"
 import Maincategory from "../components/Maincategory/maincategory"
+import Maincategorymobile from "../components/Maincategory/Maincategorymobile"
 import Faqs from "../components/Faqs/index"
 import Serving from "../components/Serving"
 import Knowmore from "../components/Knowmore"
@@ -37,10 +38,28 @@ export default function Home() {
         {localStorage.getItem('devise') === 'D' ? (<>
           <div className="col-12 " style={{ marginTop: '50px' }}>
             <hr style={{ border: '2px solid rgb(102, 102, 102)', margin: '10px', boxShadow: 'rgba(0, 0, 0, 0.25) 0px 0.5px 0.5px', backgroundColor: 'rgb(255, 255, 255)' }} />
-          </div></>) : ''}
+          </div></>) : (
+          <>
+            <div className="title-content">
+              <h2
+                className="title font-familt-jost"
+                style={{ width: "100%", textAlign: "center" }}
+              >
+                Services
+              </h2>
+            </div>
+
+          </>
+        )}
+
+        {localStorage.getItem('devise') === 'D' ? (<Maincategory />) : (<> <hr class="hr-white"></hr>
+
+          <Maincategorymobile /></>)}
 
 
-        <Maincategory />
+
+
+
         <div className="col-12 " style={{ marginTop: '50px' }}>
           <hr style={{ border: '2px solid rgb(102, 102, 102)', margin: '10px', boxShadow: 'rgba(0, 0, 0, 0.25) 0px 0.5px 0.5px', backgroundColor: 'rgb(255, 255, 255)' }} />
         </div>

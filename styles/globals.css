@@ -273,6 +273,9 @@ a:hover {
 .servicesMD-bg-color-1 {
   background: #fff !important;
 }
+.hr-white {
+  border: 1px solid #fff !important;
+}
 @media only screen and (min-width: 1px) and (max-width: 991px) {
   .slideimage {
     height: 250px !important;

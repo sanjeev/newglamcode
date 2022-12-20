@@ -10,7 +10,7 @@ export default function Card(props) {
     return (
         <>
             {localStorage.getItem("id") ? (<>
-                <div className="salonehome-all-Category" onClick={() => callurl(props.slug)} >
+                <div className={props.cname} onClick={() => callurl(props.slug)} >
                     <div className="salonehome-all-Category-box" style={{ backgroundColor: 'rgb(255, 255, 255)' }}>
                         <div className="salonehome-all-Category-images">
                             <img src={`https://www.glamcode.in/user-uploads/maincategory/${props.image}`} alt={props.name} />
@@ -21,7 +21,7 @@ export default function Card(props) {
 
             </>) : (
                 <>
-                    <div className="salonehome-all-Category" onClick={() => setModalShow(true)}>
+                    <div className={props.cname} onClick={() => setModalShow(true)}>
                         <div className="salonehome-all-Category-box" style={{ backgroundColor: 'rgb(255, 255, 255)' }}>
                             <div className="salonehome-all-Category-images">
                                 <img src={`https://www.glamcode.in/user-uploads/maincategory/${props.image}`} alt={props.name} />
