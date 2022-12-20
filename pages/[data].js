@@ -10,7 +10,7 @@ import Serving from "../components/Serving"
 import Knowmore from "../components/Knowmore"
 import Pageslider from "../components/Slider/pageSlider"
 import Preferedservices from "../components/Preferedservices/Preferedservices"
-
+import Maincategorymobile from "../components/Maincategory/Maincategorymobile"
 export default function getRoute() {
     // Calling useRouter() hook
     const router = useRouter()
@@ -75,12 +75,33 @@ export default function getRoute() {
                             <meta name="ICBM" content={`${knowmore.latitude},${knowmore.longitude}`} data-react-helmet="true"></meta>
                         </Head>
                         <Pageslider />
-                        <div className="col-12 ">
-                            <hr style={{ border: '2px solid #ff6', margin: 10, boxShadow: '0px 0.5px 0.5px rgba(0, 0, 0, 0.25)', backgroundColor: '#FFFFFF' }} />
-                        </div>
+
+                        {localStorage.getItem('devise') === 'D' ? (<>
+                            <div className="col-12 ">
+                                <hr style={{ border: '2px solid #ff6', margin: 10, boxShadow: '0px 0.5px 0.5px rgba(0, 0, 0, 0.25)', backgroundColor: '#FFFFFF' }} />
+                            </div></>) : (
+                            <>
+                                <div className="title-content">
+                                    <h2
+                                        className="title font-familt-jost"
+                                        style={{ width: "100%", textAlign: "center" }}
+                                    >
+                                        Services
+                                    </h2>
+                                </div>
+
+                            </>
+                        )}
 
 
-                        <Maincategory />
+
+
+                        {localStorage.getItem('devise') === 'D' ? (<Maincategory />) : (<> <hr class="hr-white"></hr>
+
+                            <Maincategorymobile /></>)
+                        }
+
+
                         <div className="col-12 " style={{ marginTop: '50px' }}>
                             <hr style={{ border: '2px solid rgb(102, 102, 102)', margin: '10px', boxShadow: 'rgba(0, 0, 0, 0.25) 0px 0.5px 0.5px', backgroundColor: 'rgb(255, 255, 255)' }} />
                         </div>
@@ -95,7 +116,7 @@ export default function getRoute() {
                             <hr style={{ border: '2px solid rgb(102, 102, 102)', margin: '10px', boxShadow: 'rgba(0, 0, 0, 0.25) 0px 0.5px 0.5px', backgroundColor: 'rgb(255, 255, 255)' }} />
                         </div>
 
-                        <Serving />
+                        {localStorage.getItem('devise') === 'D' ? (<Serving />) : ''}
 
                         <Knowmore />
                     </>

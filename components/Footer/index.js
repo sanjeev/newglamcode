@@ -468,7 +468,7 @@ function Footer() {
                         </ul>
                     </div>
                 </>) : (<div >
-                    <ul className=" me-auto mb-2 mb-lg-0" style={{ display: 'flex', margin: 'auto', padding: '4px 0px 0px 30px' }}>
+                    <ul className=" me-auto mb-2 mb-lg-0" style={{ display: 'flex', justifyContent: 'center', paddingLeft: "0px", marginTop: '10px' }}>
                         <li>
                             <a
                                 href="https://twitter.com/jaketrent"

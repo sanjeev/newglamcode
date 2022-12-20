@@ -11,41 +11,76 @@ function Pageslider() {
     return (
         <>
             <div className='mid-2 d-flex '>
-                <Container fluid>
-                    <Row className='slidesection'>
+                {localStorage.getItem('devise') === 'D' ? (
+                    <>
+                        <Container fluid>
+                            <Row className='slidesection'>
 
-                        <Col lg="12" md="12">
-                            <Swiper
-                                modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
-                                spaceBetween={0}
-                                autoplay={{
-                                    delay: 2500,
-                                    disableOnInteraction: false,
-                                }}
-                                slidesPerView={2.2}
-                                pagination={{ clickable: true }}>
-                                {dataslide.media.map((item, index) => {
-                                    return (
-                                        <SwiperSlide key={index}>
-                                            {/* <div className='slideimage'>
+                                <Col lg="12" md="12">
+                                    <Swiper
+                                        modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
+                                        spaceBetween={0}
+                                        autoplay={{
+                                            delay: 2500,
+                                            disableOnInteraction: false,
+                                        }}
+                                        slidesPerView={2.2}
+                                        pagination={{ clickable: true }}>
+                                        {dataslide.media.map((item, index) => {
+                                            return (
+                                                <SwiperSlide key={index}>
+                                                    {/* <div className='slideimage'>
                                                 <img src={item.slider_image_base_url} alt="loading" style={{
                                                     borderRadius: "10px",
                                                     width: 750,
                                                 }} />
                                             </div> */}
-                                            <div style={{ width: '100%', height: '50%', paddingLeft: 5, paddingTop: 10, paddingBottom: 40 }}>
-                                                <img src={item.slider_image_base_url} alt="loading" style={{
-                                                    borderRadius: "10px",
-                                                }} />
-                                            </div>
-                                        </SwiperSlide>
-                                    );
-                                })}
-                            </Swiper>
+                                                    <div style={{ width: '100%', height: '50%', paddingLeft: 5, paddingTop: 10, paddingBottom: 40 }}>
+                                                        <img src={item.slider_image_base_url} alt="loading" style={{
+                                                            borderRadius: "10px",
+                                                        }} />
+                                                    </div>
+                                                </SwiperSlide>
+                                            );
+                                        })}
+                                    </Swiper>
 
-                        </Col>
-                    </Row>
-                </Container>
+                                </Col>
+                            </Row>
+                        </Container>
+                    </>) : (<>
+                        <Container>
+                            <Row className=''>
+
+                                <Col lg="12" md="12">
+                                    <Swiper
+                                        modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
+                                        spaceBetween={0}
+                                        autoplay={{
+                                            delay: 2500,
+                                            disableOnInteraction: false,
+                                        }}
+                                        slidesPerView={'auto'}
+                                        speed={500}>
+                                        {dataslide.media.map((item, index) => {
+                                            return (
+                                                <SwiperSlide key={index}>
+                                                    <div className='slideimage'>
+                                                        <img src={item.slider_image_base_url} alt="loading" style={{
+                                                            borderRadius: "10px",
+
+                                                        }} />
+                                                    </div>
+                                                </SwiperSlide>
+                                            );
+                                        })}
+                                    </Swiper>
+
+                                </Col>
+                            </Row>
+                        </Container>
+
+                    </>)}
             </div>
         </>
     );
