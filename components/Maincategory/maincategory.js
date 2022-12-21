@@ -11,9 +11,10 @@ export default function Maincategory() {
 
 
             {datacat.maincategory?.map((item, index) => {
+
                 return (
                     <Col lg="2" md="4" className="mt-5" key={index} >
-                        <Card cname="salonehome-all-Category" name={item.name} image={item.image} slug={item.slug} />
+                        <Card cname="salonehome-all-Category" id={item.id} name={item.name} image={item.image} slug={item.slug} />
                     </Col>
 
                 );

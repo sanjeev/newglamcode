@@ -7,6 +7,7 @@ export const frontService = {
     locationall,
     knowData,
     knowDataSlug,
+    datamancat,
 };
 async function allSlider() {
     const requestOptions = {
@@ -14,6 +15,19 @@ async function allSlider() {
 
     };
     return fetch(Global.BASE_API_PATH + `/allslider`, requestOptions)
+        .then(handleResponse)
+        .then(res => {
+            return res;
+        });
+}
+
+
+async function datamancat() {
+    const requestOptions = {
+        method: 'GET',
+
+    };
+    return fetch(Global.BASE_API_PATH + `/category/${localStorage.getItem("mid")}/${localStorage.getItem("id")}`, requestOptions)
         .then(handleResponse)
         .then(res => {
             return res;

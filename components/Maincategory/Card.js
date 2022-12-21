@@ -4,13 +4,15 @@ import { useRouter } from 'next/router'
 export default function Card(props) {
     const router = useRouter()
     const [modalShow, setModalShow] = React.useState(false);
-    const callurl = (slug) => {
-        router.push('/category/' + slug)
+    const callurl = (slug, id) => {
+        localStorage.setItem('mid', id);
+        router.push('/category/' + slug + '/' + localStorage.getItem('cityname').toLowerCase())
     }
+
     return (
         <>
             {localStorage.getItem("id") ? (<>
-                <div className={props.cname} onClick={() => callurl(props.slug)} >
+                <div className={props.cname} onClick={() => callurl(props.slug, props.id)} >
                     <div className="salonehome-all-Category-box" style={{ backgroundColor: 'rgb(255, 255, 255)' }}>
                         <div className="salonehome-all-Category-images">
                             <img src={`https://www.glamcode.in/user-uploads/maincategory/${props.image}`} alt={props.name} />

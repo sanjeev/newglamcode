@@ -1,22 +1,46 @@
+import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap';
+import { useRouter } from 'next/router'
+import { useEffect } from 'react';
+import { frontService } from "../../../_services/front.services";
 export default function Categoryslug() {
+    const router = useRouter()
+    const [mainCategory, setMaincategory] = React.useState([]);
+    const [categories, setCategories] = React.useState([]);
+
+    useEffect(() => {
+        frontService.datamancat()
+            .then(
+                res => {
+                    if (res.status === 'success') {
+                        setMaincategory(res.mainCategory);
+                        setCategories(res.categories);
+                    } else {
+                        console.log('Something went wrong !!');
+                    }
+                },
+                error => {
+                    console.log('Something went wrong !!');
+                }
+            )
+    }, []);
     return (
         <>
 
             <div className="servicedesk-bg">
                 <div className="header-css-head">
                     <Container fluid >
-                        <div className="d-flex flex-row">
+                        <div className="d-flex flex-row" onClick={() => router.back()}>
                             <div className="icon-alignments">
                                 <i className="fa fa-chevron-left fontSize-m-20" />
                             </div>
-                            <p className="inside-text-head">MAKE-UP</p>
+                            <p className="inside-text-head">{mainCategory.name}</p>
                         </div>
 
                     </Container>
                     <div className="g-3 g-sm-6" style={{ padding: '20px', background: '#f3f3f3' }}>
                         <Row>
-                            <div className="col-6 col-lg-4 col-lg-2 col-xl-2">
+                            {/* <div className="col-6 col-lg-4 col-lg-2 col-xl-2">
                                 <a
                                     id="cat209"
                                     className="pcats product-category-item-selected"
@@ -39,103 +63,37 @@ export default function Categoryslug() {
                                         new
                                     </span>
                                 </a>
-                            </div>
-                            <div className="col-6 col-lg-4 col-lg-2 col-xl-2">
-                                <a
-                                    id="cat210"
-                                    className="pcats product-category-item"
-                                    style={{ backgroundColor: "rgb(255, 255, 255)", padding: 15 }}
-                                >
-                                    <h3
-                                        className="fontFamily-alata-only"
-                                        style={{
-                                            fontSize: 16,
-                                            fontWeight: 500,
-                                            textAlign: "center",
-                                            marginBottom: 0,
-                                            position: "relative",
-                                            marginTop: 0
-                                        }}
-                                    >
-                                        Engagement Makeup
-                                    </h3>
-                                    <span className="flag-new" style={{ display: "none" }}>
-                                        new
-                                    </span>
-                                </a>
-                            </div>
-                            <div className="col-6 col-lg-4 col-lg-2 col-xl-2">
-                                <a
-                                    id="cat211"
-                                    className="pcats product-category-item"
-                                    style={{ backgroundColor: "rgb(255, 255, 255)", padding: 15 }}
-                                >
-                                    <h3
-                                        className="fontFamily-alata-only"
-                                        style={{
-                                            fontSize: 16,
-                                            fontWeight: 500,
-                                            textAlign: "center",
-                                            marginBottom: 0,
-                                            position: "relative",
-                                            marginTop: 0
-                                        }}
-                                    >
-                                        Bridal Makeup
-                                    </h3>
-                                    <span className="flag-new" style={{ display: "none" }}>
-                                        new
-                                    </span>
-                                </a>
-                            </div>
-                            <div className="col-6 col-lg-4 col-lg-2 col-xl-2">
-                                <a
-                                    id="cat212"
-                                    className="pcats product-category-item"
-                                    style={{ backgroundColor: "rgb(255, 255, 255)", padding: 15 }}
-                                >
-                                    <h3
-                                        className="fontFamily-alata-only"
-                                        style={{
-                                            fontSize: 16,
-                                            fontWeight: 500,
-                                            textAlign: "center",
-                                            marginBottom: 0,
-                                            position: "relative",
-                                            marginTop: 0
-                                        }}
-                                    >
-                                        Group Deals
-                                    </h3>
-                                    <span className="flag-new" style={{ display: "none" }}>
-                                        new
-                                    </span>
-                                </a>
-                            </div>
-                            <div className="col-6 col-lg-4 col-lg-2 col-xl-2">
-                                <a
-                                    id="cat256"
-                                    className="pcats product-category-item"
-                                    style={{ backgroundColor: "rgb(255, 255, 255)", padding: 15 }}
-                                >
-                                    <h3
-                                        className="fontFamily-alata-only"
-                                        style={{
-                                            fontSize: 16,
-                                            fontWeight: 500,
-                                            textAlign: "center",
-                                            marginBottom: 0,
-                                            position: "relative",
-                                            marginTop: 0
-                                        }}
-                                    >
-                                        Hair Style Add Ons
-                                    </h3>
-                                    <span className="flag-new" style={{ display: "none" }}>
-                                        new
-                                    </span>
-                                </a>
-                            </div>
+                            </div> */}
+                            {categories?.map((x, i) =>
+                                <>
+                                    <div className="col-6 col-lg-4 col-lg-2 col-xl-2">
+                                        <a
+                                            id="cat210"
+                                            className="pcats product-category-item"
+                                            style={{ backgroundColor: "rgb(255, 255, 255)", padding: 15 }}
+                                        >
+                                            <h3
+                                                className="fontFamily-alata-only"
+                                                style={{
+                                                    fontSize: 16,
+                                                    fontWeight: 500,
+                                                    textAlign: "center",
+                                                    marginBottom: 0,
+                                                    position: "relative",
+                                                    marginTop: 0
+                                                }}
+                                            >
+                                                {x.name}
+                                            </h3>
+                                            <span className="flag-new" style={{ display: "none" }}>
+                                                new
+                                            </span>
+                                        </a>
+                                    </div>
+
+                                </>
+                            )}
+
                         </Row>
                     </div>
 

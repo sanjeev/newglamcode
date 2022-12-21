@@ -11,7 +11,7 @@ import Knowmore from "../components/Knowmore"
 import Pageslider from "../components/Slider/pageSlider"
 import Preferedservices from "../components/Preferedservices/Preferedservices"
 import Maincategorymobile from "../components/Maincategory/Maincategorymobile"
-import Header from "../components/Header"
+import Header from "../components/Header/index"
 export default function getRoute() {
     // Calling useRouter() hook
     const router = useRouter()
