@@ -6,6 +6,7 @@ import Faqs from "../components/Faqs/index"
 import Serving from "../components/Serving"
 import Knowmore from "../components/Knowmore"
 import Head from 'next/head'
+import Header from "../components/Header";
 export default function Home() {
 
 
@@ -32,7 +33,7 @@ export default function Home() {
           <meta name="ICBM" content="28.5839021,77.3959942" data-react-helmet="true"></meta>
         </Head>
 
-
+        <Header />
 
         <Slider />
         {localStorage.getItem('devise') === 'D' ? (<>

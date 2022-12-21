@@ -11,6 +11,7 @@ import Knowmore from "../components/Knowmore"
 import Pageslider from "../components/Slider/pageSlider"
 import Preferedservices from "../components/Preferedservices/Preferedservices"
 import Maincategorymobile from "../components/Maincategory/Maincategorymobile"
+import Header from "../components/Header"
 export default function getRoute() {
     // Calling useRouter() hook
     const router = useRouter()
@@ -74,6 +75,7 @@ export default function getRoute() {
                             <meta name="geo.position" content={`${knowmore.latitude},${knowmore.longitude}`} data-react-helmet="true"></meta>
                             <meta name="ICBM" content={`${knowmore.latitude},${knowmore.longitude}`} data-react-helmet="true"></meta>
                         </Head>
+                        <Header />
                         <Pageslider />
 
                         {localStorage.getItem('devise') === 'D' ? (<>

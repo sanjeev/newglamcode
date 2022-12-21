@@ -83,7 +83,7 @@ function Layout({ children }) {
             {!loading ?
                 (
                     <>
-                        <Header />
+
                         <div className="allsection">{children}</div>
                         <Footer />
                     </>
