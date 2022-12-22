@@ -429,9 +429,85 @@ a:hover {
 .mobilepopud .modal-content {
   background: #fff !important;
 }
+.fa-star::before {
+  color: #daa520;
+}
+.product-details-content .product-details-action .price {
+  font-size: 44px;
+}
+.product-details-content .product-details-pro-qty {
+  margin-bottom: 0;
+}
+.product-details-pro-qty {
+  border-bottom: 1px solid #e3e3e3;
+  padding-bottom: 34px;
+  margin-bottom: 32px;
+}
+.pro-qty {
+  display: inline-block;
+  position: relative;
+}
+.pro-qty input {
+  width: 170px;
+  height: 50px;
+  font-size: 13px;
+  border: 2px solid #e63946;
+  border-radius: 50px;
+  color: #231942;
+  font-weight: 700;
+  padding: 0 55px;
+  text-align: center;
+}
+.product-details-content .btn {
+  background-color: #ff6565;
+  border: 2px solid #ff6565;
+  box-shadow: none;
+  border-radius: 50px;
+  color: #fff;
+  display: inline-block;
+  font-size: 14px;
+  height: 50px;
+  letter-spacing: 7px;
+  line-height: 37px;
+  padding: 5px 25px 5px 37px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.product-details-content .btn:hover {
+  background-color: #231942;
+  border-color: #231942;
+  color: #fff;
+}
+.product-details-action {
+  align-items: center;
+  display: flex;
+  margin-top: 50px;
+}
+.product-details-action .price {
+  font-size: 50px;
+  font-weight: 400;
+  margin-bottom: 0;
+  line-height: 1;
+}
 .productcatpage {
   display: flex;
   flex-wrap: wrap;
+}
+.product-details-content .product-details-title {
+  font-size: 40px;
+  margin-bottom: 22px;
+  line-height: 1.2;
+}
+.modal-fullscreen .modal-content {
+  height: 75% !important;
+  border: 0;
+  border-radius: 0;
+}
+.modal-fullscreen {
+  width: 77vw !important;
+  max-width: none;
+  margin: auto !important;
+  margin-top: 30px !important;
 }
 .productcatpage > div {
   flex-grow: 1;
@@ -596,6 +672,13 @@ a:hover {
   }
   .allsection {
     margin-top: "0px";
+  }
+  .modal-fullscreen {
+    width: 100vw !important;
+    max-width: none;
+    height: 95% !important;
+    margin: auto;
+    margin-top: 30px !important;
   }
 }
 @media (min-width: 992px) {

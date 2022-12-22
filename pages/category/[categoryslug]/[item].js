@@ -2,13 +2,12 @@ import React, { useState } from 'react'
 import { Container, Row, Col } from 'react-bootstrap';
 import { useRouter } from 'next/router'
 import { useEffect } from 'react';
-
-import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useSelector } from 'react-redux';
 import LoadingScreen from "../../../components/LoadingScreen/loadingScreen";
 import { frontService } from "../../../_services/front.services";
 import { Audio } from 'react-loader-spinner'
+import ViewDetails from '../../../components/ViewDetails/ViewDetails'
 export default function Categoryslug() {
     const router = useRouter()
     const [mainCategory, setMaincategory] = React.useState([]);
@@ -20,7 +19,7 @@ export default function Categoryslug() {
     const handleShow = () => setShow(true);
     const datacat = useSelector(state => state.maincat);
 
-    console.log(categories);
+
     useEffect(() => {
         frontService.datamancat()
             .then(
@@ -37,6 +36,15 @@ export default function Categoryslug() {
                 }
             )
     }, []);
+    const mapItems = (items) => {
+        return (
+            items.map((item, index) => {
+                return (<li className="listService" key={index}>
+                    <i className="fa fa-snowflake-o" aria-hidden="true" />
+                    {` ` + item.toString()}</li>);
+            })
+        );
+    }
     return (
         <>
 
@@ -141,7 +149,7 @@ export default function Categoryslug() {
 
                                         {x?.service.map((y, i) => <>
 
-                                            <div className="col-md-6 col-12 p-md-5 pt-md-3 pb-md-0 p-2" id="scrollto225">
+                                            <div className="col-md-6 col-12 p-md-5 pt-md-3 pb-md-0 p-2" key={i} id="scrollto225">
                                                 <div className="servicesMD row servicesMD-bg-color-1">
                                                     <a className="col-4 p-0" href="#">
                                                         <img
@@ -172,29 +180,14 @@ export default function Categoryslug() {
                                                         <div className="lineDiv" />
                                                         <div className="descriptionServices">
                                                             <ul className="p-2" style={{ marginBottom: "-25px" }}>
-                                                                <div dangerouslySetInnerHTML={{ __html: y.description }}>
-
-                                                                </div>
-
-                                                                {/* <li className="listService">
-                                                                    <i className="fa fa-snowflake-o" aria-hidden="true" /> Body scrubs
-                                                                    remove dead skin cells
-                                                                </li>
-                                                                <li className="listService">
-                                                                    <i className="fa fa-snowflake-o" aria-hidden="true" /> They allow
-                                                                    your skin to absorb moisturizer better
-                                                                </li>
-                                                                <li className="listService">
-                                                                    <i className="fa fa-snowflake-o" aria-hidden="true" /> They unclog
-                                                                    pores and prevent ingrown hairs
-                                                                </li>
-                                                                <li className="listService">
-                                                                    <i className="fa fa-snowflake-o" aria-hidden="true" /> They leave
-                                                                    your skin smoother and more even
-                                                                </li> */}
+                                                                {mapItems(y.description.replace(/(<([^>]+)>)/ig, '').replace(/(?:\r\n|\r|\n)/g, '').replace(/(?:&nbsp;)/g, '')
+                                                                    .replace(/&amp;/g, '&').toString().split('.'))}
                                                             </ul>
                                                         </div>
-                                                        <div className="viewDetails">View Details</div>
+                                                        <ViewDetails
+                                                            alldata={y}
+                                                        />
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -230,13 +223,11 @@ export default function Categoryslug() {
                                                     >
                                                         <img className="images-m center-img-all" src={`https://www.glamcode.in/user-uploads/maincategory/${item.image}`} alt={item.name} />
                                                         <div className="center-content-all">
-                                                            <a
-                                                                href={`/category/${item.slug}/${localStorage.getItem('cityname').toLowerCase()}`}
-                                                                className="title"
-                                                                style={{ fontSize: 10 }}
+                                                            <span
+                                                                style={{ fontSize: 13 }}
                                                             >
                                                                 {item.name}
-                                                            </a>
+                                                            </span>
                                                         </div>
                                                     </a>
                                                 </div>
