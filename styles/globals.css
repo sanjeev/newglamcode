@@ -226,7 +226,6 @@ button {
 }
 .center-content-all {
   width: 100%;
-  margin-top: 10px;
   text-align: center;
 }
 .footer-container {
@@ -371,9 +370,169 @@ a:hover {
   margin-top: 0.8%;
   color: #fff;
 }
+.servicesMD .Price {
+  font-family: "Alata";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 19px;
+  align-items: center;
+  color: #616165;
+  -webkit-text-decoration-line: line-through;
+  text-decoration-line: line-through;
+}
+.servicesMD .offerPrice,
+.servicesMD .ratting {
+  font-family: "Alata";
+  font-style: normal;
+  font-weight: 400;
+  align-items: center;
+}
+.servicesMD .offerPrice {
+  font-size: 18px;
+  line-height: 21px;
+  color: #7900d9;
+  margin-right: 17px;
+}
+.p-rl-2 {
+  padding-left: 0.625rem !important;
+  padding-right: 0.625rem !important;
+}
+.servicesMD .time-settings i {
+  color: #e3bc00;
+  margin-right: 10px;
+}
+.servicesMD .Addtocart {
+  position: absolute;
+  padding: 3px 10px;
+  right: 2%;
+  top: 29%;
+  background: #7c00b7;
+  border-radius: 10px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  align-items: center;
+  color: #fff;
+  border: 1px solid #7c00b7;
+}
+.servicesMD .viewDetails,
+.servicesMD .viewDetails-m {
+  border-radius: 10px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  border: 1px solid #dedede;
+}
+.mobilepopud .modal-content {
+  background: #fff !important;
+}
+.productcatpage {
+  display: flex;
+  flex-wrap: wrap;
+}
+.productcatpage > div {
+  flex-grow: 1;
+  width: 33%;
+  height: 100px;
+  margin-bottom: 20px;
+}
+.images-m {
+  display: block;
+  width: 80px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.center-img-all {
+  align-content: center;
+  text-align: center;
+}
+
+.servicedesk-bg {
+  background: #fff1f1;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
+}
+.servicesMD .viewDetails {
+  position: relative;
+  width: 35%;
+  margin-left: auto;
+  margin-top: 45px;
+  padding: 4px 13px;
+  bottom: 6%;
+  background: #7c00b7;
+  font-size: 12px;
+  line-height: 22px;
+  align-items: center;
+  color: #fff;
+}
+.listService {
+  font-family: "Alata";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+}
+.Addtocart {
+  margin-right: 8px;
+}
+.servicesMD .time-settings {
+  font-family: "Alata";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  align-items: center;
+  color: #000;
+  margin-left: -3%;
+}
+.discountTitle {
+  width: 49px;
+  background: rgba(0, 0, 0, 0.97);
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.47843137254901963) !important;
+  border-radius: 10px;
+  font-family: "Alata";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  align-items: center;
+  color: #fff;
+  border: 1px solid #000;
+}
+.servicesMD-bg-color-1 {
+  background: #fff !important;
+}
+.servicesMD {
+  box-sizing: border-box;
+  position: relative;
+  min-height: 220px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.43137254901960786) !important;
+  border-radius: 6px;
+}
+.servicesMD .image {
+  box-sizing: border-box;
+  width: 100%;
+  height: 98%;
+  margin: 2px;
+  border: 1px solid #000;
+  border-radius: 6px;
+}
+.menu-category-d {
+  position: fixed;
+  bottom: 10%;
+  left: 50%;
+  padding: 5px 20px;
+  background: #a854fc !important;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25) !important;
+  border-radius: 10px !important;
+  color: #fff !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4) !important;
+  border-radius: 25px !important;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.25) !important;
+}
 .product-category-item {
   border-radius: 10px;
-  background-color: #dcffd2 !important;
   display: block;
 
   position: relative;
