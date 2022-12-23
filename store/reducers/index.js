@@ -1,6 +1,7 @@
 import HomeReducers from './HomeReducers'
 import mainCatReducers from './mainCatReducers'
 import locationReducers from './locationReducers'
+import cardAdd from './cart'
 import storage from "redux-persist/lib/storage";
 import { combineReducers } from 'redux'
 import { persistReducer } from "redux-persist";
@@ -13,7 +14,8 @@ const persistConfig = {
 const rootReducer = combineReducers({
     slide: HomeReducers,
     maincat: mainCatReducers,
-    loctions: locationReducers
+    loctions: locationReducers,
+    cardAdd: cardAdd,
 });
 
 export default persistReducer(persistConfig, rootReducer);

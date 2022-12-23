@@ -1,6 +1,15 @@
-
+import React, { useEffect, useState } from "react";
+import { useSelector } from 'react-redux';
 function Footer() {
-
+    const cart = useSelector(state => state.cardAdd?.cart);
+    const [total, setTotal] = React.useState(0);
+    useEffect(() => {
+        var total = 0;
+        for (let i = 0; i < cart.length; i++) {
+            total += parseInt(cart[i].sum);
+        }
+        setTotal(total);
+    }, [cart]);
     return (
         <>
             <footer className="footer-container">
@@ -886,6 +895,25 @@ function Footer() {
                     </ul>
                 </div>)
             }
+
+
+            {cart.length > 0 ?
+
+                <div className="bottomservicesCheckout" key={0}>
+                    <div className="topinside">
+                        <p className="text">{`Minimum Booking Amount :- ₹` + 788888}</p>
+                    </div>
+                    <div className="bottominside">
+                        <div className="d-flex justify-content-between" >
+                            <div className="d-flex flex-column-m">
+                                <p className="textHead">Total Price ₹ {total}</p>
+                            </div>
+                            <a href="/checkout" className="textHead">Checkout <i className="fa fa-chevron-right" style={{ marginLeft: 10 }} aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                : ''}
 
         </>
     );

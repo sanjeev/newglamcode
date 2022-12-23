@@ -685,6 +685,47 @@ a:hover {
   top: 0;
   width: 100%;
 }
+.bottomservicesCheckout {
+  position: fixed;
+  margin-bottom: 20px;
+  bottom: 0;
+  right: 0;
+  width: 35%;
+  z-index: 9;
+  background: #af73e9;
+  border-radius: 10px;
+}
+.bottomservicesCheckout .topinside {
+  padding: 5px;
+  background: #882edf;
+  border-radius: 10px 10px 0 0;
+}
+.bottomservicesCheckout .topinside .text {
+  font-family: "Alata";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
+.bottomservicesCheckout .bottominside {
+  padding: 5px 20px;
+  border-radius: 0 0 10px 10px;
+}
+.bottomservicesCheckout .bottominside .textbot,
+.bottomservicesCheckout .bottominside .textHead {
+  font-family: "Alata";
+  font-style: normal;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
+.bottomservicesCheckout .bottominside .textHead {
+  font-size: 17px;
+}
 @media only screen and (min-width: 1px) and (max-width: 991px) {
   .slideimage {
     height: 250px !important;

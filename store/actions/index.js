@@ -20,4 +20,77 @@ export function mainLocation(payload) {
         payload: payload,
     }
 }
+export function addToCart(product, qty) {
+    console.log("Item Added to Cart !!");
+    dispatch(addtoCartData(product, qty))
+}
 
+// export const addToCart = (product, qty) => (dispatch) => {
+
+//     console.log("Item Added to Cart !!");
+//     console.log(product);
+//     //dispatch(addtoCartData(product, qty));
+// };
+export const decrementQty = (productId) => ({
+    type: types.DECREMENT_QTY,
+    productId
+});
+export const addtoCartData = (product, qty) => ({
+    type: types.ADD_TO_CART,
+    product,
+    qty
+});
+export const removeFromCart = (productId) => ({
+    type: types.REMOVE_FROM_CART,
+    product_Id: productId
+});
+
+// export const removeFromCart = productId => (dispatch) => {
+
+//     dispatch({
+//         type: types.REMOVE_FROM_CART,
+//         product_Id: productId
+//     });
+// }
+export const AddToCartAndRemoveWishlist = (product, qty) => (dispatch) => {
+    toast.success("Item Added to Cart !!");
+    dispatch(addToCart(product, qty));
+    dispatch(removeFromWishlist(product.id));
+}
+
+// export const removeFromCart = productId => (dispatch) => {
+//     toast.success("Item Removed from Cart !!");
+//     dispatch({
+//         type: types.REMOVE_FROM_CART,
+//         product_Id: productId
+//     });
+// }
+
+
+// export const decrementQty = (productId) => ({
+//     type: types.DECREMENT_QTY,
+//     productId
+// });
+// export const decrementQty = (productId) => ({
+//     type: types.DECREMENT_QTY,
+//     productId
+// });
+// export function decrementQty(productId) {
+//     return {
+//         type: types.DECREMENT_QTY,
+//         productId
+//     }
+// }
+
+// export const decrementQty = (productId) => (dispatch) => {
+//     toast.success("Item Decrement Qty to Cart !!");
+//     dispatch({
+//         type: types.DECREMENT_QTY,
+//         productId
+//     });
+// }
+
+export const incrementQty = (product, qty) => (dispatch) => {
+    toast.success("Item Added to Cart !!");
+    dispatch(addtoCartData(product, qty));
+}

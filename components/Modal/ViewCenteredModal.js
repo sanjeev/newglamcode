@@ -2,14 +2,29 @@
 import React from "react";
 import Modal from 'react-bootstrap/Modal';
 import { Row, Col } from 'react-bootstrap';
+import { addtoCartData, decrementQty, removeFromCart } from '../../store/actions';
+import { useDispatch } from 'react-redux';
 export default function ViewCenteredModal(props) {
     const handleClose = () => props.onHide();
+    const dispatch = useDispatch();
     const [itemCount, setItemCount] = React.useState(0);
-    const onDecrement = (items) => {
+    const onDecrement = (itemsid) => {
         setItemCount(Math.max(itemCount - 1, 0));
+        if (Math.max(itemCount - 1, 0) === 0) {
+            dispatch(removeFromCart(itemsid))
+        } else {
+            dispatch(decrementQty(itemsid, 1))
+        }
+
     }
     const onIncrement = (items) => {
         setItemCount(itemCount + 1);
+
+        //     dispatch({
+        //         type: 'FETCH_DATA',
+        //         data: responseData
+        //    })
+        dispatch(addtoCartData(items, 1));
     }
     const mapItems = (items) => {
         return (
@@ -59,7 +74,7 @@ export default function ViewCenteredModal(props) {
                                 <div className="product-details-pro-qty">
                                     <div className="Addtocart-Items d-flex flex-row">
                                         <div className="pro-qty">
-                                            <div className="dec qty-btn" onClick={() => onDecrement(props.datato)}>-</div>
+                                            <div className="dec qty-btn" onClick={() => onDecrement(props.datato.id)}>-</div>
                                             <input type="text" title="Quantity" readOnly="" value={itemCount} />
 
                                             <div className="inc qty-btn" onClick={() => onIncrement(props.datato)}>+</div>
@@ -71,18 +86,18 @@ export default function ViewCenteredModal(props) {
                                 </div>
                                 <div className="product-details-action">
                                     <div className="product-item prices">
-                                        <span className="price">₹499</span>
+                                        <span className="price">₹ {props.datato.discounted_price}</span>
                                         <span
                                             className="price-old"
                                             style={{ textDecorationLine: "line-through" }}
                                         >
-                                            ₹713
+                                            ₹ {props.datato.price}
                                         </span>
                                     </div>
                                     <div className="product-details-cart-wishlist" style={{ marginLeft: '35px' }}>
                                         <button type="button" className="btn">
                                             <i className="fa fa-clock-o" />
-                                            25 minutes{" "}
+                                            {props.datato.time} {props.datato.time_type}
                                         </button>
                                     </div>
                                 </div>
