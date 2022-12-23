@@ -13,10 +13,7 @@ export default function Maincategory() {
             {datacat.maincategory?.map((item, index) => {
 
                 return (
-
                     <Card cname="salonehome-all-Categorym" key={index} name={item.name} id={item.id} image={item.image} slug={item.slug} />
-
-
                 );
             })}
 

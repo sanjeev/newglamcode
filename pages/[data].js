@@ -98,7 +98,7 @@ export default function getRoute() {
 
 
 
-                        {localStorage.getItem('devise') === 'D' ? (<Maincategory />) : (<> <hr class="hr-white"></hr>
+                        {localStorage.getItem('devise') === 'D' ? (<Maincategory />) : (<> <hr className="hr-white"></hr>
 
                             <Maincategorymobile /></>)
                         }

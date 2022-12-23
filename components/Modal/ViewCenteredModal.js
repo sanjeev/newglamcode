@@ -11,7 +11,15 @@ export default function ViewCenteredModal(props) {
     const onIncrement = (items) => {
         setItemCount(itemCount + 1);
     }
-    console.log(props);
+    const mapItems = (items) => {
+        return (
+            items.map((item, index) => {
+                return (<li key={index}>
+                    <i className="fa fa-snowflake-o" aria-hidden="true" />
+                    {` ` + item.toString()}</li>);
+            })
+        );
+    }
     return (
         <>
             <Modal
@@ -33,7 +41,7 @@ export default function ViewCenteredModal(props) {
                         <Col md={6}>
 
                             <div className="product-details-content">
-                                <h3 class="product-details-title"> {props.datato.name}</h3>
+                                <h3 className="product-details-title"> {props.datato.name}</h3>
                                 <div className="product-details-review mb-5">
                                     <div className="product-review-icon">
                                         <i className="fa fa-star" />
@@ -43,15 +51,22 @@ export default function ViewCenteredModal(props) {
                                         <i className="fa fa-star-half-o" />
                                     </div>
                                 </div>
-                                <ul className="mb-6">
-                                    <li> Rica Roll On wax</li>
+                                <ul className="mb-6" style={{ paddingLeft: '0px' }}>
+                                    {mapItems(props.datato.description.replace(/(<([^>]+)>)/ig, '').replace(/(?:\r\n|\r|\n)/g, '').replace(/(?:&nbsp;)/g, '')
+                                        .replace(/&amp;/g, '&').toString().split('.'))}
                                 </ul>
                                 <p className="mb-6"> </p>
                                 <div className="product-details-pro-qty">
                                     <div className="Addtocart-Items d-flex flex-row">
-                                        <div className="addcart-plus" onClick={() => onDecrement(props.datato)}>-</div>
+                                        <div className="pro-qty">
+                                            <div className="dec qty-btn" onClick={() => onDecrement(props.datato)}>-</div>
+                                            <input type="text" title="Quantity" readOnly="" value={itemCount} />
+
+                                            <div className="inc qty-btn" onClick={() => onIncrement(props.datato)}>+</div>
+                                        </div>
+                                        {/* <div className="addcart-plus" >-</div>
                                         <div className="addcart-count">{itemCount}</div>
-                                        <div className="addcart-minus" onClick={() => onIncrement(props.datato)}>+</div>
+                                        <div className="addcart-minus" >+</div> */}
                                     </div>
                                 </div>
                                 <div className="product-details-action">
@@ -64,7 +79,7 @@ export default function ViewCenteredModal(props) {
                                             ₹713
                                         </span>
                                     </div>
-                                    <div className="product-details-cart-wishlist">
+                                    <div className="product-details-cart-wishlist" style={{ marginLeft: '35px' }}>
                                         <button type="button" className="btn">
                                             <i className="fa fa-clock-o" />
                                             25 minutes{" "}

@@ -12,9 +12,7 @@ export default function Categoryslug() {
     const router = useRouter()
     const [mainCategory, setMaincategory] = React.useState([]);
     const [categories, setCategories] = React.useState([]);
-
     const [show, setShow] = useState(false);
-
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const datacat = useSelector(state => state.maincat);
@@ -45,6 +43,11 @@ export default function Categoryslug() {
             })
         );
     }
+
+    const callurl = (slug, id) => {
+        localStorage.setItem('mid', id);
+        //router.push('/category/' + slug + '/' + localStorage.getItem('cityname').toLowerCase())
+    }
     return (
         <>
 
@@ -57,44 +60,41 @@ export default function Categoryslug() {
                             </div>
                             <p className="inside-text-head">{mainCategory ? mainCategory.name : 'loging...'}</p>
                         </div>
-
                     </Container>
                     {categories ? (<>
                         <div className="g-3 g-sm-6" style={{ padding: '20px', background: '#f3f3f3' }}>
-                            <Row>
 
 
-                                {categories?.map((x, i) =>
-                                    <>
-                                        <div className="col-6 col-lg-4 col-lg-2 col-xl-2">
-                                            <a
-                                                id="cat210"
-                                                className="pcats product-category-item"
-                                                style={{ backgroundColor: "rgb(255, 255, 255)", padding: 15 }}
-                                            >
-                                                <h3
-                                                    className="fontFamily-alata-only"
-                                                    style={{
-                                                        fontSize: 16,
-                                                        fontWeight: 500,
-                                                        textAlign: "center",
-                                                        marginBottom: 0,
-                                                        position: "relative",
-                                                        marginTop: 0
-                                                    }}
-                                                >
-                                                    {x.name}
-                                                </h3>
-                                                <span className="flag-new" style={{ display: "none" }}>
-                                                    new
-                                                </span>
-                                            </a>
-                                        </div>
+                            {categories?.map((x, i) =>
+                                <>
 
-                                    </>
-                                )}
+                                    <a
+                                        id="cat210"
+                                        className="pcats product-category-item"
+                                        style={{ backgroundColor: "rgb(255, 255, 255)", padding: 15 }}
+                                        key={i}
+                                    >
+                                        <h3
+                                            className="fontFamily-alata-only"
+                                            style={{
+                                                fontSize: 13,
+                                                fontWeight: 500,
+                                                textAlign: "center",
+                                                marginBottom: 0,
+                                                position: "relative",
+                                                marginTop: 0
+                                            }}
+                                        >
+                                            {x.name}
+                                        </h3>
 
-                            </Row>
+                                    </a>
+
+
+                                </>
+                            )}
+
+
                         </div>
                     </>) : (<>
                         <Audio
@@ -120,6 +120,7 @@ export default function Categoryslug() {
                                         <div
                                             className="col-md-6 col-12 p-md-5 pt-md-3 pb-md-0 p-2"
                                             style={{ marginTop: 0 }}
+                                            key={i}
 
                                         >
                                             <div className="servicesMD row servicesMD-bg-color-1">
@@ -127,14 +128,13 @@ export default function Categoryslug() {
                                                     className="pcats product-category-item-services"
                                                     style={{ backgroundColor: "rgba(255, 255, 255, 0)", padding: 0 }}
                                                 >
-                                                    <span className="flag-new" style={{ display: "none" }}>
-                                                        new
-                                                    </span>
-                                                    <a className="col-4-m p-0 image-m" href="#">
+
+                                                    <a className="col-4-m p-0 image-m" href="#" >
                                                         <img
                                                             className="image"
                                                             src={x.category_image_url}
                                                             alt={x.name}
+                                                            id={x.id}
                                                             style={{
                                                                 width: "100%",
                                                                 height: "100%",
@@ -155,7 +155,7 @@ export default function Categoryslug() {
                                                         <img
                                                             className="image"
                                                             src={y.service_image_url}
-                                                            alt="Full Body Scrub"
+                                                            alt={y.name}
                                                         />
                                                     </a>
                                                     <div className="col-8 pt-1">
@@ -215,11 +215,10 @@ export default function Categoryslug() {
                                         {datacat.maincategory?.map((item, index) => {
 
                                             return (
-
                                                 <div key={index}>
                                                     <a
+                                                        onClick={() => callurl(item.slug, item.id)}
                                                         href={`/category/${item.slug}/${localStorage.getItem('cityname').toLowerCase()}`}
-
                                                     >
                                                         <img className="images-m center-img-all" src={`https://www.glamcode.in/user-uploads/maincategory/${item.image}`} alt={item.name} />
                                                         <div className="center-content-all">
@@ -231,8 +230,6 @@ export default function Categoryslug() {
                                                         </div>
                                                     </a>
                                                 </div>
-
-
                                             );
                                         })}
 
@@ -240,7 +237,6 @@ export default function Categoryslug() {
 
                                     </div>
                                 </Modal.Body>
-
                             </Modal>
                         </>
                     ) : (<LoadingScreen />)}

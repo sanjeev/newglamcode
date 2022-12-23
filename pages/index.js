@@ -53,7 +53,7 @@ export default function Home() {
           </>
         )}
 
-        {localStorage.getItem('devise') === 'D' ? (<Maincategory />) : (<> <hr class="hr-white"></hr>
+        {localStorage.getItem('devise') === 'D' ? (<Maincategory />) : (<> <hr className="hr-white"></hr>
 
           <Maincategorymobile /></>)}
 

@@ -35,7 +35,7 @@ function Pageslider() {
                                                     width: 750,
                                                 }} />
                                             </div> */}
-                                                    <div style={{ width: '100%', height: '50%', paddingLeft: 5, paddingTop: 10, paddingBottom: 40 }}>
+                                                    <div key={index} style={{ width: '100%', height: '50%', paddingLeft: 5, paddingTop: 10, paddingBottom: 40 }}>
                                                         <img src={item.slider_image_base_url} alt="loading" style={{
                                                             borderRadius: "10px",
                                                         }} />

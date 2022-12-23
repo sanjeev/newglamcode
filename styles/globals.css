@@ -144,6 +144,56 @@ button {
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
   background: #fff1f1;
 }
+.pro-qty .dec {
+  left: 0;
+  border-right: 1px solid #cdcdcd;
+  padding-left: 5px;
+  line-height: 22px;
+}
+.pro-qty .qty-btn {
+  cursor: pointer;
+  position: absolute;
+  line-height: 21px;
+  color: #555;
+  height: 25px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  font-size: 28px;
+  width: 53px;
+  text-align: center;
+  transition: all 0.5s ease 0s;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.pro-qty .inc {
+  right: 0;
+  border-left: 1px solid #cdcdcd;
+  padding-right: 5px;
+}
+.product-details-cart-wishlist .btn {
+  letter-spacing: 1px;
+  font-weight: 500;
+  font-size: 12px;
+  padding: 0 20px;
+  height: 44px;
+}
+.pro-qty .qty-btn {
+  cursor: pointer;
+  position: absolute;
+  line-height: 21px;
+  color: #555;
+  height: 25px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  font-size: 28px;
+  width: 53px;
+  text-align: center;
+  transition: all 0.5s ease 0s;
+  -webkit-user-select: none;
+  user-select: none;
+}
 .sidemenu-modal-d {
   position: fixed;
   width: 15%;
@@ -156,7 +206,7 @@ button {
   z-index: 9;
 }
 .allsection {
-  margin-top: "70px";
+  margin-top: 70px;
 }
 .menutop {
   margin-top: 5px !important;
@@ -458,6 +508,10 @@ a:hover {
   padding: 0 55px;
   text-align: center;
 }
+#cat210 {
+  width: calc(14% - 10px);
+  margin-right: 10px;
+}
 .product-details-content .btn {
   background-color: #ff6565;
   border: 2px solid #ff6565;
@@ -467,7 +521,7 @@ a:hover {
   display: inline-block;
   font-size: 14px;
   height: 50px;
-  letter-spacing: 7px;
+  letter-spacing: 0px;
   line-height: 37px;
   padding: 5px 25px 5px 37px;
   text-align: center;
@@ -609,7 +663,7 @@ a:hover {
 }
 .product-category-item {
   border-radius: 10px;
-  display: block;
+  display: inline-block;
 
   position: relative;
   text-align: center;
