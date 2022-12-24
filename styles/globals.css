@@ -710,6 +710,9 @@ a:hover {
   align-items: center;
   color: #fff;
 }
+.textHead {
+  margin-bottom: 0px;
+}
 .bottomservicesCheckout .bottominside {
   padding: 5px 20px;
   border-radius: 0 0 10px 10px;

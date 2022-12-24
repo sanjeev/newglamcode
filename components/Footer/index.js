@@ -901,7 +901,7 @@ function Footer() {
 
                 <div className="bottomservicesCheckout" key={0}>
                     <div className="topinside">
-                        <p className="text">{`Minimum Booking Amount :- ₹` + 788888}</p>
+                        <p className="text">{`Minimum Booking Amount :- ₹` + 699}</p>
                     </div>
                     <div className="bottominside">
                         <div className="d-flex justify-content-between" >
