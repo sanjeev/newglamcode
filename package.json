@@ -6,7 +6,6 @@
     "start": "next start"
   },
   "dependencies": {
-    "@react-google-maps/api": "^2.17.1",
     "bootstrap": "^5.2.3",
     "font-awesome": "^4.7.0",
     "next": "latest",
@@ -14,8 +13,8 @@
     "react": "18.2.0",
     "react-bootstrap": "^2.7.0",
     "react-dom": "18.2.0",
+    "react-horizontal-datepicker": "^2.0.3",
     "react-loader-spinner": "^5.3.4",
-    "react-native-calendar-strip": "^2.2.6",
     "react-redux": "^8.0.5",
     "redux": "^4.2.0",
     "redux-persist": "^6.0.0",
