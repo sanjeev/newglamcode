@@ -908,7 +908,11 @@ function Footer() {
                             <div className="d-flex flex-column-m">
                                 <p className="textHead">Total Price ₹ {total}</p>
                             </div>
+
+                            {MINPRICEORDER}
                             <a href="/checkout" className="textHead">Checkout <i className="fa fa-chevron-right" style={{ marginLeft: 10 }} aria-hidden="true"></i></a>
+
+
                         </div>
                     </div>
                 </div>
