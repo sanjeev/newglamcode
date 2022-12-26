@@ -97,10 +97,7 @@ export default function Categoryslug() {
 
                         </div>
                     </>) : (<>
-                        <Audio
-                            height="80"
-                            width="80"
-                            radius="9"
+                        <Audio height="80" width="80" radius="9"
                             color="green"
                             ariaLabel="loading"
                             wrapperStyle

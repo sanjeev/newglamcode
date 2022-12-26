@@ -205,9 +205,7 @@ button {
   right: 0;
   z-index: 9;
 }
-.allsection {
-  margin-top: 70px;
-}
+
 .menutop {
   margin-top: 5px !important;
 }
@@ -685,6 +683,98 @@ a:hover {
   top: 0;
   width: 100%;
 }
+.section-model-login {
+  width: 30%;
+  height: 100vh;
+  z-index: 9;
+  margin-left: auto;
+  margin-right: auto;
+}
+.section-login-background {
+  background: linear-gradient(
+      223.97deg,
+      rgba(203, 144, 204, 0.5) 3.9%,
+      rgba(238, 146, 177, 0.295) 25.91%,
+      rgba(249, 231, 187, 0.115) 69.38%
+    ),
+    linear-gradient(
+      228.09deg,
+      rgba(180, 127, 234, 0.144) 21.22%,
+      rgba(255, 254, 249, 0.3) 86.17%
+    ),
+    linear-gradient(
+      268.46deg,
+      hsla(0, 0%, 100%, 0.2) 2.21%,
+      hsla(0, 0%, 100%, 0.2) 0,
+      rgba(255, 237, 174, 0.172) 2.22%,
+      rgba(177, 109, 244, 0.2) 99.61%
+    );
+}
+.section-model-login .headsecftion {
+  width: 100%;
+  height: 50%;
+  border-bottom-left-radius: 50%;
+  border-bottom-right-radius: 50%;
+  background: rgba(255, 250, 207, 0.79);
+  box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
+}
+.section-model-login .headsecftion .imagelogo,
+.section-model-login .headsecftion .ptext {
+  display: block;
+  width: 50%;
+  padding-top: 20%;
+  margin-left: auto;
+  margin-right: auto;
+  -webkit-filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
+}
+.section-model-login .bottomsecftion {
+  width: 100%;
+  height: 60vh;
+}
+.section-model-login .bottomsecftion .button,
+.section-model-login .bottomsecftion .inputField,
+.section-model-login .bottomsecftion .inputFieldAddress {
+  display: block;
+  width: 80%;
+  height: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  border-radius: 24px;
+  border: 0;
+  font-size: 20px;
+  -webkit-filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
+}
+.section-model-login .bottomsecftion .button {
+  margin-top: 10%;
+  background: #a253f0;
+  color: #fff;
+}
+
+.section-model-login .bottomsecftion .button,
+.section-model-login .bottomsecftion .inputField,
+.section-model-login .bottomsecftion .inputFieldAddress {
+  display: block;
+  width: 80%;
+  height: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  border-radius: 24px;
+  border: 0;
+  font-size: 20px;
+  -webkit-filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
+}
+.section-model-login .bottomsecftion .inputField,
+.section-model-login .bottomsecftion .inputFieldAddress {
+  background: #fff;
+}
+.section-model-login .bottomsecftion .inputField {
+  margin-top: 10%;
+}
 .bottomservicesCheckout {
   position: fixed;
   margin-bottom: 20px;
@@ -694,6 +784,9 @@ a:hover {
   z-index: 9;
   background: #af73e9;
   border-radius: 10px;
+}
+.topinside p {
+  margin-bottom: 0px;
 }
 .bottomservicesCheckout .topinside {
   padding: 5px;

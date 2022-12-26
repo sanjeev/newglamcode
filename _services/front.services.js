@@ -8,6 +8,7 @@ export const frontService = {
     knowData,
     knowDataSlug,
     datamancat,
+    sendOtpcode,
 };
 async function allSlider() {
     const requestOptions = {
@@ -20,7 +21,19 @@ async function allSlider() {
             return res;
         });
 }
+async function sendOtpcode(data) {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    };
 
+    return fetch(Global.BASE_API_PATH + `/sendotpcode`, requestOptions)
+        .then(handleResponse)
+        .then(res => {
+            return res;
+        });
+}
 
 async function datamancat() {
     const requestOptions = {

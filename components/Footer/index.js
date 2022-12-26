@@ -1,8 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from 'react-redux';
+import { useRouter } from 'next/router'
+import Global from '../../_helpers/global';
 function Footer() {
+    const router = useRouter()
     const cart = useSelector(state => state.cardAdd?.cart);
     const [total, setTotal] = React.useState(0);
+
+    const renderInput = () => {
+
+        router.push('/login');
+    }
     useEffect(() => {
         var total = 0;
         for (let i = 0; i < cart.length; i++) {
@@ -10,6 +18,7 @@ function Footer() {
         }
         setTotal(total);
     }, [cart]);
+
     return (
         <>
             <footer className="footer-container">
@@ -901,16 +910,39 @@ function Footer() {
 
                 <div className="bottomservicesCheckout" key={0}>
                     <div className="topinside">
-                        <p className="text">{`Minimum Booking Amount :- ₹` + 699}</p>
+                        <p className="text">{`Minimum Booking Amount :- ₹  ${Global.MINPRICEORDER}`}</p>
                     </div>
                     <div className="bottominside">
                         <div className="d-flex justify-content-between" >
                             <div className="d-flex flex-column-m">
-                                <p className="textHead">Total Price ₹ {total}</p>
+                                <p className="textHead" >Total Price ₹ {total}</p>
                             </div>
 
-                            {MINPRICEORDER}
-                            <a href="/checkout" className="textHead">Checkout <i className="fa fa-chevron-right" style={{ marginLeft: 10 }} aria-hidden="true"></i></a>
+                            {total >= Global.MINPRICEORDER ? (
+                                <>
+                                    {localStorage.getItem('gluserDetails') ? (<a
+                                        href="/checkout"
+                                        className="textHead">Checkout <i className="fa fa-chevron-right" style={{ marginLeft: 10 }} aria-hidden="true"></i>
+                                    </a>) : <a
+                                        href="/login"
+                                        className="textHead">Checkout <i className="fa fa-chevron-right" style={{ marginLeft: 10 }} aria-hidden="true"></i>
+                                    </a>}
+
+
+
+
+
+                                </>
+
+                            ) : (<a
+                                href={router.asPath}
+                                className="textHead">Checkout <i className="fa fa-chevron-right" style={{ marginLeft: 10 }} aria-hidden="true"></i>
+                            </a>
+                            )
+
+
+                            }
+
 
 
                         </div>
