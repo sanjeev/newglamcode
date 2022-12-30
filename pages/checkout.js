@@ -5,7 +5,9 @@ import { Datepicker, DatepickerEvent } from "@meinefinsternis/react-horizontal-d
 import { enUS } from "date-fns/locale";
 function Checkout() {
     const router = useRouter()
-
+    const handleChange = (e) => {
+        console.log(e);
+    }
     return (<>
         <div className="servicedesk-bg" style={{ paddingBottom: '50px' }}>
             <div className="header-css-head">
@@ -18,11 +20,13 @@ function Checkout() {
                     </div>
                 </Container>
             </div>
-            <Datepicker
+            <div className='mt-5'>
+                <Datepicker
+                    locale={enUS}
+                    onChange={handleChange}
+                />
+            </div>
 
-                locale={enUS}
-
-            />
         </div>
     </>);
 }
