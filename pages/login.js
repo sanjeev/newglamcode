@@ -1,32 +1,213 @@
 import React from "react";
 import { useForm } from 'react-hook-form';
 import { frontService } from "../_services/front.services";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Router from 'next/router'
 export default function Login() {
+    const { pathname } = Router
+    const [mainOtp, setMainotp] = React.useState(false);
+    const [dataMb, setDataMb] = React.useState([]);
     const { register,
         handleSubmit,
         formState: { errors },
         reset,
         trigger } = useForm(); // initialize the hook
     const onSubmit = (data) => {
+
         frontService.sendOtpcode(data)
             .then(
                 res => {
-                    console.log(res);
+
                     if (res.status == 'success') {
-                        console.log(res);
-                    } else if (res.status == 'error') {
-                        console.log("Invalid Credetials !!", "Login");
+                        localStorage.setItem("phonenumber", data.phone);
+                        setMainotp(true)
+                        reset();
+                        setDataMb(res.mb);
+                        toast(res.message, {
+                            position: "bottom-center",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "light",
+                        });
+                    } else if (res.status == 'fail') {
+                        toast(res.message, {
+                            position: "bottom-center",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "light",
+                        });
+
                     } else {
-                        console.log("Invalid Credetials !!", "Login");
+                        toast('Invalid', {
+                            position: "bottom-center",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "light",
+                        });
 
                     }
                 }, error => {
 
-                    console.log("Invalid Credetials !!", "Login");
+                    toast('Invalid', {
+                        position: "bottom-center",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
 
                 }
             )
     };
+    const onOtp = (data) => {
+        //console.log(dataMb.otp)
+        //console.log(data.otp);
+
+        if (parseInt(data.otp) === parseInt(dataMb.otp)) {
+
+            const dat = {
+                'mobile': dataMb.mobile,
+            }
+            frontService.sendOtpverify(dat)
+                .then(
+                    res => {
+
+                        if (res.status === 'success') {
+                            console.log(res.user);
+                            localStorage.setItem('gluserDetails', JSON.stringify(res.user));
+                            reset();
+                            toast(res.message, {
+                                position: "bottom-center",
+                                autoClose: 5000,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                                theme: "light",
+                            });
+
+                            Router.push('/checkout')
+
+
+
+                        } else if (res.status === 'fail') {
+                            toast(res.message, {
+                                position: "bottom-center",
+                                autoClose: 5000,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                                theme: "light",
+                            });
+
+                        } else {
+                            toast('Invalid', {
+                                position: "bottom-center",
+                                autoClose: 5000,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                                theme: "light",
+                            });
+
+                        }
+                    }, error => {
+
+                        toast('Invalid', {
+                            position: "bottom-center",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "light",
+                        });
+
+                    }
+                )
+        } else {
+            console.log('hello44');
+        }
+        // frontService.sendOtpverify(data)
+        //     .then(
+        //         res => {
+
+        //             if (res.status === 'success') {
+        //                 console.log(res.user);
+        //                 reset();
+        //                 toast(res.message, {
+        //                     position: "bottom-center",
+        //                     autoClose: 5000,
+        //                     hideProgressBar: false,
+        //                     closeOnClick: true,
+        //                     pauseOnHover: true,
+        //                     draggable: true,
+        //                     progress: undefined,
+        //                     theme: "light",
+        //                 });
+        //             } else if (res.status === 'fail') {
+        //                 toast(res.message, {
+        //                     position: "bottom-center",
+        //                     autoClose: 5000,
+        //                     hideProgressBar: false,
+        //                     closeOnClick: true,
+        //                     pauseOnHover: true,
+        //                     draggable: true,
+        //                     progress: undefined,
+        //                     theme: "light",
+        //                 });
+
+        //             } else {
+        //                 toast('Invalid', {
+        //                     position: "bottom-center",
+        //                     autoClose: 5000,
+        //                     hideProgressBar: false,
+        //                     closeOnClick: true,
+        //                     pauseOnHover: true,
+        //                     draggable: true,
+        //                     progress: undefined,
+        //                     theme: "light",
+        //                 });
+
+        //             }
+        //         }, error => {
+
+        //             toast('Invalid', {
+        //                 position: "bottom-center",
+        //                 autoClose: 5000,
+        //                 hideProgressBar: false,
+        //                 closeOnClick: true,
+        //                 pauseOnHover: true,
+        //                 draggable: true,
+        //                 progress: undefined,
+        //                 theme: "light",
+        //             });
+
+        //         }
+        //     )
+    }
 
 
     return (<>
@@ -40,32 +221,58 @@ export default function Login() {
                     />
                 </div>
                 <div className="bottomsecftion">
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                        <input
-                            className="inputField"
-                            maxLength={10}
-                            placeholder="Mobile Number (8127111333)"
-                            defaultValue=""
-                            {...register("phone", {
-                                required: "Phone is Required",
-                                pattern: {
-                                    value: /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/,
-                                    message: "Invalid Phone No",
-                                },
-                            })}
-                            onKeyUp={() => {
-                                trigger("phone");
-                            }}
+                    {mainOtp ? (
+                        <form onSubmit={handleSubmit(onOtp)}>
+                            <input
+                                className="inputField"
+                                placeholder="Otp"
+                                defaultValue=""
+                                maxLength={4}
+                                {...register("otp", {
+                                    required: "Otp is Required",
 
-                        />
-                        {errors.phone && (
-                            <span style={{ marginLeft: '58px', color: 'red' }}>{errors.phone.message}</span>
-                        )}
+                                })}
+                                onKeyUp={() => {
+                                    trigger("otp");
+                                }}
 
-                        <button className="button">Send OTP</button>
-                    </form>
+                            />
+                            {errors.otp && (
+                                <span style={{ marginLeft: '58px', color: 'red' }}>{errors.otp.message}</span>
+                            )}
+
+                            <button className="button">Verify</button>
+                        </form>
+                    ) : (
+                        <form onSubmit={handleSubmit(onSubmit)}>
+                            <input
+                                className="inputField"
+                                maxLength={10}
+                                placeholder="Enter the 10 digit mobile"
+                                defaultValue=""
+                                {...register("phone", {
+                                    required: "Phone is Required",
+                                    pattern: {
+                                        value: /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/,
+                                        message: "Invalid Phone No",
+                                    },
+                                })}
+                                onKeyUp={() => {
+                                    trigger("phone");
+                                }}
+
+                            />
+                            {errors.phone && (
+                                <span style={{ marginLeft: '58px', color: 'red' }}>{errors.phone.message}</span>
+                            )}
+
+                            <button className="button">Send OTP</button>
+                        </form>
+
+                    )}
                 </div>
             </div>
         </div>
+        <ToastContainer />
     </>)
 }

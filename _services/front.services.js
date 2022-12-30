@@ -9,6 +9,7 @@ export const frontService = {
     knowDataSlug,
     datamancat,
     sendOtpcode,
+    sendOtpverify,
 };
 async function allSlider() {
     const requestOptions = {
@@ -34,6 +35,20 @@ async function sendOtpcode(data) {
             return res;
         });
 }
+async function sendOtpverify(data) {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    };
+
+    return fetch(Global.BASE_API_PATH + `/verifyotpphone`, requestOptions)
+        .then(handleResponse)
+        .then(res => {
+            return res;
+        });
+}
+
 
 async function datamancat() {
     const requestOptions = {
