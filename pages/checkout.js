@@ -25,10 +25,10 @@ function Checkout() {
             </div>
             <div className='mt-5'>
                 <Datepicker
-                    startValue={startDate}
+                    selectDate={startDate}
                     locale={enUS}
                     onChange={handleChange}
-                    getSelectedDay={handleChange}
+
                     color={"#374e8c"}
                 />
             </div>
