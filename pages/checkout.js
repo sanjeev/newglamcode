@@ -5,9 +5,12 @@ import { Datepicker, DatepickerEvent } from "@meinefinsternis/react-horizontal-d
 import { enUS } from "date-fns/locale";
 function Checkout() {
     const router = useRouter()
+    const [startDate, setStartDate] = useState(new Date());
     const handleChange = (e) => {
         console.log(e);
+        //setStartDate(e[0]);
     }
+    console.log(startDate);
     return (<>
         <div className="servicedesk-bg" style={{ paddingBottom: '50px' }}>
             <div className="header-css-head">
@@ -22,8 +25,11 @@ function Checkout() {
             </div>
             <div className='mt-5'>
                 <Datepicker
+                    startValue={startDate}
                     locale={enUS}
                     onChange={handleChange}
+                    getSelectedDay={handleChange}
+                    color={"#374e8c"}
                 />
             </div>
 
