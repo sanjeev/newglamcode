@@ -9,6 +9,7 @@
     "@meinefinsternis/react-horizontal-date-picker": "^1.0.1",
     "bootstrap": "^5.2.3",
     "font-awesome": "^4.7.0",
+    "moment": "^2.29.4",
     "next": "latest",
     "next-redux-wrapper": "^8.0.0",
     "react": "18.2.0",
@@ -24,5 +25,9 @@
     "styled-components": "^5.3.6",
     "swc-loader": "^0.2.3",
     "swiper": "^8.4.5"
+  },
+  "devDependencies": {
+    "@types/node": "18.11.18",
+    "typescript": "4.9.4"
   }
 }

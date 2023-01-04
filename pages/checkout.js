@@ -3,14 +3,10 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { useRouter } from 'next/router'
 import { Datepicker, DatepickerEvent } from "@meinefinsternis/react-horizontal-date-picker";
 import { enUS } from "date-fns/locale";
+import Datedata from "./datedata";
 function Checkout() {
     const router = useRouter()
-    const [startDate, setStartDate] = useState(new Date());
-    const handleChange = (e) => {
-        console.log(e);
-        setStartDate(e[1]);
-    }
-    console.log(startDate);
+
     return (<>
         <div className="servicedesk-bg" style={{ paddingBottom: '50px' }}>
             <div className="header-css-head">
@@ -24,12 +20,13 @@ function Checkout() {
                 </Container>
             </div>
             <div className='mt-5'>
-                <Datepicker
-                    startValue={startDate}
-                    locale={enUS}
-                    onChange={handleChange}
-                    color={"#374e8c"}
-                />
+
+                <Datedata />
+
+                {[...Array(n)].map((elementInArray, index) => (
+                    <div className="" key={index}> Whatever needs to be rendered repeatedly... </div>
+                )
+                )}
             </div>
 
         </div>
