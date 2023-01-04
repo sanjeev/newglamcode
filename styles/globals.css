@@ -67,10 +67,7 @@ button {
 .date-card {
   flex: 1;
   display: flex;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
+
   flex-direction: column;
   -webkit-box-direction: normal;
   -webkit-box-orient: vertical;
@@ -80,12 +77,13 @@ button {
   -ms-flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid #e2e2e2;
+  border: 2px solid #000;
   margin-right: 20px;
   padding-top: 10px;
   padding-bottom: 10px;
   border-radius: 10px;
-  /* cursor: pointer; */
+  margin-top: 60px;
+  cursor: pointer;
 }
 .date_sec {
   display: flex;
@@ -207,10 +205,81 @@ button {
   -webkit-user-select: none;
   user-select: none;
 }
+.timeSlot-all {
+  width: 100%;
+  background: #fff;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+  padding: 5px;
+  margin-top: 10px;
+  min-height: 300px;
+}
+.timeSlot-all .inside-title {
+  font-family: "Alata";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  color: #000;
+  width: 100%;
+  height: 30px;
+  margin: 1px 0 10px;
+}
 .pro-qty .inc {
   right: 0;
   border-left: 1px solid #cdcdcd;
   padding-right: 5px;
+}
+.row-m-check {
+  display: flex;
+  flex-wrap: wrap;
+}
+.col-6-m-check {
+  flex: 0 0 auto;
+  width: 48.9%;
+  margin: 2px;
+}
+.checkout-all .checkoutBtn-container {
+  width: 50%;
+  padding: 10px;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+.checkout-all .checkoutBtn-all {
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  padding: 5px;
+  background: #a253f0;
+  border-radius: 50px;
+  font-family: "Jost";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  color: #fff;
+  box-shadow: 5px 5px 5px #000 !important;
+  border: 0;
+}
+.row-m-check .col-6-m-check .selected {
+  background: #ae65ff;
+  color: #fff;
+}
+.divinside-items.selected .timeslots-texts {
+  color: #fff;
+}
+.divinside-items {
+  background: #d9bef4;
+  border-radius: 4px;
+  padding: 5px;
+}
+
+.timeslots-texts {
+  font-family: "Alata";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  text-align: center;
+  color: #524a4a;
+  padding: 5px;
+  margin: 0px;
 }
 .product-details-cart-wishlist .btn {
   letter-spacing: 1px;
@@ -218,6 +287,11 @@ button {
   font-size: 12px;
   padding: 0 20px;
   height: 44px;
+}
+.date-card.active {
+  border: 3px solid #ae65ff;
+  background: #ae65ff;
+  color: #fff;
 }
 .pro-qty .qty-btn {
   cursor: pointer;
