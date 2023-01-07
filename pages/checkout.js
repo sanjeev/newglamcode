@@ -16,7 +16,8 @@ function Checkout() {
         infinite: true,
         speed: 500,
         slidesToShow: 7,
-        slidesToScroll: 1
+        slidesToScroll: 1,
+        loop: false
 
     };
     console.log(moment().toString());
