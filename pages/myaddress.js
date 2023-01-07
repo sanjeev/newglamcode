@@ -14,22 +14,22 @@ function MydModalWithGrid(props) {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body className="show-grid">
-                <Container>
-                    <form>
-                        <div class="form-group mb-2">
-                            <label for="addressHome">Address Type Ex. Home, Office etc</label>
-                            <input type="text" class="form-control" id="addressHome" placeholder="Address Type Ex. Home, Office etc" />
-                        </div>
-                        <div class="form-group mb-2">
-                            <label for="home">Address</label>
-                            <input type="text" class="form-control" id="home" placeholder="Address" />
-                        </div>
-                        <div class="form-group mb-2">
-                            <label for="location">Location</label>
-                            <input type="text" class="form-control" id="location" placeholder="Location" />
-                        </div>
-                    </form>
-                </Container>
+
+                <form>
+                    <div class="form-group mb-2">
+                        <label for="addressHome">Address Type Ex. Home, Office etc</label>
+                        <input type="text" class="form-control" id="addressHome" placeholder="Address Type Ex. Home, Office etc" />
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="home">Address</label>
+                        <input type="text" class="form-control" id="home" placeholder="Address" />
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="location">Location</label>
+                        <input type="text" class="form-control" id="location" placeholder="Location" />
+                    </div>
+                </form>
+
             </Modal.Body>
             <Modal.Footer>
                 <Button onClick={props.onHide} style={{ background: '#7c00b7', border: '1px solid #7c00b7' }}>Close</Button>
