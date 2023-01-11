@@ -8,6 +8,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import Layout from '../components/Layout/index'
 import "font-awesome/css/font-awesome.css";
 import 'swiper/css';
+import Script from 'next/script'
 import persistor from "../store/store"
 
 
@@ -15,14 +16,17 @@ function MyApp({ Component, pageProps }) {
 
     return (
         <>
-
+            <Script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD15KqCiXEN2FKVzFgsO3Td-MyaeFotL84&libraries=places" />
             <React.Fragment>
                 <Provider store={store}>
+                    <PersistGate loading={null} persistor={persistor}>
+                        {() => (
+                            <Layout>
+                                <Component {...pageProps} />
+                            </Layout>
+                        )}
 
-                    <Layout>
-                        <Component {...pageProps} />
-                    </Layout>
-
+                    </PersistGate>
                 </Provider>
 
             </React.Fragment>

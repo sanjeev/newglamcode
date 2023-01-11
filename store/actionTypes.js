@@ -6,6 +6,9 @@ export const MAIN_CATEGORY = "MAIN_CATEGORY";
 //location
 export const LOCATION = "LOCATION";
 
+//user data
+export const USERDATA = "USERDATA";
+export const USERADDRESS = "USERADDRESS";
 
 //CART
 export const ADD_TO_CART = 'ADD_TO_CART'

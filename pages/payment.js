@@ -8,6 +8,7 @@ import "slick-carousel/slick/slick-theme.css";
 function Payment() {
     const router = useRouter();
     const cart = useSelector(state => state.cardAdd?.cart);
+    const userAddress = useSelector(state => state.userAddress?.useraddress);
     const [total, setTotal] = React.useState(0);
 
 
@@ -106,7 +107,7 @@ function Payment() {
                     <div className="section-address">
                         <a href="/myaddress" className="inside-title" style={{ fontSize: 22 }}>Address<span className="inside-checkall"><i className="fa fa-edit"></i></span></a>
 
-                        <p className="inside-items">jhgjhg</p>
+                        <p className="inside-items">{userAddress?.address_heading},{userAddress?.address},{userAddress?.street}</p>
                     </div>
                     <div className="timeSlot-all">
                         <p className="inside-title">Summary</p>
@@ -120,6 +121,7 @@ function Payment() {
                                 </div>
                             </div>
 
+
                             <div className="col-12">
                                 <div className="d-flex flex-row justify-content-between-flex">
                                     <p className="p-1 font-family-alata">Transport Fees</p>
@@ -127,9 +129,12 @@ function Payment() {
                                 </div>
                             </div>
 
-                            {/* <div className="col-12">
-                                bhh
-                            </div> */}
+                            <div className="col-12">
+                                <div className="d-flex flex-row justify-content-between-flex">
+                                    <p className="p-1 font-family-alata"> Safety & Hygiene Fee</p>
+                                    <p className="p-1 font-family-alata">₹ 49</p>
+                                </div>
+                            </div>
 
 
                             <div className="col-12">
@@ -152,14 +157,14 @@ function Payment() {
 
                     </div>
                     <div className='timeSlot-all'>
-                        <p class="inside-title">Summary</p>
+                        <p className="inside-title">Summary</p>
                         <div className="col-12 mt-2">
                             <div className="background-deflex">
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                     <div style={{ display: 'flex', alignItems: 'center' }}>
                                         <div>
 
-                                            <i class="fa fa-tag fontSize-m-20"></i>
+                                            <i className="fa fa-tag fontSize-m-20"></i>
                                         </div>
                                         <div style={{ marginLeft: '10px' }}>
                                             Apply Coupon
@@ -167,7 +172,7 @@ function Payment() {
                                     </div>
 
                                     <div>
-                                        <i class="fa fa-chevron-right fontSize-m-20"></i>
+                                        <i className="fa fa-chevron-right fontSize-m-20"></i>
                                     </div>
                                 </div>
                             </div>
@@ -178,7 +183,7 @@ function Payment() {
                                     <div style={{ display: 'flex', alignItems: 'center' }}>
                                         <div>
 
-                                            <i class="fa fa-credit-card fontSize-m-20" aria-hidden="true"></i>
+                                            <i className="fa fa-credit-card fontSize-m-20" aria-hidden="true"></i>
                                         </div>
                                         <div style={{ marginLeft: '10px' }}>
                                             Card & Upi
@@ -186,7 +191,7 @@ function Payment() {
                                     </div>
 
                                     <div>
-                                        <i class="fa fa-chevron-right fontSize-m-20"></i>
+                                        <i className="fa fa-chevron-right fontSize-m-20"></i>
                                     </div>
                                 </div>
                             </div>
@@ -198,7 +203,7 @@ function Payment() {
                                         <div>
 
 
-                                            <i class="fa fa-inr fontSize-m-20" aria-hidden="true"></i>
+                                            <i className="fa fa-inr fontSize-m-20" aria-hidden="true"></i>
                                         </div>
                                         <div style={{ marginLeft: '10px' }}>
                                             Cash
@@ -206,7 +211,7 @@ function Payment() {
                                     </div>
 
                                     <div>
-                                        <i class="fa fa-chevron-right fontSize-m-20"></i>
+                                        <i className="fa fa-chevron-right fontSize-m-20"></i>
                                     </div>
                                 </div>
                             </div>

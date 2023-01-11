@@ -1,10 +1,58 @@
 import React, { useEffect, useState } from 'react'
 import { Container, Row, Col } from 'react-bootstrap';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Button from 'react-bootstrap/Button';
-
+import { useSelector } from 'react-redux';
 import Modal from 'react-bootstrap/Modal';
+import PlaceAutocomplete from '../components/PlaceAutocomplete'
+import { useForm } from 'react-hook-form';
+import { frontService } from "../_services/front.services";
+import Router from 'next/router'
+import { useDispatch } from 'react-redux';
+import { userAddress, userData } from '../store/actions/index';
+
 function MydModalWithGrid(props) {
+
+    const dispatch = useDispatch();
+    const userdetails = useSelector(state => state.userdetails?.userdetails);
+
+    const [location, setLocation] = useState(JSON.parse(sessionStorage.getItem("location")));
+    const [latLng, setLatLng] = useState(JSON.parse(sessionStorage.getItem("latLng")));
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
+
+
+
+
+
+
+    const handleRegistration = (data) => {
+
+
+        frontService.updateAddress(data)
+            .then(
+                res => {
+
+                    if (res.status === 'success') {
+
+                        Router.push('/payment')
+                        dispatch(userAddress(res.data));
+                    } else {
+                        toast.error(res.message, "error");
+
+                    }
+                },
+                error => {
+                    console.log('Something went wrong !!');
+                    //toast.error("Something went wrong !!", "Fashion Store");
+                }
+            )
+    }
+
     return (
         <Modal {...props} backdrop="static"
             keyboard={false} centered aria-labelledby="contained-modal-title-vcenter" className='modbox'>
@@ -13,33 +61,176 @@ function MydModalWithGrid(props) {
                     Add New Address
                 </Modal.Title>
             </Modal.Header>
-            <Modal.Body className="show-grid">
+            <form onSubmit={handleSubmit(handleRegistration)}>
+                <Modal.Body className="show-grid">
 
-                <form>
-                    <div class="form-group mb-2">
-                        <label for="addressHome">Address Type Ex. Home, Office etc</label>
-                        <input type="text" class="form-control" id="addressHome" placeholder="Address Type Ex. Home, Office etc" />
-                    </div>
-                    <div class="form-group mb-2">
-                        <label for="home">Address</label>
-                        <input type="text" class="form-control" id="home" placeholder="Address" />
-                    </div>
-                    <div class="form-group mb-2">
-                        <label for="location">Location</label>
-                        <input type="text" class="form-control" id="location" placeholder="Location" />
-                    </div>
-                </form>
 
-            </Modal.Body>
-            <Modal.Footer>
-                <Button onClick={props.onHide} style={{ background: '#7c00b7', border: '1px solid #7c00b7' }}>Close</Button>
-                <Button variant="primary" style={{ background: '#7c00b7', border: '1px solid #7c00b7' }}>Save changes</Button>
-            </Modal.Footer>
+                    <div className="form-group mb-2">
+                        <label htmlFor="addressHome">Address Type Ex. Home, Office etc</label>
+                        <input type="text" className="form-control" id="addressHome" placeholder="Address Type Ex. Home, Office etc" defaultValue="Home" name="addressHome" {...register('addressHome')} required />
+                    </div>
+                    <div className="form-group mb-2">
+                        <label htmlFor="home">Address</label>
+                        <input type="text" className="form-control" id="home" name="address" {...register('address')} placeholder="Address" required />
+                    </div>
+                    <div className="form-group mb-2">
+                        <label htmlFor="location">Location</label>
+                        <input name="id" {...register('id')} type="hidden" defaultValue={userdetails?.id} />
+                        <input name="location" {...register('location')} type="hidden" defaultValue={location} />
+                        <input name="lat" {...register('lat')} type="hidden" defaultValue={latLng?.lat} />
+                        <input name="lng" {...register('lng')} type="hidden" defaultValue={latLng?.lng} />
+                        <PlaceAutocomplete />
+
+                    </div>
+
+
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button onClick={props.onHide} style={{ background: '#7c00b7', border: '1px solid #7c00b7' }}>Close</Button>
+                    <Button variant="primary" type="submit" style={{ background: '#7c00b7', border: '1px solid #7c00b7' }}>Save changes</Button>
+                </Modal.Footer>
+            </form>
+
         </Modal>
     );
 }
 function Myaddress() {
+    const dispatch = useDispatch();
+    const [addressl, setAddresslist] = useState([]);
+    const userdetails = useSelector(state => state.userdetails?.userdetails);
     const [modalShow, setModalShow] = useState(false);
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
+    useEffect(() => {
+        frontService.addressList(userdetails?.id)
+            .then(
+                res => {
+
+                    if (res.status === 'success') {
+                        setAddresslist(res.address);
+                    } else {
+                        toast.error(res.message, "error");
+                    }
+                },
+                error => {
+                    console.log('Something went wrong !!');
+                    //toast.error("Something went wrong !!", "Fashion Store");
+                }
+            )
+    }, [])
+
+    const handleRegistration = (data) => {
+        frontService.useSave(data)
+            .then(
+                res => {
+
+                    if (res.status == 'success') {
+
+                        localStorage.setItem('gluserDetails', JSON.stringify(res.user));
+                        dispatch(userData(res.user));
+                        toast(res.message, {
+                            position: "bottom-center",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "light",
+                        });
+                    } else if (res.status == 'fail') {
+                        toast(res.message, {
+                            position: "bottom-center",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "light",
+                        });
+
+                    } else {
+                        toast('Invalid', {
+                            position: "bottom-center",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "light",
+                        });
+
+                    }
+                }, error => {
+
+                    toast('Invalid', {
+                        position: "bottom-center",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
+
+                }
+            )
+
+    }
+    const defaultAddress = (id, user_id) => {
+        const data = {
+            "id": id,
+            "user_id": user_id,
+        }
+        frontService.defaultaddress(data)
+            .then(
+                res => {
+
+                    if (res.status === 'success') {
+                        setAddresslist(res.address);
+                        toast.success(res.message, "Fashion Store");
+                        dispatch(userAddress(res.setaddress));
+                        Router.push('/payment')
+                    } else {
+                        toast.error(res.message, "error");
+
+                    }
+                },
+                error => {
+                    console.log('Something went wrong !!');
+                    //toast.error("Something went wrong !!", "Fashion Store");
+                }
+            )
+    }
+    const deleteAddress = (id, user_id) => {
+
+        const data = {
+            "id": id,
+            "user_id": user_id,
+        }
+        frontService.deleteaddress(data)
+            .then(
+                res => {
+
+                    if (res.status === 'success') {
+                        setAddresslist(res.address);
+                    } else {
+                        toast.error(res.message, "error");
+
+                    }
+                },
+                error => {
+                    console.log('Something went wrong !!');
+                    //toast.error("Something went wrong !!", "Fashion Store");
+                }
+            )
+    }
     return (<>
         <div className="servicedesk-bg address-all" style={{ paddingBottom: '50px' }}>
             <div className="header-css-head">
@@ -70,53 +261,54 @@ function Myaddress() {
 
                     <Col md={8} className="mb-4">
                         <div className='btuadd'>
-                            <h5 class="card-title">My Addresses</h5>
-                            <a onClick={() => setModalShow(true)} href="#" class="btn btn-primary" style={{ background: '#7c00b7', border: '1px solid #7c00b7' }}>Add Address</a>
+                            <h5 className="card-title">My Addresses</h5>
+                            <a onClick={() => setModalShow(true)} href="#" className="btn btn-primary" style={{ background: '#7c00b7', border: '1px solid #7c00b7' }}>Add Address</a>
                         </div>
                         <MydModalWithGrid show={modalShow} onHide={() => setModalShow(false)} />
-                        <div class="card mt-2">
-                            <div class="card-body">
 
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        {addressl.map((popup, i) => (
+                            <div key={i} className={popup.is_primary === 1 ? 'cardhove card mt-2 active' : 'cardhove card mt-2'}>
+                                <div className="card-body" onClick={() => defaultAddress(popup.address_id, popup.user_id)}>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                        <p className="card-text">{popup.address_heading},{popup.address},{popup.street}</p>
+                                        <p className='deletedata' onClick={() => deleteAddress(popup.address_id, popup.user_id)}><i className="fa fa-trash-o" aria-hidden="true"></i></p>
+                                    </div>
 
+                                </div>
                             </div>
-                        </div>
+                        ))}
+
                     </Col>
                     <Col md={4}>
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">User Details</h5>
-                                <form>
-                                    <div class="form-group mb-2">
-                                        <label for="exampleInputPhone">Phone No.</label>
-                                        <input type="text" class="form-control" id="exampleInputPhone" placeholder="Phone" />
+                        <div className="card">
+                            <div className="card-body">
+                                <h5 className="card-title">User Details</h5>
+                                <form onSubmit={handleSubmit(handleRegistration)}>
+                                    <div className="form-group mb-2">
+                                        <label htmlFor="exampleInputPhone">Phone No.</label>
+                                        <input type="text" className="form-control" id="exampleInputPhone" placeholder="Phone" name="name" defaultValue={userdetails?.mobile} {...register('mobile')} required />
                                     </div>
-                                    <div class="form-group mb-2">
-                                        <label for="exampleInputName">Name</label>
-                                        <input type="text" class="form-control" id="exampleInputName" placeholder="Name" />
+                                    <div className="form-group mb-2">
+                                        <label htmlFor="exampleInputName">Name</label>
+                                        <input type="text" className="form-control" id="exampleInputName" placeholder="Name" defaultValue={userdetails?.name} name="name" {...register('name')} required />
                                     </div>
-                                    <div class="form-group mb-2">
-                                        <label for="exampleInputEmail1">Email address</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
-                                        {/* <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> */}
+                                    <div className="form-group mb-2">
+                                        <label htmlFor="exampleInputEmail1">Email address</label>
+                                        <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email" {...register('email')} defaultValue={userdetails?.email} required />
+                                        {/* <small id="emailHelp" "form-text text-muted">We'll never share your email with anyone else.</small> */}
                                     </div>
 
-                                    <div class="form-group form-check">
-                                        <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-                                        <label class="form-check-label" for="exampleCheck1">Male</label>
-                                    </div>
-                                    <div class="form-group form-check mb-3">
-                                        <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-                                        <label class="form-check-label" for="exampleCheck1">Female</label>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary" style={{ background: '#7c00b7', border: '1px solid #7c00b7' }}>Edit Profile</button>
+                                    <input type="hidden" className="form-control" name="id" defaultValue={userdetails?.id} {...register('id')} />
+                                    <button type="submit" className="btn btn-primary" style={{ background: '#7c00b7', border: '1px solid #7c00b7' }}>Edit Profile</button>
                                 </form>
                             </div>
                         </div>
                     </Col>
                 </Row>
             </Container>
+
         </div >
+        <ToastContainer />
     </>)
 }
 export default Myaddress;

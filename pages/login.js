@@ -4,7 +4,10 @@ import { frontService } from "../_services/front.services";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Router from 'next/router'
+import { useDispatch } from 'react-redux';
+import { userData } from '../store/actions/index';
 export default function Login() {
+    const dispatch = useDispatch();
     const { pathname } = Router
     const [mainOtp, setMainotp] = React.useState(false);
     const [dataMb, setDataMb] = React.useState([]);
@@ -91,6 +94,8 @@ export default function Login() {
                         if (res.status === 'success') {
                             console.log(res.user);
                             localStorage.setItem('gluserDetails', JSON.stringify(res.user));
+                            dispatch(userData(res.user));
+
                             reset();
                             toast(res.message, {
                                 position: "bottom-center",

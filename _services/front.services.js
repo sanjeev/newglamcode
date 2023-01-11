@@ -10,6 +10,11 @@ export const frontService = {
     datamancat,
     sendOtpcode,
     sendOtpverify,
+    useSave,
+    updateAddress,
+    addressList,
+    deleteaddress,
+    defaultaddress
 };
 async function allSlider() {
     const requestOptions = {
@@ -17,6 +22,74 @@ async function allSlider() {
 
     };
     return fetch(Global.BASE_API_PATH + `/allslider`, requestOptions)
+        .then(handleResponse)
+        .then(res => {
+            return res;
+        });
+}
+async function useSave(data) {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    };
+
+    return fetch(Global.BASE_API_PATH + `/update-user`, requestOptions)
+        .then(handleResponse)
+        .then(res => {
+            return res;
+        });
+}
+async function addressList(id) {
+    const data = {
+        user_id: id
+    }
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    };
+    return fetch(Global.BASE_API_PATH + `/address-list`, requestOptions)
+        .then(handleResponse)
+        .then(res => {
+            return res;
+        });
+}
+
+async function deleteaddress(data) {
+
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    };
+    return fetch(Global.BASE_API_PATH + `/address-delete`, requestOptions)
+        .then(handleResponse)
+        .then(res => {
+            return res;
+        });
+}
+async function defaultaddress(data) {
+
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    };
+    return fetch(Global.BASE_API_PATH + `/address-default`, requestOptions)
+        .then(handleResponse)
+        .then(res => {
+            return res;
+        });
+}
+async function updateAddress(data) {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    };
+
+    return fetch(Global.BASE_API_PATH + `/update-user-address`, requestOptions)
         .then(handleResponse)
         .then(res => {
             return res;
@@ -35,6 +108,8 @@ async function sendOtpcode(data) {
             return res;
         });
 }
+
+
 async function sendOtpverify(data) {
     const requestOptions = {
         method: 'POST',

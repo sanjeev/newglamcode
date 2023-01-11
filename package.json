@@ -15,9 +15,10 @@
     "react": "18.2.0",
     "react-bootstrap": "^2.7.0",
     "react-dom": "18.2.0",
-    "react-hook-form": "^7.41.1",
+    "react-hook-form": "^7.41.5",
     "react-loader-spinner": "^5.3.4",
     "react-places-autocomplete": "^7.3.0",
+    "react-razorpay": "^1.2.0",
     "react-redux": "^8.0.5",
     "react-slick": "^0.29.0",
     "react-toastify": "^9.1.1",
@@ -34,7 +35,6 @@
       "optional": true
     }
   },
-
   "devDependencies": {
     "@types/node": "18.11.18",
     "typescript": "4.9.4"

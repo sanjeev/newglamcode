@@ -243,7 +243,7 @@ button {
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
   margin-top: 10px;
   padding: 5px 5px 5px 6px;
-  height: 82px;
+  height: 100px;
 }
 .checkout-all .section-address .inside-title {
   font-family: "Alata";
@@ -272,6 +272,41 @@ button {
 }
 .modbox .modal-content {
   background-color: #fff !important;
+}
+.list_location:before {
+  background: url(https://assets.fastexpert.com/images/topagent_location.svg);
+  content: " ";
+  display: inline-block;
+  height: 19px;
+  left: 10px;
+  position: absolute;
+  top: 12px;
+  vertical-align: middle;
+  width: 14px;
+}
+.autocomplete-dropdown-container .list_location {
+  border-bottom: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  line-height: 20px;
+  padding: 10px 10px 10px 35px;
+  position: relative;
+}
+.autocomplete-dropdown-container {
+  border-top: 0 !important;
+  box-shadow: none !important;
+  color: #000 !important;
+  cursor: default;
+  font-size: 15px;
+  line-height: 30px;
+  margin: 0 !important;
+  max-width: 353px;
+  padding: 0;
+  position: absolute;
+  text-align: left;
+  text-align: initial !important;
+  width: 100% !important;
+  z-index: 9999;
 }
 .address-all .section-address .inside-title-new {
   font-family: "Alata";
@@ -748,11 +783,22 @@ a:hover {
 .mobilepopud .modal-content {
   background: #fff !important;
 }
+.deletedata {
+  cursor: pointer;
+}
 .fa-star::before {
   color: #daa520;
 }
+.cardhove.card.mt-2 {
+  cursor: pointer;
+}
 .product-details-content .product-details-action .price {
   font-size: 44px;
+}
+.card.mt-2.active {
+  border: 1px solid #e80b0b;
+  background: #eee5e5;
+  cursor: pointer;
 }
 .product-details-content .product-details-pro-qty {
   margin-bottom: 0;

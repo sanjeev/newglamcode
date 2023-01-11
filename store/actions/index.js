@@ -6,6 +6,19 @@ export function menuSave(payload) {
     }
 }
 
+export function userData(payload) {
+    return {
+        type: types.USERDATA,
+        payload: payload,
+    }
+}
+export function userAddress(payload) {
+    return {
+        type: types.USERADDRESS,
+        payload: payload,
+    }
+}
+
 
 export function mainCategory(payload) {
     return {
