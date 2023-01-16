@@ -115,7 +115,7 @@ export default function Categoryslug() {
                                 <Row>
                                     {categories?.map((x, i) => <>
                                         <div
-                                            className="col-md-6 col-12 p-md-5 pt-md-3 pb-md-0 p-2"
+                                            className="col-md-12 col-12 p-md-5 pt-md-3 pb-md-0 p-2"
                                             style={{ marginTop: 0 }}
                                             key={i}
 

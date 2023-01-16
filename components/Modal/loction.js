@@ -42,24 +42,22 @@ function Modalpup(props) {
                 <Modal.Body>
                     <div className='row mb-2'>
                         {dataloctions.location?.map((x, i) =>
-                            <>
-                                <div className="col-4 " style={{ marginTop: 10 }} key={i}  {...props} onClick={() => selecthandleclick(x.id, x.city, x.name, x.slug)}>
-                                    <div className={`image-d-location-head servicesMD-bg-color-${i}`}>
-                                        <div className="image-d-location">
-                                            <img
-                                                className="images-m center-img-all"
-                                                src={`https://www.glamcode.in/user-uploads/locations/${x.image}`}
-                                                alt={x.city}
-                                            />
-                                        </div>
-                                        <div className="content">
-                                            <div className="center-content-all">
-                                                <div className="title">{x.city}</div>
-                                            </div>
+                            <div className="col-4 " style={{ marginTop: 10 }} key={i}  {...props} onClick={() => selecthandleclick(x.id, x.city, x.name, x.slug)}>
+                                <div className={`image-d-location-head servicesMD-bg-color-${i}`}>
+                                    <div className="image-d-location">
+                                        <img
+                                            className="images-m center-img-all"
+                                            src={`https://www.glamcode.in/user-uploads/locations/${x.image}`}
+                                            alt={x.city}
+                                        />
+                                    </div>
+                                    <div className="content">
+                                        <div className="center-content-all">
+                                            <div className="title">{x.city}</div>
                                         </div>
                                     </div>
                                 </div>
-                            </>
+                            </div>
                         )}
 
                     </div>

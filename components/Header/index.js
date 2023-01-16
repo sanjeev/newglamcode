@@ -5,6 +5,7 @@ import Logo from "../../glamcode.png"
 import Dropdown from 'react-bootstrap/Dropdown';
 import Modalpup from '../Modal/loction';
 import styled from "styled-components";
+import { useRouter } from 'next/router';
 
 const Nav = styled.div`
 background: #15171c;
@@ -40,11 +41,18 @@ const SidebarWrap = styled.div`
 width: 100%;
 `;
 function Header() {
+    const router = useRouter()
     const [showResults, setShowResults] = useState(false);
     const onClick = () => setShowResults(value => !value);
     const [modalShow, setModalShow] = useState(false);
     const [sidebar, setSidebar] = useState(false);
+    const [searchValue, setSearchValue] = useState("")
     const showSidebar = () => setSidebar(!sidebar);
+
+    const callurl = (v) => {
+        router.push('/search/' + v)
+    }
+
     return (
         <>
             {localStorage.getItem('devise') === 'D' ? (
@@ -105,7 +113,7 @@ function Header() {
 
             ) : (
                 <>
-                    <Container className='background2 mobilepop' fluid>
+                    <Container className=' mobilepop' fluid>
                         <div className="header-top-aream header-top-area--style-1">
                             <ul className="event-list" style={{ paddingTop: "5px" }}>
                                 <li className="list-item">
@@ -187,6 +195,24 @@ function Header() {
                                 </div>
                             </div>
 
+                            <div className='search-box'>
+                                <div className='search-conatiner'>
+                                    <input className='search-input' placeholder='search for makeup' value={searchValue}
+                                        onChange={(e) => {
+                                            setSearchValue(e.target.value)
+                                        }} />
+                                    <button className='search-btn' type='button'
+                                        onClick={() => {
+                                            callurl(searchValue)
+                                        }}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width={12} height="12.003" viewBox="0 0 12 12.003"><path id="Icon_ionic-ios-search" data-name="Icon ionic-ios-search" d="M13.859,13.131,10.522,9.762a4.756,4.756,0,1,0-.722.731l3.316,3.347a.514.514,0,0,0,.725.019A.517.517,0,0,0,13.859,13.131Zm-7.075-2.6a3.756,3.756,0,1,1,2.656-1.1A3.732,3.732,0,0,1,6.784,10.534Z" transform="translate(-2 -1.997)" fill="#171717" /></svg>
+                                    </button>
+                                </div>
+                                <div className='notifcation-btn'>
+                                    <i className="fa fa-bell" style={{ color: 'rgb(255, 212, 0)' }} />
+
+                                </div>
+                            </div>
                         </div>
 
                     </Container>

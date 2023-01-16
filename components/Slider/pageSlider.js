@@ -14,7 +14,7 @@ function Pageslider() {
                 {localStorage.getItem('devise') === 'D' ? (
                     <>
                         <Container fluid>
-                            <Row className='slidesection'>
+                            <Row className='slidesection pt-5'>
 
                                 <Col lg="12" md="12">
                                     <Swiper

@@ -1,6 +1,7 @@
 import Global from '../_helpers/global';
 
 export const frontService = {
+    search,
     allSlider,
     maincategory,
     allfaqs,
@@ -16,6 +17,18 @@ export const frontService = {
     deleteaddress,
     defaultaddress
 };
+async function search(s, location) {
+    const requestOptions = {
+        method: 'GET',
+
+    };
+    return fetch(Global.BASE_API_PATH + `/search?search_term=${s}&location=${location}`, requestOptions)
+        .then(handleResponse)
+        .then(res => {
+            return res;
+        });
+}
+
 async function allSlider() {
     const requestOptions = {
         method: 'GET',

@@ -3,6 +3,7 @@ import React from "react";
 import { Container, Row, Col } from 'react-bootstrap';
 import { frontService } from "../../_services/front.services";
 import { useSelector } from 'react-redux';
+import Link from "next/link";
 export default function Serving() {
     const dataloctions = useSelector(state => state.loctions);
     return (<>
@@ -17,9 +18,9 @@ export default function Serving() {
                             className="d-flex flex-row"
                             style={{ width: "60%", marginLeft: "auto", marginRight: "auto" }}
                         >
-                            {dataloctions.location?.map((x, i) =>
-                                <div className="p-2" key={i}>
-                                    <a className="salonehome-all-Category">
+                            {dataloctions.location?.map((x, i) => {
+                                return (<div className="p-2" key={i}>
+                                    <Link className="salonehome-all-Category" href={"/" + x.slug}>
                                         <div
                                             className="salonehome-all-Category-box"
                                             style={{ backgroundColor: "rgb(255, 255, 255)" }}
@@ -37,9 +38,10 @@ export default function Serving() {
                                         <div className="salone-all-category-text">
                                             <p>{x.city}</p>
                                         </div>
-                                    </a>
+                                    </Link>
                                 </div>
-                            )}
+                                )
+                            })}
 
                         </div>
                     </Col>

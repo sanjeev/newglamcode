@@ -11,7 +11,7 @@ function Slider() {
     const dataslide = useSelector(state => state.slide);
     return (
         <>
-            <div className='mid-2 d-flex '>
+            <div className='mid-2 d-flex mt-4'>
                 {localStorage.getItem('devise') === 'D' ? (
                     <>
                         <Container>

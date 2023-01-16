@@ -33,15 +33,18 @@ button {
   padding: 0.5rem 1rem;
   font-weight: bold;
 }
+
 .headerclass {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 }
+
 .logsection {
   display: flex;
   align-items: center;
   justify-content: flex-start;
 }
+
 .spanp {
   font-size: 14px;
 }
@@ -52,6 +55,7 @@ button {
   margin-left: 78px;
   margin-top: 34px;
 }
+
 .fa {
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
@@ -61,9 +65,11 @@ button {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 .faimg {
   color: #daa520;
 }
+
 .date-card {
   flex: 1;
   display: flex;
@@ -85,6 +91,7 @@ button {
   margin-top: 60px;
   cursor: pointer;
 }
+
 .date_sec {
   display: flex;
   display: -webkit-box;
@@ -100,20 +107,24 @@ button {
   -ms-flex-direction: row;
   margin-top: 30px;
 }
+
 .day,
 .month {
   font-size: 14px;
 }
+
 .slidesection {
   display: flex;
   align-items: center;
-  margin-top: 0% !important ;
+  margin-top: 4% !important;
   margin-bottom: 0px !important;
 }
+
 .mid-2 h1 {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-weight: 700;
 }
+
 .sidemenu-modal-d .sidemenu-outbox-d {
   background: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
@@ -121,11 +132,13 @@ button {
   padding: 5px;
   margin-top: 5px;
 }
+
 .salonehome-all-Category {
   width: 80%;
   margin-left: 10%;
   margin-right: 10%;
 }
+
 .salonehome-all-Category .salonehome-all-Category-box {
   width: 90%;
   margin-left: 5%;
@@ -136,9 +149,8 @@ button {
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
 }
-.salonehome-all-Category
-  .salonehome-all-Category-box
-  .salonehome-all-Category-images {
+
+.salonehome-all-Category .salonehome-all-Category-box .salonehome-all-Category-images {
   width: 90%;
   height: auto;
   margin: auto;
@@ -146,17 +158,21 @@ button {
   -webkit-filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.25));
   filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.25));
 }
+
 .section-title {
   margin-bottom: 60px;
 }
+
 .salonehome-all-Category {
   width: 80%;
   margin-left: 10%;
   margin-right: 10%;
 }
+
 .modal-header {
   border-bottom: none !important;
 }
+
 .section-title .title {
   font-size: 50px;
   font-weight: 400;
@@ -165,6 +181,7 @@ button {
   padding-bottom: 10px;
   text-transform: capitalize;
 }
+
 .salonehome-all-Category .salone-all-category-text {
   font-family: "Alata";
   font-style: normal;
@@ -173,22 +190,23 @@ button {
   color: #000;
   text-align: center;
 }
-.salonehome-all-Category
-  .salonehome-all-Category-box
-  .salonehome-all-Category-images
-  img {
+
+.salonehome-all-Category .salonehome-all-Category-box .salonehome-all-Category-images img {
   width: 100% !important;
 }
+
 .background2 {
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
   background: #fff1f1;
 }
+
 .pro-qty .dec {
   left: 0;
   border-right: 1px solid #cdcdcd;
   padding-left: 5px;
   line-height: 22px;
 }
+
 .pro-qty .qty-btn {
   cursor: pointer;
   position: absolute;
@@ -205,6 +223,7 @@ button {
   -webkit-user-select: none;
   user-select: none;
 }
+
 .timeSlot-all {
   width: 100%;
   background: #fff;
@@ -213,6 +232,7 @@ button {
   margin-top: 10px;
   min-height: 300px;
 }
+
 .timeSlot-all .inside-title {
   font-family: "Alata";
   font-style: normal;
@@ -223,20 +243,24 @@ button {
   height: 30px;
   margin: 1px 0 10px;
 }
+
 .pro-qty .inc {
   right: 0;
   border-left: 1px solid #cdcdcd;
   padding-right: 5px;
 }
+
 .row-m-check {
   display: flex;
   flex-wrap: wrap;
 }
+
 .col-6-m-check {
   flex: 0 0 auto;
   width: 48.9%;
   margin: 2px;
 }
+
 .checkout-all .section-address {
   width: 100%;
   background: #fff;
@@ -245,6 +269,7 @@ button {
   padding: 5px 5px 5px 6px;
   height: 100px;
 }
+
 .checkout-all .section-address .inside-title {
   font-family: "Alata";
   font-style: normal;
@@ -253,6 +278,7 @@ button {
   color: #000;
   margin: 1px 0 10px;
 }
+
 .checkout-all .background-deflex {
   background: rgba(255, 237, 174, 0.6);
   border: 0.5px solid #000;
@@ -260,6 +286,7 @@ button {
   border-radius: 5px;
   padding: 15px;
 }
+
 .address-all .Adbutton {
   background: #7b00c7;
   color: #fff;
@@ -270,9 +297,11 @@ button {
   border-radius: 8px;
   box-shadow: 2px 2px 2px #000;
 }
+
 .modbox .modal-content {
   background-color: #fff !important;
 }
+
 .list_location:before {
   background: url(https://assets.fastexpert.com/images/topagent_location.svg);
   content: " ";
@@ -284,6 +313,7 @@ button {
   vertical-align: middle;
   width: 14px;
 }
+
 .autocomplete-dropdown-container .list_location {
   border-bottom: 1px solid #ccc;
   border-left: 1px solid #ccc;
@@ -292,6 +322,7 @@ button {
   padding: 10px 10px 10px 35px;
   position: relative;
 }
+
 .autocomplete-dropdown-container {
   border-top: 0 !important;
   box-shadow: none !important;
@@ -308,6 +339,7 @@ button {
   width: 100% !important;
   z-index: 9999;
 }
+
 .address-all .section-address .inside-title-new {
   font-family: "Alata";
   font-style: normal;
@@ -316,11 +348,13 @@ button {
   color: #000;
   float: right;
 }
+
 .btuadd {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 .address-all .section-address {
   width: 100%;
   background: #fff;
@@ -336,6 +370,7 @@ button {
   padding: 5px;
   margin-top: 10px;
 }
+
 .checkout-all .font-family-alata,
 .font-family-alata-22 {
   font-family: "Alata";
@@ -343,6 +378,7 @@ button {
   font-weight: 400;
   color: #000;
 }
+
 .checkout-all .material-symbols-outlined {
   font-family: "Material Symbols Outlined";
   font-weight: normal;
@@ -358,6 +394,7 @@ button {
   -moz-font-feature-settings: "liga";
   -moz-osx-font-smoothing: grayscale;
 }
+
 .checkout-all .font-family-alata,
 .font-family-alata-22 {
   font-family: "Alata";
@@ -365,25 +402,31 @@ button {
   font-weight: 400;
   color: #000;
 }
+
 .checkout-all .font-family-alata {
   font-size: 18px;
 }
+
 .checkout-all .justify-content-between-flex {
   justify-content: space-between !important;
 }
+
 .Addtocart-Items-m .addcart-minus {
   padding: 0 5px 5px;
   font-size: 20px;
 }
+
 .Addtocart-Items-m .addcart-plus {
   padding: 5px;
   font-size: 20px;
 }
+
 .Addtocart-Items-m .addcart-count,
 .Addtocart-Items-m .addcart-plus {
   padding: 5px;
   font-size: 20px;
 }
+
 .Addtocart-Items-m {
   position: absolute;
   padding: 2px 12px;
@@ -401,6 +444,7 @@ button {
   color: #fff;
   border: 1px solid #7c00b7;
 }
+
 .checkout-all .timeSlot-all .inside-title {
   font-family: "Alata";
   font-style: normal;
@@ -411,22 +455,27 @@ button {
   height: 30px;
   margin: 1px 0 10px;
 }
+
 .checkout-all .section-address .inside-title .inside-checkall {
   float: right;
 }
+
 .inside-checkall {
   padding-top: 14px;
   margin-right: 5px;
 }
+
 .checkout-all .checkoutBtn-container {
   width: 50%;
   padding: 10px;
   margin-left: 25%;
   margin-right: 25%;
 }
+
 .slick-slide {
   width: 200px;
 }
+
 .checkout-all .checkoutBtn-all {
   width: 80%;
   margin-left: 10%;
@@ -442,13 +491,16 @@ button {
   box-shadow: 5px 5px 5px #000 !important;
   border: 0;
 }
+
 .row-m-check .col-6-m-check .selected {
   background: #ae65ff;
   color: #fff;
 }
+
 .divinside-items.selected .timeslots-texts {
   color: #fff;
 }
+
 .divinside-items {
   background: #d9bef4;
   border-radius: 4px;
@@ -465,6 +517,7 @@ button {
   padding: 5px;
   margin: 0px;
 }
+
 .product-details-cart-wishlist .btn {
   letter-spacing: 1px;
   font-weight: 500;
@@ -472,11 +525,13 @@ button {
   padding: 0 20px;
   height: 44px;
 }
+
 .date-card.active {
   border: 3px solid #ae65ff;
   background: #ae65ff;
   color: #fff;
 }
+
 .pro-qty .qty-btn {
   cursor: pointer;
   position: absolute;
@@ -493,6 +548,7 @@ button {
   -webkit-user-select: none;
   user-select: none;
 }
+
 .sidemenu-modal-d {
   position: fixed;
   width: 15%;
@@ -508,6 +564,7 @@ button {
 .menutop {
   margin-top: 5px !important;
 }
+
 .background1 {
   background: #fff;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
@@ -520,6 +577,7 @@ button {
   font-weight: 300;
   font-family: jost;
 }
+
 .bgsalon {
   padding: 6px 30px !important;
   margin-left: 10px;
@@ -531,10 +589,12 @@ button {
   border-radius: 5px !important;
   border: none !important;
 }
+
 .btn-outline-light {
   color: #f8f9fa;
   border-color: #f8f9fa;
 }
+
 .menufix {
   position: fixed;
   width: 100%;
@@ -548,42 +608,51 @@ button {
   margin-left: 10%;
   margin-right: 10%;
 }
+
 .servicesMD-bg-color-3 {
   background: #dcffd2 !important;
 }
+
 .image-d-location-head .image-d-location {
   box-sizing: border-box;
   width: 100%;
   height: 100%;
   padding: 10px;
 }
+
 .modal-content {
   background-color: rgba(0, 0, 0, 0.43137254901960786) !important;
 }
+
 .image-d-location-head .image-d-location img {
   width: 100px;
   height: 100px;
   border-radius: 50%;
 }
+
 .images-m {
   display: block;
   width: 60%;
   margin-left: auto;
   margin-right: auto;
 }
+
 .center-content-all {
   width: 100%;
   text-align: center;
 }
+
 .footer-container {
   width: 100%;
   padding: 10px;
   background: #090909;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
+
 a:hover {
   color: #ff6565 !important;
 }
+
 .footer-text {
   font-family: "Alata";
   font-style: normal;
@@ -593,6 +662,7 @@ a:hover {
   color: #fff;
   text-decoration: none;
 }
+
 .image-d-location-close {
   position: absolute;
   top: -12px;
@@ -607,62 +677,79 @@ a:hover {
   cursor: pointer;
   font-size: 21px;
 }
+
 .servicesMD-bg-color-0 {
   background: #dcffd2 !important;
 }
+
 .servicesMD-bg-color-2 {
   background: linear-gradient(180deg, #c7e9f7, #dcf0f8) !important;
 }
+
 .servicesMD-bg-color-5 {
   background: linear-gradient(180deg, #ffb489, #ffb489) !important;
 }
+
 .servicesMD-bg-color-4 {
   background: linear-gradient(180deg, #eef9ad, #eef9ad) !important;
 }
+
 .servicesMD-bg-color-3 {
   background: #dcffd2 !important;
 }
+
 .servicesMD-bg-color-1 {
   background: #fff !important;
 }
+
 .hr-white {
   border: 1px solid #fff !important;
 }
+
 .removeknowmore p {
   background-color: transparent !important;
   text-align: justify;
 }
+
 .removeknowmore h2 {
   background-color: transparent !important;
   text-align: justify;
 }
+
 .removeknowmore h1 {
   background-color: transparent !important;
   text-align: justify;
 }
+
 .offcanvas-menu {
   margin: 20px 0;
 }
-.offcanvas-menu > ul > li {
+
+.offcanvas-menu>ul>li {
   border-bottom: 1px solid transparent;
 }
+
 .offcanvas-menu li {
   position: relative;
   padding: 7px 0;
 }
+
 .offcanvas-menu ul {
   padding-left: 1rem;
   padding-right: 1em;
 }
+
 .offcanvas-menu li a {
   display: block;
   text-decoration: none;
   text-transform: uppercase;
 }
+
 .side-menu-box .side-text .icon-m {
   padding: 0 20px 0 5px;
   text-transform: unset !important;
 }
+
 .side-menu-box .side-text {
   font-family: "Alata";
   font-style: normal;
@@ -670,31 +757,37 @@ a:hover {
   font-size: 22px;
   color: #000;
 }
+
 .offcanvas-menu li a {
   display: block;
   text-decoration: none;
   text-transform: unset !important;
 }
+
 .side-menu-box {
   background: #fff;
   padding: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25) !important;
   border-radius: 5px;
 }
+
 .removeknowmore h3 {
   background-color: transparent !important;
   text-align: justify;
 }
+
 .removeknowmore h4 {
   background-color: transparent !important;
   text-align: justify;
 }
+
 .header-css-head .icon-alignments {
   margin-left: 6px;
   margin-top: auto;
   margin-bottom: auto;
   height: 50%;
 }
+
 .header-css-head .inside-text-head {
   width: 100%;
   font-family: "Jost";
@@ -705,6 +798,7 @@ a:hover {
   text-align: center;
   margin-bottom: 0px;
 }
+
 .product-category-item-selected {
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25) !important;
@@ -717,6 +811,7 @@ a:hover {
   margin-top: 0.8%;
   color: #fff;
 }
+
 .servicesMD .Price {
   font-family: "Alata";
   font-style: normal;
@@ -728,6 +823,7 @@ a:hover {
   -webkit-text-decoration-line: line-through;
   text-decoration-line: line-through;
 }
+
 .servicesMD .offerPrice,
 .servicesMD .ratting {
   font-family: "Alata";
@@ -735,20 +831,24 @@ a:hover {
   font-weight: 400;
   align-items: center;
 }
+
 .servicesMD .offerPrice {
   font-size: 18px;
   line-height: 21px;
   color: #7900d9;
   margin-right: 17px;
 }
+
 .p-rl-2 {
   padding-left: 0.625rem !important;
   padding-right: 0.625rem !important;
 }
+
 .servicesMD .time-settings i {
   color: #e3bc00;
   margin-right: 10px;
 }
+
 .servicesMD .Addtocart {
   position: absolute;
   padding: 3px 10px;
@@ -765,6 +865,7 @@ a:hover {
   color: #fff;
   border: 1px solid #7c00b7;
 }
+
 .servicesMD .viewDetails,
 .servicesMD .viewDetails-m {
   border-radius: 10px;
@@ -773,6 +874,7 @@ a:hover {
   font-weight: 600;
   border: 1px solid #dedede;
 }
+
 .checkout-all hr {
   margin: 0rem 0;
   color: inherit;
@@ -780,38 +882,48 @@ a:hover {
   border-top: 2px solid;
   opacity: 0.25;
 }
+
 .mobilepopud .modal-content {
   background: #fff !important;
 }
+
 .deletedata {
   cursor: pointer;
 }
+
 .fa-star::before {
   color: #daa520;
 }
+
 .cardhove.card.mt-2 {
   cursor: pointer;
 }
+
 .product-details-content .product-details-action .price {
   font-size: 44px;
 }
+
 .card.mt-2.active {
   border: 1px solid #e80b0b;
   background: #eee5e5;
   cursor: pointer;
 }
+
 .product-details-content .product-details-pro-qty {
   margin-bottom: 0;
 }
+
 .product-details-pro-qty {
   border-bottom: 1px solid #e3e3e3;
   padding-bottom: 34px;
   margin-bottom: 32px;
 }
+
 .pro-qty {
   display: inline-block;
   position: relative;
 }
+
 .pro-qty input {
   width: 170px;
   height: 50px;
@@ -823,10 +935,12 @@ a:hover {
   padding: 0 55px;
   text-align: center;
 }
+
 #cat210 {
   width: calc(14% - 10px);
   margin-right: 10px;
 }
+
 .product-details-content .btn {
   background-color: #ff6565;
   border: 2px solid #ff6565;
@@ -842,54 +956,64 @@ a:hover {
   text-align: center;
   text-transform: uppercase;
 }
+
 .product-details-content .btn:hover {
   background-color: #231942;
   border-color: #231942;
   color: #fff;
 }
+
 .product-details-action {
   align-items: center;
   display: flex;
   margin-top: 50px;
 }
+
 .product-details-action .price {
   font-size: 50px;
   font-weight: 400;
   margin-bottom: 0;
   line-height: 1;
 }
+
 .productcatpage {
   display: flex;
   flex-wrap: wrap;
 }
+
 .product-details-content .product-details-title {
   font-size: 40px;
   margin-bottom: 22px;
   line-height: 1.2;
 }
+
 .modal-fullscreen .modal-content {
   height: 75% !important;
   border: 0;
   border-radius: 0;
 }
+
 .modal-fullscreen {
   width: 77vw !important;
   max-width: none;
   margin: auto !important;
   margin-top: 30px !important;
 }
-.productcatpage > div {
+
+.productcatpage>div {
   flex-grow: 1;
   width: 33%;
   height: 100px;
   margin-bottom: 20px;
 }
+
 .images-m {
   display: block;
   width: 80px;
   margin-left: auto;
   margin-right: auto;
 }
+
 .center-img-all {
   align-content: center;
   text-align: center;
@@ -899,6 +1023,7 @@ a:hover {
   background: #fff1f1;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
 }
+
 .servicesMD .viewDetails {
   position: relative;
   width: 35%;
@@ -912,6 +1037,7 @@ a:hover {
   align-items: center;
   color: #fff;
 }
+
 .listService {
   font-family: "Alata";
   font-style: normal;
@@ -919,9 +1045,11 @@ a:hover {
   font-size: 12px;
   line-height: 14px;
 }
+
 .Addtocart {
   margin-right: 8px;
 }
+
 .servicesMD .time-settings {
   font-family: "Alata";
   font-style: normal;
@@ -932,6 +1060,7 @@ a:hover {
   color: #000;
   margin-left: -3%;
 }
+
 .discountTitle {
   width: 49px;
   background: rgba(0, 0, 0, 0.97);
@@ -945,9 +1074,11 @@ a:hover {
   color: #fff;
   border: 1px solid #000;
 }
+
 .servicesMD-bg-color-1 {
   background: #fff !important;
 }
+
 .servicesMD {
   box-sizing: border-box;
   position: relative;
@@ -955,6 +1086,7 @@ a:hover {
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.43137254901960786) !important;
   border-radius: 6px;
 }
+
 .servicesMD .image {
   box-sizing: border-box;
   width: 100%;
@@ -963,6 +1095,7 @@ a:hover {
   border: 1px solid #000;
   border-radius: 6px;
 }
+
 .menu-category-d {
   position: fixed;
   bottom: 10%;
@@ -976,6 +1109,7 @@ a:hover {
   border-radius: 25px !important;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.25) !important;
 }
+
 .product-category-item {
   border-radius: 10px;
   display: inline-block;
@@ -986,6 +1120,7 @@ a:hover {
   background: #fff;
   background-color: rgb(255, 255, 255);
 }
+
 .header-css-head {
   width: 100%;
   position: fixed;
@@ -1000,6 +1135,7 @@ a:hover {
   top: 0;
   width: 100%;
 }
+
 .section-model-login {
   width: 30%;
   height: 100vh;
@@ -1007,26 +1143,22 @@ a:hover {
   margin-left: auto;
   margin-right: auto;
 }
+
 .section-login-background {
-  background: linear-gradient(
-      223.97deg,
+  background: linear-gradient(223.97deg,
       rgba(203, 144, 204, 0.5) 3.9%,
       rgba(238, 146, 177, 0.295) 25.91%,
-      rgba(249, 231, 187, 0.115) 69.38%
-    ),
-    linear-gradient(
-      228.09deg,
+      rgba(249, 231, 187, 0.115) 69.38%),
+    linear-gradient(228.09deg,
       rgba(180, 127, 234, 0.144) 21.22%,
-      rgba(255, 254, 249, 0.3) 86.17%
-    ),
-    linear-gradient(
-      268.46deg,
+      rgba(255, 254, 249, 0.3) 86.17%),
+    linear-gradient(268.46deg,
       hsla(0, 0%, 100%, 0.2) 2.21%,
       hsla(0, 0%, 100%, 0.2) 0,
       rgba(255, 237, 174, 0.172) 2.22%,
-      rgba(177, 109, 244, 0.2) 99.61%
-    );
+      rgba(177, 109, 244, 0.2) 99.61%);
 }
+
 .section-model-login .headsecftion {
   width: 100%;
   height: 50%;
@@ -1035,6 +1167,7 @@ a:hover {
   background: rgba(255, 250, 207, 0.79);
   box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
 }
+
 .section-model-login .headsecftion .imagelogo,
 .section-model-login .headsecftion .ptext {
   display: block;
@@ -1045,10 +1178,12 @@ a:hover {
   -webkit-filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
   filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
 }
+
 .section-model-login .bottomsecftion {
   width: 100%;
   height: 60vh;
 }
+
 .section-model-login .bottomsecftion .button,
 .section-model-login .bottomsecftion .inputField,
 .section-model-login .bottomsecftion .inputFieldAddress {
@@ -1064,6 +1199,7 @@ a:hover {
   -webkit-filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
   filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
 }
+
 .section-model-login .bottomsecftion .button {
   margin-top: 10%;
   background: #a253f0;
@@ -1085,13 +1221,16 @@ a:hover {
   -webkit-filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
   filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
 }
+
 .section-model-login .bottomsecftion .inputField,
 .section-model-login .bottomsecftion .inputFieldAddress {
   background: #fff;
 }
+
 .section-model-login .bottomsecftion .inputField {
   margin-top: 10%;
 }
+
 .bottomservicesCheckout {
   position: fixed;
   margin-bottom: 20px;
@@ -1102,14 +1241,17 @@ a:hover {
   background: #af73e9;
   border-radius: 10px;
 }
+
 .topinside p {
   margin-bottom: 0px;
 }
+
 .bottomservicesCheckout .topinside {
   padding: 5px;
   background: #882edf;
   border-radius: 10px 10px 0 0;
 }
+
 .bottomservicesCheckout .topinside .text {
   font-family: "Alata";
   font-style: normal;
@@ -1120,13 +1262,16 @@ a:hover {
   align-items: center;
   color: #fff;
 }
+
 .textHead {
   margin-bottom: 0px;
 }
+
 .bottomservicesCheckout .bottominside {
   padding: 5px 20px;
   border-radius: 0 0 10px 10px;
 }
+
 .bottomservicesCheckout .bottominside .textbot,
 .bottomservicesCheckout .bottominside .textHead {
   font-family: "Alata";
@@ -1136,9 +1281,11 @@ a:hover {
   align-items: center;
   color: #fff;
 }
+
 .bottomservicesCheckout .bottominside .textHead {
   font-size: 17px;
 }
+
 @media only screen and (min-width: 1px) and (max-width: 991px) {
   .slideimage {
     height: 250px !important;
@@ -1146,6 +1293,7 @@ a:hover {
     margin-left: 0px !important;
     margin-top: 0px !important;
   }
+
   .sidemenu-modal-d {
     position: fixed;
     width: 100% !important;
@@ -1157,10 +1305,12 @@ a:hover {
     right: 0;
     z-index: 9;
   }
+
   .slidesection {
     margin-top: 30% !important;
     margin-bottom: 15px !important;
   }
+
   .tc {
     text-align: center;
   }
@@ -1170,17 +1320,21 @@ a:hover {
     margin-left: 0%;
     margin-right: 0%;
   }
+
   .image-d-location-head .image-d-location img {
     width: 60px;
     height: 60px;
     border-radius: 50%;
   }
+
   .modal-content {
     width: 100% !important;
   }
+
   .allsection {
     margin-top: "0px";
   }
+
   .modal-fullscreen {
     width: 100vw !important;
     max-width: none;
@@ -1189,7 +1343,9 @@ a:hover {
     margin-top: 30px !important;
   }
 }
+
 @media (min-width: 992px) {
+
   .modal-lg,
   .modal-xl {
     --bs-modal-width: 547px !important;
@@ -1197,6 +1353,7 @@ a:hover {
 }
 
 @media (min-width: 1400px) {
+
   .container-xxl,
   .container-xl,
   .container-lg,
