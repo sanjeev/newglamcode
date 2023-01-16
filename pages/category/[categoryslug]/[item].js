@@ -3,11 +3,14 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { useRouter } from 'next/router'
 import { useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import LoadingScreen from "../../../components/LoadingScreen/loadingScreen";
 import { frontService } from "../../../_services/front.services";
 import { Audio } from 'react-loader-spinner'
 import ViewDetails from '../../../components/ViewDetails/ViewDetails'
+import Link from 'next/link';
+import { addtoCartData, decrementQty, removeFromCart } from '../../../store/actions';
+import AddToCart from '../../../components/AddToCard';
 export default function Categoryslug() {
     const router = useRouter()
     const [mainCategory, setMaincategory] = React.useState([]);
@@ -16,7 +19,27 @@ export default function Categoryslug() {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const datacat = useSelector(state => state.maincat);
+    const dispatch = useDispatch();
+    const [itemCount, setItemCount] = React.useState(0);
 
+    const onDecrement = (itemsid) => {
+        setItemCount(Math.max(itemCount - 1, 0));
+        if (Math.max(itemCount - 1, 0) === 0) {
+            dispatch(removeFromCart(itemsid))
+        } else {
+            dispatch(decrementQty(itemsid, 1))
+        }
+
+    }
+    const onIncrement = (items) => {
+        setItemCount(itemCount + 1);
+
+        //     dispatch({
+        //         type: 'FETCH_DATA',
+        //         data: responseData
+        //    })
+        dispatch(addtoCartData(items, 1));
+    }
 
     useEffect(() => {
         frontService.datamancat()
@@ -68,8 +91,9 @@ export default function Categoryslug() {
                             {categories?.map((x, i) =>
                                 <>
 
-                                    <a
+                                    <Link
                                         id="cat210"
+                                        href={`#${x.slug}`}
                                         className="pcats product-category-item"
                                         style={{ backgroundColor: "rgb(255, 255, 255)", padding: 15 }}
                                         key={i}
@@ -88,7 +112,7 @@ export default function Categoryslug() {
                                             {x.name}
                                         </h3>
 
-                                    </a>
+                                    </Link>
 
 
                                 </>
@@ -115,31 +139,34 @@ export default function Categoryslug() {
                                 <Row>
                                     {categories?.map((x, i) => <>
                                         <div
+                                            id={x.slug}
                                             className="col-md-12 col-12 p-md-5 pt-md-3 pb-md-0 p-2"
                                             style={{ marginTop: 0 }}
-                                            key={i}
+                                            key={i}>
+                                            <div className='row justify-content-center'>
+                                                <div className='col-lg-6 col-12'>
+                                                    <div className="servicesMD row servicesMD-bg-color-1">
+                                                        <div
+                                                            className="pcats product-category-item-services"
+                                                            style={{ backgroundColor: "rgba(255, 255, 255, 0)", padding: 0 }}
+                                                        >
 
-                                        >
-                                            <div className="servicesMD row servicesMD-bg-color-1">
-                                                <div
-                                                    className="pcats product-category-item-services"
-                                                    style={{ backgroundColor: "rgba(255, 255, 255, 0)", padding: 0 }}
-                                                >
-
-                                                    <a className="col-4-m p-0 image-m" href="#" >
-                                                        <img
-                                                            className="image"
-                                                            src={x.category_image_url}
-                                                            alt={x.name}
-                                                            id={x.id}
-                                                            style={{
-                                                                width: "100%",
-                                                                height: "100%",
-                                                                margin: 0,
-                                                                border: "medium none"
-                                                            }}
-                                                        />
-                                                    </a>
+                                                            <a className="col-4-m p-0 image-m" href="#" >
+                                                                <img
+                                                                    className="image"
+                                                                    src={x.category_image_url}
+                                                                    alt={x.name}
+                                                                    id={x.id}
+                                                                    style={{
+                                                                        width: "100%",
+                                                                        height: "100%",
+                                                                        margin: 0,
+                                                                        border: "medium none"
+                                                                    }}
+                                                                />
+                                                            </a>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -173,7 +200,7 @@ export default function Categoryslug() {
                                                                 {y.time} {y.time_type}
                                                             </div>
                                                         </div>
-                                                        <div className="Addtocart">Add</div>
+                                                        <AddToCart data={y} />
                                                         <div className="lineDiv" />
                                                         <div className="descriptionServices">
                                                             <ul className="p-2" style={{ marginBottom: "-25px" }}>

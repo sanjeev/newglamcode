@@ -66,16 +66,16 @@ export default function ViewCenteredModal(props) {
                                         <i className="fa fa-star-half-o" />
                                     </div>
                                 </div>
-                                <ul className="mb-6" style={{ paddingLeft: '0px' }}>
+                                {props.datato.description && <ul className="mb-6" style={{ paddingLeft: '0px' }}>
                                     {mapItems(props.datato.description.replace(/(<([^>]+)>)/ig, '').replace(/(?:\r\n|\r|\n)/g, '').replace(/(?:&nbsp;)/g, '')
                                         .replace(/&amp;/g, '&').toString().split('.'))}
-                                </ul>
+                                </ul>}
                                 <p className="mb-6"> </p>
                                 <div className="product-details-pro-qty">
                                     <div className="Addtocart-Items d-flex flex-row">
                                         <div className="pro-qty">
                                             <div className="dec qty-btn" onClick={() => onDecrement(props.datato.id)}>-</div>
-                                            <input type="text" title="Quantity" readOnly="" value={itemCount} />
+                                            <input type="text" title="Quantity" readOnly={true} value={itemCount} />
 
                                             <div className="inc qty-btn" onClick={() => onIncrement(props.datato)}>+</div>
                                         </div>

@@ -1287,6 +1287,10 @@ a:hover {
 }
 
 @media only screen and (min-width: 1px) and (max-width: 991px) {
+  .section-model-login {
+    width: 100%;
+  }
+
   .slideimage {
     height: 250px !important;
     margin-bottom: 0px !important;
