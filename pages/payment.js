@@ -42,13 +42,13 @@ function Payment() {
                     </div>
                 </Container>
             </div>
-            <Row className='mt-5'>
+            <Row className='mt-5 card-container'>
                 <Col md={1}></Col>
                 <Col md={5}>
 
                     {cart.length > 0 ? (<>
 
-                        <div className="row">
+                        <div className="row card-container">
                             {cart.map((item, index) => (<>
 
                                 <div className="col-12 p-md-5 pt-md-3 pb-md-0 p-2" key={index}>

@@ -177,7 +177,7 @@ button {
   right: 0;
 }
 
-.next-date-btn .slidesection {
+.slidesection {
   display: flex;
   align-items: center;
   margin-top: 4% !important;
@@ -1404,7 +1404,43 @@ a:hover {
   width: 32.7%;
 }
 
+.search-items {
+  padding-top: 80px;
+}
+
 @media only screen and (min-width: 1px) and (max-width: 991px) {
+  .search-items {
+    padding-top: 60px;
+  }
+
+  .bottomservicesCheckout {
+    width: 80%;
+    right: 2%;
+  }
+
+  .date-card {
+    margin: 0;
+  }
+
+  .date-card-container {
+    gap: 6px;
+  }
+
+  .next-date-btn,
+  .prev-date-btn {
+    padding: 0;
+  }
+
+  .next-date-btn button,
+  .prev-date-btn button {
+    width: 32px;
+    height: 32px;
+  }
+
+  .checkout-all .section-selectBooking {
+    width: 75%;
+  }
+
   .card-container {
     width: 100% !important;
     margin: auto !important;
@@ -1417,7 +1453,7 @@ a:hover {
   .checkoutBtn-container {
     width: 100% !important;
     position: fixed;
-    bottom: 20px;
+    bottom: 100px;
   }
 
   .checkout-all .checkoutBtn-all {
@@ -1449,7 +1485,8 @@ a:hover {
   }
 
   .servicesMD .Addtocart {
-    top: 26%;
+    top: 32%;
+    padding: 0 8px;
   }
 
   .servicesMD .viewDetails {

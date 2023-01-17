@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Container, Row } from 'react-bootstrap';
 import { useRouter } from 'next/router'
 import { useEffect } from 'react';
@@ -6,11 +6,13 @@ import LoadingScreen from "../../components/LoadingScreen/loadingScreen";
 import { frontService } from "../../_services/front.services";
 import ViewDetails from '../../components/ViewDetails/ViewDetails';
 import AddToCart from '../../components/AddToCard';
+import { isArray } from 'util';
 
 export default function SearchItem() {
     const router = useRouter()
     const query = router.query
     const [items, setItems] = React.useState([]);
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         frontService.search(query.item, localStorage.getItem("id"))
@@ -18,12 +20,15 @@ export default function SearchItem() {
                 res => {
                     if (res.status === 'success') {
                         setItems(res.services);
+                        setLoading(false)
                     } else {
                         console.log('Something went wrong !!');
+                        setLoading(false)
                     }
                 },
                 error => {
                     console.log('Something went wrong !!');
+                    setLoading(false)
                 }
             )
     }, []);
@@ -36,7 +41,6 @@ export default function SearchItem() {
             })
         );
     }
-
     return (
         <>
 
@@ -52,16 +56,17 @@ export default function SearchItem() {
                     </Container>
 
                 </div>
-                <div style={{ marginTop: '80px' }}>
-                    {items.length > 0 ? (
-                        <>
-                            <Container>
-                                <Row className='card-container'>
-                                    {items?.map((x, i) => <Item x={x} i={i} key={i} mapItems={mapItems} />)}
-                                </Row>
-                            </Container>
-                        </>
-                    ) : (<LoadingScreen />)}
+                <div className='search-items'>
+                    {loading ? <LoadingScreen /> : ((items.length === 0 || (items.length === 1 && Array.isArray(items[0]))) ?
+                        <div className='d-flex align-items-center justify-content-center' style={{ minHeight: "50vh" }}><p className='text-center inside-text-head fw-bold'>No Product Found</p></div> : (
+                            <>
+                                <Container>
+                                    <Row className='card-container'>
+                                        {items?.map((x, i) => <Item x={x} i={i} key={i} mapItems={mapItems} />)}
+                                    </Row>
+                                </Container>
+                            </>
+                        ))}
 
                 </div>
             </div>
@@ -82,10 +87,10 @@ const Item = ({ x, i, mapItems }) => {
                 <div className="title">
                     <a href="#">{x.name}</a>
                 </div>
-                <div className="d-flex flex-row" style={{ margin: "4% 0.625rem -2% 0%" }}>
+                <div className="d-flex flex-row align-items-center" style={{ margin: "4% 0.625rem -2% 0%" }}>
                     <div className="p-rl-2 Price">₹ {x.price}</div>
                     <div className="p-rl-2 offerPrice">₹ {x.discounted_price}</div>
-                    <div className="p-rl-2 discountTitle">{x.discount} %</div>
+                    {x.discount && <div className="p-rl-2 discountTitle">{x.discount + "%"}</div>}
                 </div>
                 <div
                     className="d-flex flex-row"

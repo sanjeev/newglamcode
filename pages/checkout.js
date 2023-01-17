@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { use, useEffect, useState } from 'react'
 import { Container, Row, Col } from 'react-bootstrap';
 import { useRouter } from 'next/router'
 import { Datepicker, DatepickerEvent } from "@meinefinsternis/react-horizontal-date-picker";
@@ -21,7 +21,7 @@ function Checkout() {
     };
     const [active, setActive] = useState(0);
     const [isselected, setIsselected] = useState("");
-
+    const [error, setError] = useState("")
 
     // const handleClick = (val) => {
     //     alert(val);
@@ -29,6 +29,9 @@ function Checkout() {
 
     //}
     const h = parseInt(moment().format("HH"))
+    const mm = parseInt(moment().format("mm"))
+    const half = mm > 29
+
     const today = active === 0
 
     useEffect(() => {
@@ -42,6 +45,22 @@ function Checkout() {
         }
     }, [])
 
+    useEffect(() => {
+        const rightBtn = document.querySelector('#right-button');
+        const leftBtn = document.querySelector('#left-button');
+        const content = document.querySelector('#content');
+        const width = content.offsetWidth
+        rightBtn.addEventListener("click", function (event) {
+            content.scrollLeft += width;
+            event.preventDefault();
+        });
+
+        leftBtn.addEventListener("click", function (event) {
+            content.scrollLeft -= width;
+            event.preventDefault();
+        });
+
+    })
     const timeslots = [
         { id: 1, slottime: "10:00 AM - 10:15 AM", slotstart: "10:00", slotend: "10:15", isselected: false, isavailable: true },
         { id: 2, slottime: "10:30 AM - 10:45 AM", slotstart: "10:30", slotend: "10:45", isselected: false, isavailable: true },
@@ -81,10 +100,10 @@ function Checkout() {
                     {/* <Slider {...settings}> */}
                     <div className='d-flex position-relative'>
                         <div className="prev-date-btn" style={{ zIndex: 2 }}>
-                            <button className="" style={{ background: "rgb(55, 78, 140)" }}>&lt;</button>
+                            <button id="left-button" className="" style={{ background: "rgb(55, 78, 140)" }}>&lt;</button>
                         </div>
-                        <div className='section-selectBooking flex-column'>
-                            <div className='d-flex align-items-end'>
+                        <div className='section-selectBooking flex-column' id="content">
+                            <div className='d-flex align-items-end date-card-container'>
                                 {[...Array(100)].map((elementInArray, index) => {
                                     const day_ = moment(moment().add(index, 'days').toString()).format('dddd').toString()
                                     const day = day_.substring(0, 3)
@@ -106,7 +125,7 @@ function Checkout() {
                             </div>
                         </div>
                         <div className="next-date-btn" style={{ zIndex: 2 }}>
-                            <button className="" style={{ background: "rgb(55, 78, 140)" }}>&gt;</button>
+                            <button id="right-button" className="" style={{ background: "rgb(55, 78, 140)" }}>&gt;</button>
                         </div>
                     </div>
                 </div>
@@ -116,12 +135,15 @@ function Checkout() {
 
                     <div className="row-m-check">
                         {timeslots.map((item, index) => {
-                            if (today && ((item.id + 17) < h * 2)) {
+                            if (today && ((item.id + 17 + (half ? 0 : 1)) < h * 2)) {
                                 return null
                             }
                             if (item.isavailable) {
                                 return (
-                                    <div className="col-6-m-check time-slots" key={index} onClick={() => setIsselected(index)}>
+                                    <div className="col-6-m-check time-slots" key={index} onClick={() => {
+                                        setIsselected(index)
+                                        setError("")
+                                    }}>
                                         <div className={isselected === index ? "divinside-items selected" : "divinside-items"} >
                                             <p className="timeslots-texts">{item.slottime}</p>
                                         </div>
@@ -134,11 +156,22 @@ function Checkout() {
 
                     </div>
                 </div>
-                <div
-                    className="checkoutBtn-container"
-                    style={{ width: "30%", marginLeft: "auto", marginRight: "auto" }}
-                >
-                    <button className="checkoutBtn-all">Proceed</button>
+                {error && <div>
+                    <p className='text-danger text-center my-2 fw-bold'>{error}</p>
+                </div>}
+                <div className="checkoutBtn-container"
+                    style={{ width: "30%", marginLeft: "auto", marginRight: "auto" }}>
+                    <button className="checkoutBtn-all" type='button'
+                        onClick={() => {
+                            if (!isselected) {
+                                setError("Please Select slot to continue")
+                                return
+                            } else {
+                                router.push("/payment")
+                            }
+                        }}
+
+                    >Proceed</button>
                 </div>
             </div>
 
