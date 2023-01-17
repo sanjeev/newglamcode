@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import Slider from "react-slick";
+import React, { useEffect, useState } from 'react'
 import { Container, Row, Col } from 'react-bootstrap';
 import { useRouter } from 'next/router'
 import { Datepicker, DatepickerEvent } from "@meinefinsternis/react-horizontal-date-picker";
@@ -20,10 +19,8 @@ function Checkout() {
         loop: false
 
     };
-    console.log(moment().toString());
-    const [active, setActive] = useState("");
+    const [active, setActive] = useState(0);
     const [isselected, setIsselected] = useState("");
-
 
 
     // const handleClick = (val) => {
@@ -31,6 +28,19 @@ function Checkout() {
     //     setActive(event.target.id);
 
     //}
+    const h = parseInt(moment().format("HH"))
+    const today = active === 0
+
+    useEffect(() => {
+        if (!localStorage.getItem('gluserDetails')) {
+            router.push("/")
+        }
+        if (h > 17) {
+            setActive(1)
+        } else {
+            setActive(0)
+        }
+    }, [])
 
     const timeslots = [
         { id: 1, slottime: "10:00 AM - 10:15 AM", slotstart: "10:00", slotend: "10:15", isselected: false, isavailable: true },
@@ -45,7 +55,7 @@ function Checkout() {
         { id: 10, slottime: "2:30 PM - 2:45 PM", slotstart: "14:30", slotend: "14:45", isselected: false, isavailable: true },
         { id: 11, slottime: "3:00 PM - 3:15 PM", slotstart: "15:00", slotend: "15:15", isselected: false, isavailable: true },
         { id: 12, slottime: "3:30 PM - 3:45 PM", slotstart: "15:30", slotend: "15:45", isselected: false, isavailable: true },
-        { id: 13, slottime: "4:00 PM - 2:15 PM", slotstart: "16:00", slotend: "16:15", isselected: false, isavailable: true },
+        { id: 13, slottime: "4:00 PM - 4:15 PM", slotstart: "16:00", slotend: "16:15", isselected: false, isavailable: true },
         { id: 14, slottime: "4:30 PM - 4:45 PM", slotstart: "16:30", slotend: "16:45", isselected: false, isavailable: true },
         { id: 15, slottime: "5:00 PM - 5:15 PM", slotstart: "17:00", slotend: "17:15", isselected: false, isavailable: true },
         { id: 16, slottime: "5:30 PM - 5:45 PM", slotstart: "17:30", slotend: "17:45", isselected: false, isavailable: true },
@@ -64,33 +74,54 @@ function Checkout() {
                     </div>
                 </Container>
             </div>
-            <div className='mt-5'>
+            <div className='pt-5'>
 
                 {/* <Datedata /> */}
-                <div className="date_sec " >
-
+                <div className="date_sec  flex-column" >
                     {/* <Slider {...settings}> */}
-                    {[...Array(7)].map((elementInArray, index) => (
-
-                        < div className={`date-card ${active === index ? "active" : ''}`} key={index} id={index} onClick={() => setActive(index)}>
-                            <span className="day">{moment(moment().add(index, 'days').toString()).format('dddd').toString()}</span>
-                            <span className="date"> {moment(moment().add(index, 'days').toString()).format("DD").toString()}</span>
-                            <span className="month"> {moment(moment().add(index, 'days').toString()).format("MMMM").toString()}</span>
+                    <div className='d-flex position-relative'>
+                        <div className="prev-date-btn" style={{ zIndex: 2 }}>
+                            <button className="" style={{ background: "rgb(55, 78, 140)" }}>&lt;</button>
                         </div>
+                        <div className='section-selectBooking flex-column'>
+                            <div className='d-flex align-items-end'>
+                                {[...Array(100)].map((elementInArray, index) => {
+                                    const day_ = moment(moment().add(index, 'days').toString()).format('dddd').toString()
+                                    const day = day_.substring(0, 3)
+                                    const d = moment(moment().add(index, 'days').toString()).format("DD").toString()
+                                    const m = moment(moment().add(index, 'days').toString()).format("MMMM").toString()
 
-                    )
-                    )}
-                    {/* </Slider> */}
+                                    return <span key={index}>
+                                        {(d === "01" || index === 0) ? <div className='month-name'>{m}</div> : <div></div>}
+                                        <div className={`date-card`} key={index} id={index} onClick={() => setActive(index)}>
+                                            <div className={`d-flex flex-column ${active === index ? "active" : ''}`} >
+                                                <span className="day">{day}</span>
+                                                <span className="date"> {moment(moment().add(index, 'days').toString()).format("DD").toString()}</span>
+                                                {/* <span className="month">{moment(moment().add(index, 'days').toString()).format("MMMM").toString()}</span> */}
+                                            </div>
+                                        </div>
+                                    </span>
+                                }
+                                )}
+                            </div>
+                        </div>
+                        <div className="next-date-btn" style={{ zIndex: 2 }}>
+                            <button className="" style={{ background: "rgb(55, 78, 140)" }}>&gt;</button>
+                        </div>
+                    </div>
                 </div>
                 <div className="timeSlot-all">
                     <p className="inside-title">Prime Time Slots</p>
+                    {(active === 0 && h > 17) && <p className="">No slots available</p>}
+
                     <div className="row-m-check">
-
                         {timeslots.map((item, index) => {
-
+                            if (today && ((item.id + 17) < h * 2)) {
+                                return null
+                            }
                             if (item.isavailable) {
                                 return (
-                                    <div className="col-6-m-check" style={{ width: "32.7%" }} key={index} onClick={() => setIsselected(index)}>
+                                    <div className="col-6-m-check time-slots" key={index} onClick={() => setIsselected(index)}>
                                         <div className={isselected === index ? "divinside-items selected" : "divinside-items"} >
                                             <p className="timeslots-texts">{item.slottime}</p>
                                         </div>

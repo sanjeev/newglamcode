@@ -50,7 +50,13 @@ function Header() {
     const showSidebar = () => setSidebar(!sidebar);
 
     const callurl = (v) => {
-        router.push('/search/' + v)
+        if (!localStorage.getItem("id")) {
+            setModalShow(true)
+            return
+        }
+        if (v) {
+            router.push('/search/' + v)
+        }
     }
 
     return (
@@ -78,7 +84,7 @@ function Header() {
                                 </div>
                             </Col>
                             <Col lg="3" md="12" className='menutop'>
-                                <div className="d-flex gap-2">
+                                <div className="d-flex gap-2 justify-content-end">
                                     <a href='/' className="btn btn-outline-light bgsalon">Home</a>
                                     <a href='/' className="btn btn-outline-light bgsalon">Blogs</a>
                                     <button className="btn btn-outline-light bgsalon" onClick={onClick}>
@@ -99,10 +105,14 @@ function Header() {
                                         <div className="sidemenu-outbox-d">
                                             <i className="fa fa-user  icon-m" aria-hidden="true" />
                                             <span style={{ marginLeft: '20px' }}>My Bookings</span>
-                                        </div><div className="sidemenu-outbox-d">
+                                        </div>
+                                        {localStorage.getItem('gluserDetails') ? <div className="sidemenu-outbox-d">
+                                            <i className="fa fa-sign-in  icon-m" aria-hidden="true" />
+                                            <span style={{ marginLeft: '20px' }}>Logout</span>
+                                        </div> : <div className="sidemenu-outbox-d" onClick={() => router.push("/login")}>
                                             <i className="fa fa-sign-in  icon-m" aria-hidden="true" />
                                             <span style={{ marginLeft: '20px' }}>Login</span>
-                                        </div>
+                                        </div>}
                                     </div>
                                 ) : null}
 
@@ -218,7 +228,7 @@ function Header() {
                     </Container>
                     <SidebarNav sidebar={sidebar}>
                         <SidebarWrap>
-                            <button onClick={showSidebar} className="offcanvas-close" aria-label="offcanvas svg icon"><svg style={{ verticalAlign: 'middle' }} xmlns="http://www.w3.org/2000/svg" width="5.973" height="10.449" viewBox="0 0 5.973 10.449"><path id="Icon_ionic-ios-arrow-back" data-name="Icon ionic-ios-arrow-back" d="M13.051,11.417,17,7.466a.747.747,0,0,0-1.058-1.054l-4.479,4.476a.745.745,0,0,0-.022,1.03l4.5,4.507A.747.747,0,1,0,17,15.37Z" transform="translate(-11.251 -6.194)"></path></svg><div></div></button>
+                            <button onClick={showSidebar} className="offcanvas-close  d-flex align-items-center justify-content-center" aria-label="offcanvas svg icon"><svg style={{ verticalAlign: 'middle' }} xmlns="http://www.w3.org/2000/svg" width="5.973" height="10.449" viewBox="0 0 5.973 10.449"><path id="Icon_ionic-ios-arrow-back" data-name="Icon ionic-ios-arrow-back" d="M13.051,11.417,17,7.466a.747.747,0,0,0-1.058-1.054l-4.479,4.476a.745.745,0,0,0-.022,1.03l4.5,4.507A.747.747,0,1,0,17,15.37Z" transform="translate(-11.251 -6.194)"></path></svg><div></div></button>
                             <div className="offcanvas-header flex-end">
                                 <div className="logo imagelogo-sidemenu " style={{ margin: 'auto', paddingTop: '23px' }}>
                                     <a href="/">
@@ -226,7 +236,7 @@ function Header() {
                                         <Image className="img-fluid" src={Logo} alt="Glamcode" width="120" height="26" />
                                     </a>
                                 </div>
-                                <button onClick={showSidebar} className="offcanvas-close" aria-label="offcanvas svg icon">
+                                <button onClick={showSidebar} className="offcanvas-close  d-flex align-items-center justify-content-center" aria-label="offcanvas svg icon">
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         width="5.973"
@@ -303,14 +313,23 @@ function Header() {
                                                     </span>
                                                 </a>
                                             </li>
-                                            <li>
+                                            {localStorage.getItem('gluserDetails') ? <li>
                                                 <div className="side-menu-box">
                                                     <span className="side-text">
                                                         <i className="fa fa-sign-in  icon-m" aria-hidden="true" />
                                                         Logout
                                                     </span>
                                                 </div>
-                                            </li>
+                                            </li> :
+                                                <li>
+                                                    <div className="side-menu-box">
+                                                        <span className="side-text">
+                                                            <i className="fa fa-sign-in  icon-m" aria-hidden="true" />
+                                                            Login
+                                                        </span>
+                                                    </div>
+                                                </li>
+                                            }
                                         </ul>
                                     </div>
                                 </div>

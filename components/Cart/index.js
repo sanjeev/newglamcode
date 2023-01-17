@@ -20,7 +20,7 @@ function Cart({ data }) {
     return (
         <>
 
-            <div className="Addtocart-Items-m d-flex flex-row">
+            <div className="Addtocart-Items-m d-flex flex-row mt-0">
                 <div className="addcart-minus" onClick={() => onDecrement(data.id)}>-</div>
                 <div className="addcart-count">{itemCount}</div>
                 <div className="addcart-plus" onClick={() => onIncrement(data)}>+</div>

@@ -56,7 +56,7 @@ export default function SearchItem() {
                     {items.length > 0 ? (
                         <>
                             <Container>
-                                <Row>
+                                <Row className='card-container'>
                                     {items?.map((x, i) => <Item x={x} i={i} key={i} mapItems={mapItems} />)}
                                 </Row>
                             </Container>
@@ -78,7 +78,7 @@ const Item = ({ x, i, mapItems }) => {
                     src={x.service_image_url}
                     alt={x.name} />
             </a>
-            <div className="col-8 pt-1">
+            <div className="col-8 pt-1 position-relative">
                 <div className="title">
                     <a href="#">{x.name}</a>
                 </div>

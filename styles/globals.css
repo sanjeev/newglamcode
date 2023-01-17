@@ -1,6 +1,7 @@
 html,
 body {
   font-family: "Inter", sans-serif, Arial, Helvetica;
+  overflow-x: hidden;
 }
 
 a {
@@ -73,7 +74,14 @@ button {
 .date-card {
   flex: 1;
   display: flex;
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  margin: 0 0 0 5px;
+  width: 45px;
+  height: 49px;
+  flex-shrink: 0;
   flex-direction: column;
   -webkit-box-direction: normal;
   -webkit-box-orient: vertical;
@@ -83,16 +91,16 @@ button {
   -ms-flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 2px solid #000;
   margin-right: 20px;
   padding-top: 10px;
   padding-bottom: 10px;
   border-radius: 10px;
-  margin-top: 60px;
   cursor: pointer;
 }
 
 .date_sec {
+  box-shadow: 1px 1px 4px rgb(0 0 0 / 20%);
+  background: #fff;
   display: flex;
   display: -webkit-box;
   display: -moz-box;
@@ -105,15 +113,71 @@ button {
   -moz-box-direction: normal;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
-  margin-top: 30px;
+  margin-top: 10px;
+  padding: 10px;
 }
 
-.day,
-.month {
-  font-size: 14px;
+.month-name {
+  color: rgb(55, 78, 140);
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1.75;
+  margin-bottom: 4px;
 }
 
-.slidesection {
+.day {
+  font-size: 12px;
+}
+
+.date {
+  font-size: 18px;
+}
+
+.next-date-btn,
+.prev-date-btn {
+  z-index: 2;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -30%);
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.next-date-btn button:focus,
+.prev-date-btn button:focus {
+  border: none;
+}
+
+.next-date-btn button,
+.prev-date-btn button {
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.prev-date-btn {
+  padding-left: 4px;
+  left: 0;
+}
+
+.next-date-btn {
+  padding-right: 4px;
+  right: 0;
+}
+
+.next-date-btn .slidesection {
   display: flex;
   align-items: center;
   margin-top: 4% !important;
@@ -526,10 +590,23 @@ button {
   height: 44px;
 }
 
-.date-card.active {
-  border: 3px solid #ae65ff;
+.date-card .active {
+  font-weight: bold;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  border: 2px solid rgb(55, 78, 140);
+  color: rgb(55, 78, 140);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 2px;
+}
+
+.checkout-all .timeSlot-all .row-m-check .col-6-m-check .divinside-items:hover,
+.checkout-all .timeSlot-all .row-m-check .col-6-m-check .selected {
   background: #ae65ff;
-  color: #fff;
 }
 
 .pro-qty .qty-btn {
@@ -556,9 +633,14 @@ button {
   height: auto;
   background: #d9bef4;
   border-radius: 10px;
-  top: 9%;
+  top: 12%;
   right: 0;
   z-index: 9;
+}
+
+.sidemenu-modal-d .sidemenu-outbox-d:hover {
+  background: #b16df4 !important;
+  color: #fff !important;
 }
 
 .menutop {
@@ -578,15 +660,21 @@ button {
   font-family: jost;
 }
 
+.btn-outline-light:hover {
+  color: #000 !important;
+  background-color: #f8f9fa !important;
+  border-color: #f8f9fa !important;
+}
+
 .bgsalon {
-  padding: 6px 30px !important;
+  padding: 8px 30px !important;
   margin-left: 10px;
   box-shadow: 3px 3px 3px #000 !important;
   border-radius: 10px !important;
-  font-weight: 700;
+  font-weight: 700 !important;
   background: #a854fc !important;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-  border-radius: 5px !important;
+  border-radius: 10px !important;
   border: none !important;
 }
 
@@ -853,7 +941,7 @@ a:hover {
   position: absolute;
   padding: 3px 10px;
   right: 2%;
-  top: 29%;
+  top: 22%;
   background: #7c00b7;
   border-radius: 10px;
   font-family: "Inter";
@@ -936,9 +1024,8 @@ a:hover {
   text-align: center;
 }
 
-#cat210 {
+.cat210 {
   width: calc(14% - 10px);
-  margin-right: 10px;
 }
 
 .product-details-content .btn {
@@ -1035,8 +1122,10 @@ a:hover {
   font-size: 12px;
   line-height: 22px;
   align-items: center;
+  text-align: center;
   color: #fff;
 }
+
 
 .listService {
   font-family: "Alata";
@@ -1286,7 +1375,95 @@ a:hover {
   font-size: 17px;
 }
 
+.servicesMD .lineDiv {
+  width: 98%;
+  height: 0;
+  background-color: #585656;
+  border: 1px solid #585656;
+}
+
+.checkout-all .section-selectBooking::-webkit-scrollbar {
+  display: none;
+}
+
+.checkout-all .section-selectBooking {
+  width: 94%;
+  margin: auto;
+  padding: 5px;
+  overflow-x: scroll;
+  display: flex;
+}
+
+.categories-top-header {
+  gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col-6-m-check.time-slots {
+  width: 32.7%;
+}
+
 @media only screen and (min-width: 1px) and (max-width: 991px) {
+  .card-container {
+    width: 100% !important;
+    margin: auto !important;
+  }
+
+  .col-6-m-check.time-slots {
+    width: 31%;
+  }
+
+  .checkoutBtn-container {
+    width: 100% !important;
+    position: fixed;
+    bottom: 20px;
+  }
+
+  .checkout-all .checkoutBtn-all {
+    width: 80%;
+  }
+
+  .cat210 {
+    width: auto;
+    white-space: pre;
+  }
+
+  .categories-top-header {
+    width: 100%;
+    overflow-x: scroll;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: nowrap;
+  }
+
+  .categories-top-header::-webkit-scrollbar {
+    display: none;
+  }
+
+  .servicesMD .lineDiv {
+    width: 98%;
+    height: 0;
+    border: 1px solid #585656;
+  }
+
+  .servicesMD .Addtocart {
+    top: 26%;
+  }
+
+  .servicesMD .viewDetails {
+    width: fit-content;
+  }
+
+  .header-css-head .inside-text-head {
+    font-size: 24px;
+  }
+
+  .servicesMD .image {
+    height: auto;
+  }
+
   .section-model-login {
     width: 100%;
   }

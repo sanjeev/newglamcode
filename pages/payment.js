@@ -13,6 +13,9 @@ function Payment() {
 
 
     useEffect(() => {
+        if (!localStorage.getItem('gluserDetails')) {
+            router.push("/")
+        }
         var total = 0;
         for (let i = 0; i < cart.length; i++) {
             total += parseInt(cart[i].sum);
@@ -58,7 +61,7 @@ function Payment() {
 
                                             />
                                         </a>
-                                        <div className="col-8 pt-1">
+                                        <div className="col-8 pt-1 position-relative">
                                             <div className="title">
                                                 <a href="#"> {item.name}</a>
                                             </div>
@@ -77,7 +80,6 @@ function Payment() {
                                                     {item.time + ` ` + item.time_type}
                                                 </p>
                                             </div>
-                                            <hr />
                                             <Addcart data={item} />
 
                                             <div className="lineDiv" />

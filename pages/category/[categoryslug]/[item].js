@@ -8,9 +8,9 @@ import LoadingScreen from "../../../components/LoadingScreen/loadingScreen";
 import { frontService } from "../../../_services/front.services";
 import { Audio } from 'react-loader-spinner'
 import ViewDetails from '../../../components/ViewDetails/ViewDetails'
-import Link from 'next/link';
 import { addtoCartData, decrementQty, removeFromCart } from '../../../store/actions';
 import AddToCart from '../../../components/AddToCard';
+import { Link } from 'react-scroll';
 export default function Categoryslug() {
     const router = useRouter()
     const [mainCategory, setMaincategory] = React.useState([]);
@@ -85,21 +85,18 @@ export default function Categoryslug() {
                         </div>
                     </Container>
                     {categories ? (<>
-                        <div className="g-3 g-sm-6" style={{ padding: '20px', background: '#f3f3f3' }}>
-
-
+                        <div className="g-3 g-sm-6 gap-2 categories-top-header" style={{ padding: '20px', background: '#f3f3f3' }}>
                             {categories?.map((x, i) =>
                                 <>
-
-                                    <Link
+                                    <Link spy={true}
+                                        // smooth={true}
+                                        activeClass="product-category-item-selected"
                                         id="cat210"
-                                        href={`#${x.slug}`}
-                                        className="pcats product-category-item"
+                                        to={`${x.slug}`}
+                                        className="pcats product-category-item cat210 mt-0"
                                         style={{ backgroundColor: "rgb(255, 255, 255)", padding: 15 }}
-                                        key={i}
-                                    >
-                                        <h3
-                                            className="fontFamily-alata-only"
+                                        key={i}>
+                                        <h3 className="fontFamily-alata-only"
                                             style={{
                                                 fontSize: 13,
                                                 fontWeight: 500,
@@ -113,7 +110,6 @@ export default function Categoryslug() {
                                         </h3>
 
                                     </Link>
-
 
                                 </>
                             )}
@@ -131,18 +127,20 @@ export default function Categoryslug() {
 
 
                 </div>
-                <div style={{ marginTop: '140px' }}>
+                <div style={{}}>
 
                     {categories.length > 0 ? (
                         <>
                             <Container>
-                                <Row>
-                                    {categories?.map((x, i) => <>
+                                <Row className='card-container'>
+                                    {categories?.map((x, i) => <div id={x.slug}
+                                        style={{ paddingTop: i === 0 ? 140 : 15 }}
+                                        className="col-md-12 col-12 "
+                                        key={i}>
                                         <div
+                                            className='p-md-5 pt-md-3 pb-md-0 p-2'
                                             id={x.slug}
-                                            className="col-md-12 col-12 p-md-5 pt-md-3 pb-md-0 p-2"
-                                            style={{ marginTop: 0 }}
-                                            key={i}>
+                                            style={{ marginTop: 0 }}>
                                             <div className='row justify-content-center'>
                                                 <div className='col-lg-6 col-12'>
                                                     <div className="servicesMD row servicesMD-bg-color-1">
@@ -170,56 +168,56 @@ export default function Categoryslug() {
                                                 </div>
                                             </div>
                                         </div>
-
-                                        {x?.service.map((y, i) => <>
-
-                                            <div className="col-md-6 col-12 p-md-5 pt-md-3 pb-md-0 p-2" key={i} id="scrollto225">
-                                                <div className="servicesMD row servicesMD-bg-color-1">
-                                                    <a className="col-4 p-0" href="#">
-                                                        <img
-                                                            className="image"
-                                                            src={y.service_image_url}
-                                                            alt={y.name}
-                                                        />
-                                                    </a>
-                                                    <div className="col-8 pt-1">
-                                                        <div className="title">
-                                                            <a href="#">{y.name}</a>
-                                                        </div>
-                                                        <div className="d-flex flex-row" style={{ margin: "4% 0.625rem -2% 0%" }}>
-                                                            <div className="p-rl-2 Price">₹ {y.price}</div>
-                                                            <div className="p-rl-2 offerPrice">₹ {y.discounted_price}</div>
-                                                            <div className="p-rl-2 discountTitle">{y.discount} %</div>
-                                                        </div>
-                                                        <div
-                                                            className="d-flex flex-row"
-                                                            style={{ margin: "0.625rem 0.625rem 1%" }}
-                                                        >
-                                                            <div className="p-2 time-settings">
-                                                                <i className="fa fa-clock-o" />
-                                                                {y.time} {y.time_type}
+                                        <Row>
+                                            {x?.service.map((y, i) => <>
+                                                <div className="col-md-6 col-12 p-md-5 pt-md-3 pb-md-0 p-2" key={i}
+                                                >
+                                                    <div className="servicesMD row servicesMD-bg-color-1">
+                                                        <a className="col-4 p-0" href="#">
+                                                            <img
+                                                                className="image"
+                                                                src={y.service_image_url}
+                                                                alt={y.name}
+                                                            />
+                                                        </a>
+                                                        <div className="col-8 pt-1 position-relative">
+                                                            <div className="title">
+                                                                <a href="#">{y.name}</a>
                                                             </div>
-                                                        </div>
-                                                        <AddToCart data={y} />
-                                                        <div className="lineDiv" />
-                                                        <div className="descriptionServices">
-                                                            <ul className="p-2" style={{ marginBottom: "-25px" }}>
-                                                                {mapItems(y.description.replace(/(<([^>]+)>)/ig, '').replace(/(?:\r\n|\r|\n)/g, '').replace(/(?:&nbsp;)/g, '')
-                                                                    .replace(/&amp;/g, '&').toString().split('.'))}
-                                                            </ul>
-                                                        </div>
-                                                        <ViewDetails
-                                                            alldata={y}
-                                                        />
+                                                            <div className="d-flex flex-row" style={{ margin: "4% 0.625rem -2% 0%" }}>
+                                                                <div className="p-rl-2 Price">₹ {y.price}</div>
+                                                                <div className="p-rl-2 offerPrice">₹ {y.discounted_price}</div>
+                                                                <div className="p-rl-2 discountTitle">{y.discount} %</div>
+                                                            </div>
+                                                            <div
+                                                                className="d-flex flex-row"
+                                                                style={{ margin: "0.625rem 0.625rem 1%" }}
+                                                            >
+                                                                <div className="p-2 time-settings">
+                                                                    <i className="fa fa-clock-o" />
+                                                                    {y.time} {y.time_type}
+                                                                </div>
+                                                            </div>
+                                                            <AddToCart data={y} />
+                                                            <div className="lineDiv" />
+                                                            <div className="descriptionServices">
+                                                                <ul className="p-2" style={{ marginBottom: "-25px" }}>
+                                                                    {mapItems(y.description.replace(/(<([^>]+)>)/ig, '').replace(/(?:\r\n|\r|\n)/g, '').replace(/(?:&nbsp;)/g, '')
+                                                                        .replace(/&amp;/g, '&').toString().split('.'))}
+                                                                </ul>
+                                                            </div>
+                                                            <ViewDetails
+                                                                alldata={y}
+                                                            />
 
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                        </>)}
+                                            </>)}
+                                        </Row>
 
-
-                                    </>)}
+                                    </div>)}
                                 </Row>
                             </Container>
                             <div className="menu-category-d" onClick={handleShow}>Menu</div>
