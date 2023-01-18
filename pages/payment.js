@@ -7,7 +7,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Coupon from '../components/Coupon/Coupon';
 import { frontService } from '../_services/front.services';
-import { toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import { clearCart } from '../store/actions';
 function Payment() {
     const router = useRouter();
@@ -20,6 +22,7 @@ function Payment() {
     const [sending, setSending] = useState(false)
     const [pType, setPType] = useState("cash")
 
+    // console.log(userAddress)
     useEffect(() => {
         if (!localStorage.getItem('gluserDetails')) {
             router.push("/login")
@@ -31,7 +34,7 @@ function Payment() {
         setTotal(total);
     }, [cart]);
 
-    const finalTotal = total + 49 + (coupon ? coupon.amount : 0)
+    const finalTotal = (total + 49) - (coupon ? coupon.amount : 0)
 
     const onSubmit = () => {
         const id = JSON.parse(localStorage.getItem('gluserDetails')).id
@@ -42,7 +45,7 @@ function Payment() {
             discount_percent: "0", tax_name: "",
             tax_percent: "", tax_amount: "",
             extra_fees: "49", distance_fee: "",
-            amount_to_pay: finalTotal, payment_status: pType === "cash" ? "pending" : "paid",
+            amount_to_pay: finalTotal, payment_status: pType === "cash" ? "pending" : "complete",
             additional_notes: "", item_details: cart.map(e => {
                 return {
                     business_service_id: e.business_service_id || e.id,
@@ -80,6 +83,7 @@ function Payment() {
                             draggable: true,
                             progress: undefined,
                             theme: "light",
+                            type: "error"
                         });
 
                     } else {
@@ -93,6 +97,8 @@ function Payment() {
                             draggable: true,
                             progress: undefined,
                             theme: "light",
+                            type: "error"
+
                         });
 
                     }
@@ -106,6 +112,7 @@ function Payment() {
                         draggable: true,
                         progress: undefined,
                         theme: "light",
+                        type: "error"
                     });
                     setSending(false)
                 }
@@ -200,7 +207,6 @@ function Payment() {
                 <Col md={4}>
                     <div className="section-address">
                         <a href="/myaddress" className="inside-title" style={{ fontSize: 22 }}>Address<span className="inside-checkall"><i className="fa fa-edit"></i></span></a>
-
                         <p className="inside-items">{userAddress?.address_heading},{userAddress?.address},{userAddress?.street}</p>
                     </div>
                     <div className="timeSlot-all">
@@ -320,13 +326,34 @@ function Payment() {
                     <div className="checkoutBtn-container ">
                         <button className="checkoutBtn-all" type='button'
                             disabled={cart.length === 0 || sending}
-                            onClick={onSubmit} >{sending ? "Booking" : "Book Order"}</button>
+                            onClick={() => {
+                                if (!userAddress || userAddress.length === 0) {
+                                    toast('Add address to book order', {
+                                        position: "bottom-center",
+                                        autoClose: 5000,
+                                        hideProgressBar: false,
+                                        closeOnClick: true,
+                                        pauseOnHover: true,
+                                        draggable: true,
+                                        progress: undefined,
+                                        theme: "light",
+                                        type: "error"
+                                    });
+                                    return
+                                }
+                                if (pType === "cash") {
+                                    onSubmit()
+                                } else {
+
+                                }
+                            }} >{sending ? "Booking" : "Book Order"}</button>
                     </div>
                 </Col>
                 <Col md={1}></Col>
 
-
             </Row>
+            <ToastContainer />
+
         </div>
     </>);
 }
