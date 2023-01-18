@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Alata&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alike&display=swap');
+
 html,
 body {
   font-family: "Inter", sans-serif, Arial, Helvetica;
@@ -1408,7 +1411,332 @@ a:hover {
   padding-top: 80px;
 }
 
+#confirmation .checkout-all {
+  min-height: 100vh;
+  background: #fff1f1;
+}
+
+#confirmation .checkout-all .thanksImg {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  padding-top: 39px;
+}
+
+#confirmation .checkout-all .thankstitle {
+  font-family: "Monotype Corsiva";
+  font-style: italic;
+  font-weight: 400;
+  font-size: 44px;
+  color: #000;
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+#confirmation .checkout-all .thanksinside,
+#confirmation .checkout-all .thankssubtitle {
+  font-style: normal;
+  font-weight: 400;
+  color: #000;
+  text-align: center;
+}
+
+#confirmation .checkout-all .thankssubtitle {
+  font-family: "Alegreya Sans SC";
+  font-size: 25px;
+}
+
+#confirmation .checkout-all .thanksinside {
+  font-family: "Alike";
+  font-size: 18px;
+  padding-top: 0.5rem;
+}
+
+#confirmation .checkout-all .hrading-section {
+  width: 100%;
+  min-height: 80px;
+  background: #ccaeeb;
+  box-shadow: 0 4px 4px rgb(0 0 0 / 20%);
+  padding: 10px;
+}
+
+#confirmation .checkout-all .hrading-section .subtitle-all {
+  font-family: "Alike";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  color: #000;
+  text-align: center;
+}
+
+#confirmation .checkout-all .hrading-section .inside-section-bg {
+  background: #3e3c3c;
+}
+
+#confirmation .checkout-all .hrading-section .inside-section-bg .thinsidetext {
+  font-family: "Alike";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 0;
+}
+
+#confirmation .spaBeet {
+  justify-content: space-around;
+  display: flex;
+  margin-top: 5%;
+}
+
+#confirmation .Bookbutton,
+#confirmation .Homebutton {
+  background: #7b00c7;
+  color: #fff;
+  padding: 4px 8px;
+  border: #7c00b7;
+  margin: 4px;
+  font-size: 17px;
+  border-radius: 8px;
+  box-shadow: 2px 2px 2px #000;
+}
+
+#blogs {
+  background: linear-gradient(180deg, rgba(221, 180, 246, 0.8) 0%, rgba(141, 208, 252, 0.8) 100%);
+}
+
+#blogs .row {
+  /* margin-left: 0 !important; */
+  /* margin-right: 0 !important; */
+}
+
+#blogs .social ul {
+  display: flex;
+  gap: 8px;
+}
+
+#blogs .social {
+  margin-top: -90px;
+}
+
+#blogs .social a {
+  cursor: pointer;
+}
+
+#blogs .social ul li svg {
+  height: 32px;
+  width: 32px;
+}
+
+#blogs .blogs {
+  column-gap: 40px;
+  padding-left: 40px;
+}
+
+#blogs .blogs .blog-item {
+  padding-left: 0;
+  padding-right: 0;
+  width: 47%;
+  padding-bottom: 40px;
+}
+
+#blogs .blogs .blog-item img {
+  width: 100%;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+#blogs .recent-posts {}
+
+#blogs .recent-posts .recent-post {
+  justify-content: space-between;
+  padding-bottom: 15px;
+}
+
+#blogs .blog-item .post-title {
+  padding-top: 8px;
+  margin-bottom: 0;
+}
+
+#blogs .post-title {
+  font-family: 'Alike';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  color: #000;
+}
+
+#blogs .blog-container {
+  padding-right: 20px;
+}
+
+#blogs .recent-posts-container {
+  padding-left: 20px;
+  padding-right: 40px;
+}
+
+#blogs .recent-posts-container .img-box {
+  width: 40%;
+}
+
+#blogs .recent-posts-container .img-box img {
+  width: 100%;
+}
+
+#blogs .recent-post .post-title {
+  width: 60%;
+  padding-left: 8px;
+}
+
+#blogs .recent-posts-container .title-box {
+  background: #F2F2F2;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  margin-bottom: 14px;
+  padding: 5px;
+}
+
+#blogs .banner-img {
+  height: 150px;
+}
+
+.coupon-modal .modal-content {
+  background-color: #FFF1F1 !important;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.coupon-modal .modal-body {
+  padding-top: 0px;
+}
+
+.coupon-modal .search-box .search-conatiner input {
+  border: none;
+  height: auto;
+  padding: 6px 50px 6px 20px;
+}
+
+.coupon-modal .modal-content .btn-close {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  opacity: 1;
+  background: url(/close-btn.svg) center/2em auto no-repeat;
+}
+
+.coupon-modal .modal-content .title {
+  font-family: 'Alata';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  margin-bottom: 0.5rem;
+  text-transform: capitalize;
+  line-height: 15px;
+}
+
+.coupon-modal .modal-content .disacount-amount {
+  font-family: 'Alata';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  color: #8E8E8E;
+  line-height: 14px;
+  margin-bottom: 0.5rem;
+}
+
+.coupon-modal .logo {
+  width: 75%;
+  height: auto;
+}
+
+.coupon-modal .modal-content .save-amount {
+  font-family: 'Aoboshi One';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 12px;
+  color: #308F69;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.coupon-modal .modal-content .t-and-c {
+  font-family: 'Alata';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 14px;
+  color: #835EE8;
+}
+
+.coupon-modal hr {
+  border: 1.5px solid #C8C8C8;
+  background-color: #C8C8C8;
+}
+
+.coupon-modal .modal-content .apply-btn {
+  font-family: 'Jost';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  color: #7900D9;
+}
+
 @media only screen and (min-width: 1px) and (max-width: 991px) {
+  .coupon-modal .modal-content .btn-close {
+    top: 0px;
+    right: 0px;
+  }
+
+  .coupon-modal .modal-content {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .coupon-modal .logo {
+    width: 100%;
+  }
+
+  #blogs .banner-img {
+    height: 80px;
+  }
+
+  #blogs .social {
+    margin-top: -15px;
+  }
+
+  #blogs .blog-container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  #blogs .blogs {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  #blogs .blogs .blog-item {
+    width: 100%;
+    padding-bottom: 20px;
+  }
+
+  #blogs .social ul {
+    padding-left: 0;
+  }
+
+  #blogs .social ul li svg {
+    height: 24px;
+    width: 24px;
+  }
+
+  #blogs .recent-posts-container {
+    padding-top: 20px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
   .search-items {
     padding-top: 60px;
   }

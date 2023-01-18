@@ -1,20 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import { Container, Row, Col } from 'react-bootstrap';
 import { useRouter } from 'next/router'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Addcart from '../components/Cart'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Coupon from '../components/Coupon/Coupon';
+import { frontService } from '../_services/front.services';
+import { toast } from 'react-toastify';
+import { clearCart } from '../store/actions';
 function Payment() {
     const router = useRouter();
+    const dispatch = useDispatch();
     const cart = useSelector(state => state.cardAdd?.cart);
     const userAddress = useSelector(state => state.userAddress?.useraddress);
     const [total, setTotal] = React.useState(0);
-
+    const [couponModal, setCouponModal] = useState(false)
+    const [coupon, setCoupon] = useState(null)
+    const [sending, setSending] = useState(false)
+    const [pType, setPType] = useState("cash")
 
     useEffect(() => {
         if (!localStorage.getItem('gluserDetails')) {
-            router.push("/")
+            router.push("/login")
         }
         var total = 0;
         for (let i = 0; i < cart.length; i++) {
@@ -22,6 +30,86 @@ function Payment() {
         }
         setTotal(total);
     }, [cart]);
+
+
+    const onSubmit = () => {
+        const id = JSON.parse(localStorage.getItem('gluserDetails')).id
+        const data = {
+            deal_id: "", deal_quantity: "", user_id: id, date_time: new Date(),
+            status: "pending", payment_gateway: pType, total_amount: total, discount: "",
+            coupon_id: coupon ? coupon.id : "", coupon_discount: "",
+            discount_percent: "0", tax_name: "",
+            tax_percent: "", tax_amount: "",
+            extra_fees: "49", distance_fee: "",
+            amount_to_pay: total, payment_status: "pending",
+            additional_notes: "", item_details: cart.map(e => {
+                return {
+                    business_service_id: e.business_service_id || e.id,
+                    unit_price: e.price,
+                    quantity: e.qty,
+                    amount: e.price * e.qty
+                }
+            })
+        }
+        setSending(true)
+        frontService.bookOrder(data)
+            .then(
+                res => {
+                    if (res.status == 'success') {
+                        dispatch(clearCart())
+                        toast(res.message, {
+                            position: "bottom-center",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "light",
+                        });
+                        router.push("/confirmation")
+                    } else if (res.status == 'fail') {
+                        setSending(true)
+                        toast(res.message, {
+                            position: "bottom-center",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "light",
+                        });
+
+                    } else {
+                        setSending(true)
+                        toast('Invalid', {
+                            position: "bottom-center",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "light",
+                        });
+
+                    }
+                }, error => {
+                    toast('Invalid', {
+                        position: "bottom-center",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
+                    setSending(false)
+                }
+            )
+    };
     const mapItems = (items) => {
         return (
             items.map((item, index) => {
@@ -29,8 +117,9 @@ function Payment() {
             })
         );
     }
-    console.log(cart);
+    // console.log(cart);
     return (<>
+        <Coupon show={couponModal} coupon={coupon} setCoupon={setCoupon} handleClose={() => { setCouponModal(!couponModal) }} />
         <div className="servicedesk-bg checkout-all" style={{ paddingBottom: '50px' }}>
             <div className="header-css-head">
                 <Container fluid >
@@ -152,23 +241,19 @@ function Payment() {
                                     <p className="p-1 font-family-alata">₹ 0</p>
                                 </div>
                             </div>
-
-
-
                         </div>
 
                     </div>
                     <div className='timeSlot-all'>
                         <p className="inside-title">Summary</p>
                         <div className="col-12 mt-2">
-                            <div className="background-deflex">
+                            <div className="background-deflex" onClick={() => setCouponModal(true)}>
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                     <div style={{ display: 'flex', alignItems: 'center' }}>
                                         <div>
-
                                             <i className="fa fa-tag fontSize-m-20"></i>
                                         </div>
-                                        <div style={{ marginLeft: '10px' }}>
+                                        <div style={{ marginLeft: '10px' }} >
                                             Apply Coupon
                                         </div>
                                     </div>
@@ -180,11 +265,12 @@ function Payment() {
                             </div>
                         </div>
                         <div className="col-12 mt-2">
-                            <div className="background-deflex">
-                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                            <div className="background-deflex"
+                                onClick={() => { setPType("razorpay") }}>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+                                    onClick={() => { setPType("razorpay") }}>
                                     <div style={{ display: 'flex', alignItems: 'center' }}>
                                         <div>
-
                                             <i className="fa fa-credit-card fontSize-m-20" aria-hidden="true"></i>
                                         </div>
                                         <div style={{ marginLeft: '10px' }}>
@@ -193,26 +279,27 @@ function Payment() {
                                     </div>
 
                                     <div>
+                                        {pType === "razorpay" && "Selected"}
                                         <i className="fa fa-chevron-right fontSize-m-20"></i>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div className="col-12 mt-2">
-                            <div className="background-deflex">
-                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                            <div className="background-deflex"
+                                onClick={() => { setPType("cash") }}
+                            >
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}                                >
                                     <div style={{ display: 'flex', alignItems: 'center' }}>
                                         <div>
-
-
                                             <i className="fa fa-inr fontSize-m-20" aria-hidden="true"></i>
                                         </div>
                                         <div style={{ marginLeft: '10px' }}>
                                             Cash
                                         </div>
                                     </div>
-
                                     <div>
+                                        {pType === "cash" && "Selected"}
                                         <i className="fa fa-chevron-right fontSize-m-20"></i>
                                     </div>
                                 </div>
@@ -221,14 +308,15 @@ function Payment() {
 
                     </div>
                     <div className="checkoutBtn-container ">
-                        <button className="checkoutBtn-all">Book Order</button>
+                        <button className="checkoutBtn-all" type='button'
+                            disabled={cart.length === 0 || sending}
+                            onClick={onSubmit} >{sending ? "Booking" : "Book Order"}</button>
                     </div>
                 </Col>
                 <Col md={1}></Col>
 
 
             </Row>
-
         </div>
     </>);
 }

@@ -20,7 +20,7 @@ function Checkout() {
 
     };
     const [active, setActive] = useState(0);
-    const [isselected, setIsselected] = useState("");
+    const [isselected, setIsselected] = useState(-1);
     const [error, setError] = useState("")
 
     // const handleClick = (val) => {
@@ -36,7 +36,7 @@ function Checkout() {
 
     useEffect(() => {
         if (!localStorage.getItem('gluserDetails')) {
-            router.push("/")
+            router.push("/login")
         }
         if (h > 17) {
             setActive(1)
@@ -49,7 +49,8 @@ function Checkout() {
         const rightBtn = document.querySelector('#right-button');
         const leftBtn = document.querySelector('#left-button');
         const content = document.querySelector('#content');
-        const width = content.offsetWidth
+        const width = content?.offsetWidth
+
         rightBtn.addEventListener("click", function (event) {
             content.scrollLeft += width;
             event.preventDefault();
@@ -112,7 +113,12 @@ function Checkout() {
 
                                     return <span key={index}>
                                         {(d === "01" || index === 0) ? <div className='month-name'>{m}</div> : <div></div>}
-                                        <div className={`date-card`} key={index} id={index} onClick={() => setActive(index)}>
+                                        <div className={`date-card`} key={index} id={index}
+                                            onClick={() => {
+                                                setIsselected(-1)
+                                                setActive(index)
+                                            }}
+                                        >
                                             <div className={`d-flex flex-column ${active === index ? "active" : ''}`} >
                                                 <span className="day">{day}</span>
                                                 <span className="date"> {moment(moment().add(index, 'days').toString()).format("DD").toString()}</span>
@@ -163,7 +169,7 @@ function Checkout() {
                     style={{ width: "30%", marginLeft: "auto", marginRight: "auto" }}>
                     <button className="checkoutBtn-all" type='button'
                         onClick={() => {
-                            if (!isselected) {
+                            if (isselected === -1) {
                                 setError("Please Select slot to continue")
                                 return
                             } else {

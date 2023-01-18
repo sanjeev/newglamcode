@@ -10,6 +10,7 @@ import "font-awesome/css/font-awesome.css";
 import 'swiper/css';
 import Script from 'next/script'
 import persistor from "../store/store"
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function MyApp({ Component, pageProps }) {

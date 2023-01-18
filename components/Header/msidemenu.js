@@ -41,7 +41,7 @@ class MSideMenu extends React.Component {
                                     </li>
 
                                     <li>
-                                        <a href="/blog" className="side-menu-box"><span className="side-text"><i className="fa fa-file-text  icon-m" aria-hidden="true" ></i>Blogs</span></a>
+                                        <a href="/blogs" className="side-menu-box"><span className="side-text"><i className="fa fa-file-text  icon-m" aria-hidden="true" ></i>Blogs</span></a>
                                     </li>
 
 

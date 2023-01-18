@@ -17,9 +17,6 @@ export default function AddToCart({ data }) {
     const onIncrement = (items) => {
         dispatch(addtoCartData(items, 1));
     }
-    if (inCart.length > 0) {
-        console.log(inCart)
-    }
 
     return (<>
         {inCart.length > 0 ? <div className="mt-0 Addtocart-Items-m Addtocart d-flex gap-xl-3 gap-1">

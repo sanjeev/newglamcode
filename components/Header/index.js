@@ -6,6 +6,8 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import Modalpup from '../Modal/loction';
 import styled from "styled-components";
 import { useRouter } from 'next/router';
+import { userData } from '../../store/actions';
+import { useDispatch } from 'react-redux';
 
 const Nav = styled.div`
 background: #15171c;
@@ -42,6 +44,8 @@ width: 100%;
 `;
 function Header() {
     const router = useRouter()
+    const dispatch = useDispatch();
+
     const [showResults, setShowResults] = useState(false);
     const onClick = () => setShowResults(value => !value);
     const [modalShow, setModalShow] = useState(false);
@@ -86,7 +90,7 @@ function Header() {
                             <Col lg="3" md="12" className='menutop'>
                                 <div className="d-flex gap-2 justify-content-end">
                                     <a href='/' className="btn btn-outline-light bgsalon">Home</a>
-                                    <a href='/' className="btn btn-outline-light bgsalon">Blogs</a>
+                                    <a href='/blogs' className="btn btn-outline-light bgsalon">Blogs</a>
                                     <button className="btn btn-outline-light bgsalon" onClick={onClick}>
                                         <i className="fa fa-bars  icon-m" aria-hidden="true" />
                                     </button>
@@ -102,14 +106,20 @@ function Header() {
                                             <i className="fa fa-comment  icon-m" aria-hidden="true" />
                                             <span style={{ marginLeft: '20px' }}>Contact us</span>
                                         </div>
-                                        <div className="sidemenu-outbox-d">
+                                        {localStorage.getItem('gluserDetails') && <div className="sidemenu-outbox-d">
                                             <i className="fa fa-user  icon-m" aria-hidden="true" />
                                             <span style={{ marginLeft: '20px' }}>My Bookings</span>
-                                        </div>
-                                        {localStorage.getItem('gluserDetails') ? <div className="sidemenu-outbox-d">
+                                        </div>}
+                                        {localStorage.getItem('gluserDetails') ? <div className="sidemenu-outbox-d"
+                                            onClick={() => {
+                                                dispatch(userData(null));
+                                                localStorage.setItem('gluserDetails', "")
+                                                onClick()
+                                            }}
+                                        >
                                             <i className="fa fa-sign-in  icon-m" aria-hidden="true" />
                                             <span style={{ marginLeft: '20px' }}>Logout</span>
-                                        </div> : <div className="sidemenu-outbox-d" onClick={() => router.push("/login")}>
+                                        </div> : <div className="sidemenu-outbox-d" onClick={() => { router.push("/login") }}>
                                             <i className="fa fa-sign-in  icon-m" aria-hidden="true" />
                                             <span style={{ marginLeft: '20px' }}>Login</span>
                                         </div>}
@@ -266,7 +276,7 @@ function Header() {
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="/blog" className="side-menu-box">
+                                                <a href="/blogs" className="side-menu-box">
                                                     <span className="side-text">
                                                         <i className="fa fa-file-text  icon-m" aria-hidden="true" />
                                                         Blogs
