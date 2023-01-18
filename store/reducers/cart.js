@@ -1,4 +1,4 @@
-import { ADD_TO_CART, REMOVE_FROM_CART, DECREMENT_QTY } from '../actionTypes';
+import { ADD_TO_CART, REMOVE_FROM_CART, DECREMENT_QTY, CLEAR_CART } from '../actionTypes';
 
 export default function cartReducer(state = { cart: [] }, action) {
     switch (action.type) {
@@ -42,6 +42,13 @@ export default function cartReducer(state = { cart: [] }, action) {
             //console.log('remove');
             return {
                 cart: state.cart.filter(item => item.id !== action.product_Id)
+            }
+        case CLEAR_CART:
+            // console.log(action.product_Id);
+            // const newPeople = state.cart.filter(item => item.id !== action.product_Id);
+            //console.log('remove');
+            return {
+                cart: []
             }
 
         default:

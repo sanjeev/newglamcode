@@ -31,17 +31,18 @@ function Payment() {
         setTotal(total);
     }, [cart]);
 
+    const finalTotal = total + 49 + (coupon ? coupon.amount : 0)
 
     const onSubmit = () => {
         const id = JSON.parse(localStorage.getItem('gluserDetails')).id
         const data = {
             deal_id: "", deal_quantity: "", user_id: id, date_time: new Date(),
             status: "pending", payment_gateway: pType, total_amount: total, discount: "",
-            coupon_id: coupon ? coupon.id : "", coupon_discount: "",
+            coupon_id: coupon ? coupon.id : "", coupon_discount: coupon ? coupon.amount : "",
             discount_percent: "0", tax_name: "",
             tax_percent: "", tax_amount: "",
             extra_fees: "49", distance_fee: "",
-            amount_to_pay: total, payment_status: "pending",
+            amount_to_pay: finalTotal, payment_status: pType === "cash" ? "pending" : "paid",
             additional_notes: "", item_details: cart.map(e => {
                 return {
                     business_service_id: e.business_service_id || e.id,
@@ -117,9 +118,11 @@ function Payment() {
             })
         );
     }
-    // console.log(cart);
+
     return (<>
-        <Coupon show={couponModal} coupon={coupon} setCoupon={setCoupon} handleClose={() => { setCouponModal(!couponModal) }} />
+        <Coupon show={couponModal} coupon={coupon} setCoupon={setCoupon}
+            total={total}
+            handleClose={() => { setCouponModal(!couponModal) }} />
         <div className="servicedesk-bg checkout-all" style={{ paddingBottom: '50px' }}>
             <div className="header-css-head">
                 <Container fluid >
@@ -228,17 +231,17 @@ function Payment() {
                             </div>
 
 
-                            <div className="col-12">
+                            {!coupon ? null : <div className="col-12">
                                 <div className="d-flex flex-row justify-content-between-flex">
                                     <p className="p-1 font-family-alata">Coupon</p>
-                                    <p className="p-1 font-family-alata">-₹ 0</p>
+                                    <p className="p-1 font-family-alata">-₹ {coupon.amount}</p>
                                 </div>
-                            </div>
+                            </div>}
 
                             <div className="col-12" >
                                 <div className="d-flex flex-row justify-content-between-flex">
                                     <p className="p-1 font-family-alata">Total Service Amount Payable</p>
-                                    <p className="p-1 font-family-alata">₹ 0</p>
+                                    <p className="p-1 font-family-alata">₹ {finalTotal}</p>
                                 </div>
                             </div>
                         </div>
@@ -247,14 +250,21 @@ function Payment() {
                     <div className='timeSlot-all'>
                         <p className="inside-title">Summary</p>
                         <div className="col-12 mt-2">
-                            <div className="background-deflex" onClick={() => setCouponModal(true)}>
+                            <div className="background-deflex" onClick={() => {
+                                if (!coupon) {
+                                    setCouponModal(true)
+                                } else {
+                                    setCoupon(null)
+                                }
+                            }
+                            }>
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                     <div style={{ display: 'flex', alignItems: 'center' }}>
                                         <div>
                                             <i className="fa fa-tag fontSize-m-20"></i>
                                         </div>
                                         <div style={{ marginLeft: '10px' }} >
-                                            Apply Coupon
+                                            {!coupon ? "Apply Coupon" : "Remove Coupon"}
                                         </div>
                                     </div>
 

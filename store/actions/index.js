@@ -58,6 +58,11 @@ export const removeFromCart = (productId) => ({
     product_Id: productId
 });
 
+export const clearCart = () => ({
+    type: types.CLEAR_CART,
+    product_Id: ""
+});
+
 // export const removeFromCart = productId => (dispatch) => {
 
 //     dispatch({

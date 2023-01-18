@@ -8,6 +8,7 @@ import moment from 'moment';
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Coupon from '../components/Coupon/Coupon';
 function Checkout() {
     const router = useRouter();
     var settings = {
