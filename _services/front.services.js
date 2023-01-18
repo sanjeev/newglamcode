@@ -15,7 +15,11 @@ export const frontService = {
     updateAddress,
     addressList,
     deleteaddress,
-    defaultaddress
+    defaultaddress,
+    blogs,
+    blogDetails,
+    coupons,
+    bookOrder
 };
 async function search(s, location) {
     const requestOptions = {
@@ -23,6 +27,47 @@ async function search(s, location) {
 
     };
     return fetch(Global.BASE_API_PATH + `/search?search_term=${s}&location=${location}`, requestOptions)
+        .then(handleResponse)
+        .then(res => {
+            return res;
+        });
+}
+
+async function blogs() {
+    const requestOptions = {
+        method: 'GET',
+
+    };
+    return fetch(Global.BASE_API_PATH + `/list-blogs`, requestOptions)
+        .then(handleResponse)
+        .then(res => {
+            return res;
+        });
+}
+
+async function coupons() {
+    const requestOptions = {
+        method: 'GET',
+
+    };
+    return fetch(Global.BASE_API_PATH + `/coupons-list`, requestOptions)
+        .then(handleResponse)
+        .then(res => {
+            return res;
+        });
+}
+
+async function blogDetails(id) {
+    const data = {
+        id: id
+    }
+    console.log(id)
+    const requestOptions = {
+        method: 'POST',
+        body: JSON.stringify(data)
+
+    };
+    return fetch(Global.BASE_API_PATH + `/blogs-details`, requestOptions)
         .then(handleResponse)
         .then(res => {
             return res;
@@ -122,6 +167,19 @@ async function sendOtpcode(data) {
         });
 }
 
+async function bookOrder(data) {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    };
+
+    return fetch(Global.BASE_API_PATH + `/booking-save`, requestOptions)
+        .then(handleResponse)
+        .then(res => {
+            return res;
+        });
+}
 
 async function sendOtpverify(data) {
     const requestOptions = {
