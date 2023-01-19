@@ -106,7 +106,10 @@ function Header() {
                                             <i className="fa fa-comment  icon-m" aria-hidden="true" />
                                             <span style={{ marginLeft: '20px' }}>Contact us</span>
                                         </div>
-                                        {localStorage.getItem('gluserDetails') && <div className="sidemenu-outbox-d">
+                                        {localStorage.getItem('gluserDetails') && <div className="sidemenu-outbox-d"
+                                            onClick={() => {
+                                                router.push("/mybookings")
+                                            }}>
                                             <i className="fa fa-user  icon-m" aria-hidden="true" />
                                             <span style={{ marginLeft: '20px' }}>My Bookings</span>
                                         </div>}

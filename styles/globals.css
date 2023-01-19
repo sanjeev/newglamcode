@@ -1684,6 +1684,10 @@ a:hover {
   color: #7900D9;
 }
 
+button:disabled {
+  opacity: 0.5;
+}
+
 @media only screen and (min-width: 1px) and (max-width: 991px) {
   .coupon-modal .modal-content .btn-close {
     top: 0px;

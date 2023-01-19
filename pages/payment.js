@@ -1,3 +1,4 @@
+import Logo from "/glamcode.png"
 import React, { useEffect, useState } from 'react'
 import { Container, Row, Col } from 'react-bootstrap';
 import { useRouter } from 'next/router'
@@ -11,7 +12,9 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { clearCart } from '../store/actions';
+import useRazorpay from "react-razorpay";
 function Payment() {
+    const Razorpay = useRazorpay()
     const router = useRouter();
     const dispatch = useDispatch();
     const cart = useSelector(state => state.cardAdd?.cart);
@@ -56,6 +59,7 @@ function Payment() {
             })
         }
         setSending(true)
+        console.log("data", data)
         frontService.bookOrder(data)
             .then(
                 res => {
@@ -118,6 +122,39 @@ function Payment() {
                 }
             )
     };
+
+    const user = JSON.parse(localStorage.getItem('gluserDetails'))
+    console.log(user)
+    const options = {
+        key: 'rzp_test_cspHH5os0wjcRW',
+        amount: finalTotal * 100, //  = INR 1
+        name: 'Glam code',
+        description: '',
+        image: Logo,
+        handler: function (response) {
+            onSubmit()
+            // alert(response.razorpay_payment_id);
+            // alert(response.razorpay_order_id);
+            // alert(response.razorpay_signature);
+        },
+        prefill: {
+            name: user.name,
+            contact: user.mobile,
+            email: user.email
+        },
+        notes: {
+            address: (userAddress?.address_heading + ", " + userAddress?.address + ", " + userAddress?.street)
+        },
+        theme: {
+            color: "#3399cc",
+            hide_topbar: false
+        }
+    };
+    const openPayModal = () => {
+        var rzp1 = new Razorpay(options);
+        rzp1.open();
+    };
+
     const mapItems = (items) => {
         return (
             items.map((item, index) => {
@@ -295,16 +332,16 @@ function Payment() {
                                     </div>
 
                                     <div>
-                                        {pType === "razorpay" && "Selected"}
-                                        <i className="fa fa-chevron-right fontSize-m-20"></i>
+                                        {pType === "razorpay" ?
+                                            <i className="fa fa-dot-circle-o  fontSize-m-24" style={{ fontSize: 24 }}></i>
+                                            : <i className="fa fa-circle-thin  fontSize-m-24" style={{ fontSize: 24 }}></i>}
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div className="col-12 mt-2">
                             <div className="background-deflex"
-                                onClick={() => { setPType("cash") }}
-                            >
+                                onClick={() => { setPType("cash") }}>
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}                                >
                                     <div style={{ display: 'flex', alignItems: 'center' }}>
                                         <div>
@@ -315,8 +352,9 @@ function Payment() {
                                         </div>
                                     </div>
                                     <div>
-                                        {pType === "cash" && "Selected"}
-                                        <i className="fa fa-chevron-right fontSize-m-20"></i>
+                                        {pType === "cash" ?
+                                            <i className="fa fa-dot-circle-o  fontSize-m-20" style={{ fontSize: 24 }}></i>
+                                            : <i className="fa fa-circle-thin  fontSize-m-20" style={{ fontSize: 24 }}></i>}
                                     </div>
                                 </div>
                             </div>
@@ -344,7 +382,7 @@ function Payment() {
                                 if (pType === "cash") {
                                     onSubmit()
                                 } else {
-
+                                    openPayModal()
                                 }
                             }} >{sending ? "Booking" : "Book Order"}</button>
                     </div>
