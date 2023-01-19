@@ -235,7 +235,7 @@ function Myaddress() {
         <div className="servicedesk-bg address-all" style={{ paddingBottom: '50px' }}>
             <div className="header-css-head">
                 <Container fluid >
-                    <div className="d-flex flex-row" onClick={() => router.back()}>
+                    <div className="d-flex flex-row" onClick={() => Router.back()}>
                         <div className="icon-alignments">
                             <i className="fa fa-chevron-left fontSize-m-20" />
                         </div>

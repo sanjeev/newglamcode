@@ -41,8 +41,9 @@ function Payment() {
 
     const onSubmit = () => {
         const id = JSON.parse(localStorage.getItem('gluserDetails')).id
+        const dateTime = localStorage.getItem("booking_time")
         const data = {
-            deal_id: "", deal_quantity: "", user_id: id, date_time: new Date(),
+            deal_id: "", deal_quantity: "", user_id: id, date_time: dateTime,
             status: "pending", payment_gateway: pType, total_amount: total, discount: "",
             coupon_id: coupon ? coupon.id : "", coupon_discount: coupon ? coupon.amount : "",
             discount_percent: "0", tax_name: "",
@@ -59,7 +60,6 @@ function Payment() {
             })
         }
         setSending(true)
-        console.log("data", data)
         frontService.bookOrder(data)
             .then(
                 res => {
@@ -124,7 +124,6 @@ function Payment() {
     };
 
     const user = JSON.parse(localStorage.getItem('gluserDetails'))
-    console.log(user)
     const options = {
         key: 'rzp_test_cspHH5os0wjcRW',
         amount: finalTotal * 100, //  = INR 1

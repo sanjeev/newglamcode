@@ -53,12 +53,12 @@ function Checkout() {
         const width = content?.offsetWidth
 
         rightBtn.addEventListener("click", function (event) {
-            content.scrollLeft += width;
+            content.scrollLeft += (width - 20);
             event.preventDefault();
         });
 
         leftBtn.addEventListener("click", function (event) {
-            content.scrollLeft -= width;
+            content.scrollLeft -= (width - 20);
             event.preventDefault();
         });
 
@@ -174,6 +174,9 @@ function Checkout() {
                                 setError("Please Select slot to continue")
                                 return
                             } else {
+                                const time = (timeslots.find(e => e.id === isselected) || {}).slotstart
+                                const date = moment(moment().add(active, 'days').toString()).format('yyyy-MM-DD').toString()
+                                localStorage.setItem("booking_time", `${date} ${time}:00`)
                                 router.push("/payment")
                             }
                         }}
