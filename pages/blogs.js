@@ -70,7 +70,7 @@ export default function Blogs() {
                     <div className="row blogs">
                         {items.map((e) => {
                             return <Link href={"/blog/" + e.ID} className="blog-item" key={e.ID}>
-                                <img src={Global.BASE_APP_PATH + e.category_image} />
+                                <img src={e.image_url} />
                                 <p className="post-title">{e.post_title}</p>
                             </Link>
                         })}
@@ -86,7 +86,7 @@ export default function Blogs() {
                         <div className="col-lg-12 recent-posts">
                             {items.map((e) => {
                                 return <Link key={e.ID} className="d-flex recent-post" href={"/blog/" + e.ID}>
-                                    <div className="img-box"><img src={Global.BASE_APP_PATH + e.category_image} /></div>
+                                    <div className="img-box"><img src={e.image_url} /></div>
                                     <div className="post-title">{e.post_title}</div>
                                 </Link>
                             })}

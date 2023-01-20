@@ -33,7 +33,13 @@ export default function Blog() {
                 }
             )
     }, []);
+
     useEffect(() => {
+        getDetails()
+    }, [id]);
+
+    const getDetails = () => {
+        setLoading(true)
         frontService.blogDetails(id)
             .then(
                 res => {
@@ -50,7 +56,8 @@ export default function Blog() {
                     setLoading(false)
                 }
             )
-    }, []);
+    }
+
     return (<section id="blogs">
         <Container fluid>
             <div className="row">
@@ -87,9 +94,17 @@ export default function Blog() {
             {(loading || blogsLoading) ? <LoadingScreen /> : (<div className="row">
                 <div className="col-lg-8 blog-container">
                     {item ? <div className="row blogs">
-                        <div href={"/blog/" + item.ID} className="blog-item" key={item.ID}>
-                            <img src={Global.BASE_APP_PATH + item.category_image} />
-                            <p className="post-title">{item.post_title}</p>
+                        <div className="col-12">
+                            <div href={"/blog/" + item.ID} className="blog-item w-100" key={item.ID}>
+                                <div className="img-width">
+                                    <img src={item.image_url} />
+                                </div>
+                                <p className="small mb-0">{item.category_name}</p>
+                                <p className="post-title">{item.post_title}</p>
+
+                                <div className="small">{item.post_tags}</div>
+                                {item && item.post_content && <div dangerouslySetInnerHTML={{ __html: JSON.stringify((item.post_content).replaceAll("\r\n", "")) }} />}
+                            </div>
                         </div>
                     </div>
                         : <div className="row blogs">No Data </div>}
@@ -104,7 +119,7 @@ export default function Blog() {
                         <div className="col-lg-12 recent-posts">
                             {items.map((e) => {
                                 return <Link key={e.ID} className="d-flex recent-post" href={"/blog/" + e.ID}>
-                                    <div className="img-box"><img src={Global.BASE_APP_PATH + e.category_image} /></div>
+                                    <div className="img-box"><img src={e.image_url} /></div>
                                     <div className="post-title">{e.post_title}</div>
                                 </Link>
                             })}

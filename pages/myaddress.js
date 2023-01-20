@@ -8,7 +8,7 @@ import Modal from 'react-bootstrap/Modal';
 import PlaceAutocomplete from '../components/PlaceAutocomplete'
 import { useForm } from 'react-hook-form';
 import { frontService } from "../_services/front.services";
-import Router from 'next/router'
+import Router, { useRouter } from 'next/router'
 import { useDispatch } from 'react-redux';
 import { userAddress, userData } from '../store/actions/index';
 
@@ -32,7 +32,6 @@ function MydModalWithGrid(props) {
     const handleRegistration = (data) => {
 
         const adde = { addressHome: data.addressHome, address: data.address, id: data.id, location: location, lat: latLng.lat, lng: latLng.lng }
-        console.log(adde);
         frontService.updateAddress(adde)
             .then(
                 res => {
@@ -95,6 +94,7 @@ function MydModalWithGrid(props) {
     );
 }
 function Myaddress() {
+    const router = useRouter()
     const dispatch = useDispatch();
     const [addressl, setAddresslist] = useState([]);
     const userdetails = useSelector(state => state.userdetails?.userdetails);
@@ -105,6 +105,9 @@ function Myaddress() {
         formState: { errors },
     } = useForm();
     useEffect(() => {
+        if (!localStorage.getItem('gluserDetails')) {
+            router.push("/login")
+        }
         frontService.addressList(userdetails?.id)
             .then(
                 res => {

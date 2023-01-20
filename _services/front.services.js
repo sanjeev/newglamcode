@@ -20,7 +20,8 @@ export const frontService = {
     blogDetails,
     coupons,
     bookOrder,
-    myBookings
+    myBookings,
+    cancelBooking
 };
 async function search(s, location) {
     const requestOptions = {
@@ -62,7 +63,6 @@ async function blogDetails(id) {
     const data = {
         id: id
     }
-    console.log(id)
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -292,13 +292,15 @@ function handleResponse(response) {
     }
 }
 async function myBookings(id) {
-    console.log(id)
     const data = {
         user_id: id
     }
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
     const requestOptions = {
         method: 'POST',
-        // headers: { 'Conteant-Type': 'application/json' },
+        headers: myHeaders,
         body: JSON.stringify(data)
     };
 
