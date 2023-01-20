@@ -17,8 +17,8 @@ function MydModalWithGrid(props) {
     const dispatch = useDispatch();
     const userdetails = useSelector(state => state.userdetails?.userdetails);
 
-    const [location, setLocation] = useState(JSON.parse(sessionStorage.getItem("location")));
-    const [latLng, setLatLng] = useState(JSON.parse(sessionStorage.getItem("latLng")));
+    const [location, setLocation] = useState('');
+    const [latLng, setLatLng] = useState({ lat: '', lng: '' });
     const {
         register,
         handleSubmit,
@@ -29,11 +29,11 @@ function MydModalWithGrid(props) {
 
 
 
-
     const handleRegistration = (data) => {
 
-
-        frontService.updateAddress(data)
+        const adde = { addressHome: data.addressHome, address: data.address, id: data.id, location: location, lat: latLng.lat, lng: latLng.lng }
+        console.log(adde);
+        frontService.updateAddress(adde)
             .then(
                 res => {
 
@@ -76,10 +76,10 @@ function MydModalWithGrid(props) {
                     <div className="form-group mb-2">
                         <label htmlFor="location">Location</label>
                         <input name="id" {...register('id')} type="hidden" defaultValue={userdetails?.id} />
-                        <input name="location" {...register('location')} type="hidden" defaultValue={location} />
-                        <input name="lat" {...register('lat')} type="hidden" defaultValue={latLng?.lat} />
-                        <input name="lng" {...register('lng')} type="hidden" defaultValue={latLng?.lng} />
-                        <PlaceAutocomplete />
+                        <input name="location" {...register('location')} type="hidden" value={location} />
+                        <input name="lat" {...register('lat')} type="hidden" value={latLng?.lat} />
+                        <input name="lng" {...register('lng')} type="hidden" value={latLng?.lng} />
+                        <PlaceAutocomplete onChangeValue={setLocation} onValue={setLatLng} />
 
                     </div>
 
@@ -235,7 +235,7 @@ function Myaddress() {
         <div className="servicedesk-bg address-all" style={{ paddingBottom: '50px' }}>
             <div className="header-css-head">
                 <Container fluid >
-                    <div className="d-flex flex-row" onClick={() => Router.back()}>
+                    <div className="d-flex flex-row" onClick={() => router.back()}>
                         <div className="icon-alignments">
                             <i className="fa fa-chevron-left fontSize-m-20" />
                         </div>
@@ -267,10 +267,10 @@ function Myaddress() {
                         <MydModalWithGrid show={modalShow} onHide={() => setModalShow(false)} />
 
                         {addressl.map((popup, i) => (
-                            <div key={i} className={popup.is_primary === 1 ? 'cardhove card mt-2 active' : 'cardhove card mt-2'}>
-                                <div className="card-body" onClick={() => defaultAddress(popup.address_id, popup.user_id)}>
+                            <div key={i} className={popup.is_primary === 1 ? 'card mt-2 active' : 'card mt-2'}>
+                                <div className="card-body" >
                                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                        <p className="card-text">{popup.address_heading},{popup.address},{popup.street}</p>
+                                        <p style={{ cursor: 'pointer', marginBottom: '0px !important', padding: '14px' }} className="card-text" onClick={() => defaultAddress(popup.address_id, popup.user_id)}>{popup.address_heading},{popup.address},{popup.street}</p>
                                         <p className='deletedata' onClick={() => deleteAddress(popup.address_id, popup.user_id)}><i className="fa fa-trash-o" aria-hidden="true"></i></p>
                                     </div>
 

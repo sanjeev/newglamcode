@@ -113,6 +113,16 @@ function Header() {
                                             <i className="fa fa-user  icon-m" aria-hidden="true" />
                                             <span style={{ marginLeft: '20px' }}>My Bookings</span>
                                         </div>}
+                                        {localStorage.getItem('gluserDetails') ? <>
+                                            <div className="sidemenu-outbox-d">
+                                                <i className="fa fa-star  icon-m" aria-hidden="true" />
+                                                <span style={{ marginLeft: '20px' }}>Membership</span>
+                                            </div>
+                                            <div className="sidemenu-outbox-d">
+                                                <i className="fa fa-share  icon-m" aria-hidden="true" />
+                                                <span style={{ marginLeft: '20px' }}> Refer And Earn</span>
+                                            </div>
+                                        </> : ""}
                                         {localStorage.getItem('gluserDetails') ? <div className="sidemenu-outbox-d"
                                             onClick={() => {
                                                 dispatch(userData(null));
@@ -302,30 +312,31 @@ function Header() {
                                                     </span>
                                                 </a>
                                             </li>
-                                            <li>
-                                                <a href="/" className="side-menu-box">
-                                                    <span className="side-text">
-                                                        <i className="fa fa-user  icon-m" aria-hidden="true" />
-                                                        My Account
-                                                    </span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="/" className="side-menu-box">
-                                                    <span className="side-text">
-                                                        <i className="fa fa-star  icon-m" aria-hidden="true" />
-                                                        Membership
-                                                    </span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="/" className="side-menu-box">
-                                                    <span className="side-text">
-                                                        <i className="fa fa-share  icon-m" aria-hidden="true" />
-                                                        Refer And Earn
-                                                    </span>
-                                                </a>
-                                            </li>
+                                            {localStorage.getItem('gluserDetails') ? <>
+                                                <li>
+                                                    <a href="/" className="side-menu-box">
+                                                        <span className="side-text">
+                                                            <i className="fa fa-user  icon-m" aria-hidden="true" />
+                                                            My Account
+                                                        </span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/" className="side-menu-box">
+                                                        <span className="side-text">
+                                                            <i className="fa fa-star  icon-m" aria-hidden="true" />
+                                                            Membership
+                                                        </span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/" className="side-menu-box">
+                                                        <span className="side-text">
+                                                            <i className="fa fa-share  icon-m" aria-hidden="true" />
+                                                            Refer And Earn
+                                                        </span>
+                                                    </a>
+                                                </li></> : ""}
                                             {localStorage.getItem('gluserDetails') ? <li>
                                                 <div className="side-menu-box">
                                                     <span className="side-text">

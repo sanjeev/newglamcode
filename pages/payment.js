@@ -63,7 +63,7 @@ function Payment() {
         frontService.bookOrder(data)
             .then(
                 res => {
-                    if (res.status == 'success') {
+                    if (res?.status == 'success') {
                         dispatch(clearCart())
                         toast(res.message, {
                             position: "bottom-center",
@@ -76,7 +76,7 @@ function Payment() {
                             theme: "light",
                         });
                         router.push("/confirmation")
-                    } else if (res.status == 'fail') {
+                    } else if (res?.status == 'fail') {
                         setSending(true)
                         toast(res.message, {
                             position: "bottom-center",

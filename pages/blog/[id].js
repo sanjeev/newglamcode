@@ -88,7 +88,7 @@ export default function Blog() {
                 <div className="col-lg-8 blog-container">
                     {item ? <div className="row blogs">
                         <div href={"/blog/" + item.ID} className="blog-item" key={item.ID}>
-                            <img src={Global.BASE_APP_PATH + e.category_image} />
+                            <img src={Global.BASE_APP_PATH + item.category_image} />
                             <p className="post-title">{item.post_title}</p>
                         </div>
                     </div>

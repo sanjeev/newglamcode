@@ -19,7 +19,8 @@ export const frontService = {
     blogs,
     blogDetails,
     coupons,
-    bookOrder
+    bookOrder,
+    myBookings
 };
 async function search(s, location) {
     const requestOptions = {
@@ -64,6 +65,7 @@ async function blogDetails(id) {
     console.log(id)
     const requestOptions = {
         method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
 
     };
@@ -289,3 +291,35 @@ function handleResponse(response) {
         });
     }
 }
+async function myBookings(id) {
+    console.log(id)
+    const data = {
+        user_id: id
+    }
+    const requestOptions = {
+        method: 'POST',
+        // headers: { 'Conteant-Type': 'application/json' },
+        body: JSON.stringify(data)
+    };
+
+    return fetch(Global.BASE_API_PATH + `/bookingdata`, requestOptions)
+        .then(handleResponse)
+        .then(res => {
+            return res;
+        });
+}
+
+async function cancelBooking(data) {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    };
+
+    return fetch(Global.BASE_API_PATH + `/cancel-reschedule`, requestOptions)
+        .then(handleResponse)
+        .then(res => {
+            return res;
+        });
+}
+

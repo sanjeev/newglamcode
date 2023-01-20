@@ -17,6 +17,7 @@ class LocationSearchInput extends React.Component {
 
     handleSelect = address => {
         this.setState({ address });
+        this.props.onChangeValue(address)
         sessionStorage.setItem(
             "location",
             JSON.stringify(address),
@@ -25,17 +26,15 @@ class LocationSearchInput extends React.Component {
 
         geocodeByAddress(address)
             .then(results => getLatLng(results[0]))
-            .then(latLng => sessionStorage.setItem(
-                "latLng",
-                JSON.stringify(latLng),
-            ))
+            .then(latLng => this.props.onValue(latLng),
+            )
             .catch(error => console.error('Error', error));
     };
 
     render() {
         return (
             <PlacesAutocomplete
-                value={this.state.address || ""}
+                value={this.state.address}
                 onChange={this.handleChange}
                 onSelect={this.handleSelect}
 
