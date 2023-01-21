@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import LoadingScreen from "../../../components/LoadingScreen/loadingScreen";
 import { frontService } from "../../../_services/front.services";
 import { Audio } from 'react-loader-spinner'
+import Head from 'next/head'
 import ViewDetails from '../../../components/ViewDetails/ViewDetails'
 import { addtoCartData, decrementQty, removeFromCart } from '../../../store/actions';
 import AddToCart from '../../../components/AddToCard';
@@ -73,7 +74,24 @@ export default function Categoryslug() {
     }
     return (
         <>
-
+            <Head>
+                <title>Glamcode Luxury Home Salon</title>
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+                <meta name="title" content={mainCategory.seo_title} data-react-helmet="true"></meta>
+                <meta name="description" content={mainCategory.seo_desc} data-react-helmet="true"></meta>
+                <meta name="keywords" content={mainCategory.seo_key} data-react-helmet="true"></meta>
+                <meta name="robots" content="index, follow" data-react-helmet="true"></meta>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" data-react-helmet="true"></meta>
+                <meta name="language" content="English" data-react-helmet="true"></meta>
+                <meta name="revisit-after" content="1 days" data-react-helmet="true"></meta>
+                <meta name="author" content="Glamcode" data-react-helmet="true"></meta>
+                <meta name="zipcode" content="201301" data-react-helmet="true"></meta>
+                <meta name="city" content="Noida" data-react-helmet="true"></meta>
+                <meta name="country" content="India" data-react-helmet="true"></meta>
+                <meta name="Geography" content="B1002 Amrapali Zodiac, Sector 120, Noida, Uttar Pradesh 201301" data-react-helmet="true"></meta>
+                <meta name="geo.position" content="28.5839021,77.3959942" data-react-helmet="true"></meta>
+                <meta name="ICBM" content="28.5839021,77.3959942" data-react-helmet="true"></meta>
+            </Head>
             <div className="servicedesk-bg" style={{ paddingBottom: '50px' }}>
                 <div className="header-css-head">
                     <Container fluid >
@@ -241,6 +259,7 @@ export default function Categoryslug() {
                                                     <a
                                                         onClick={() => callurl(item.slug, item.id)}
                                                         href={`/category/${item.slug}/${localStorage.getItem('cityname').toLowerCase()}`}
+                                                        style={{ color: '#000' }}
                                                     >
                                                         <img className="images-m center-img-all" src={`https://www.glamcode.in/user-uploads/maincategory/${item.image}`} alt={item.name} />
                                                         <div className="center-content-all">

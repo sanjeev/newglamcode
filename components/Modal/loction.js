@@ -47,7 +47,7 @@ function Modalpup(props) {
                                     <div className="image-d-location">
                                         <img
                                             className="images-m center-img-all"
-                                            src={`https://www.glamcode.in/user-uploads/locations/${x.image}`}
+                                            src={x.image_base_url}
                                             alt={x.city}
                                         />
                                     </div>

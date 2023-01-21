@@ -27,7 +27,7 @@ export default function Knowmore() {
     return (
         <>
             <div className="title-content">
-                <h2 className="title" style={{ width: '100%', textAlign: 'center', }} >
+                <h2 className="title" style={{ width: '100%', textAlign: 'center', marginTop: '32px' }} >
                     Know More
                     <i className="fa fa-chevron-up" style={{ marginLeft: 20, }} aria-hidden="true"></i>
                 </h2>

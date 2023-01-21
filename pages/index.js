@@ -41,7 +41,7 @@ export default function Home() {
             <hr style={{ border: '2px solid rgb(102, 102, 102)', margin: '10px', boxShadow: 'rgba(0, 0, 0, 0.25) 0px 0.5px 0.5px', backgroundColor: 'rgb(255, 255, 255)' }} />
           </div></>) : (
           <>
-            <div className="title-content">
+            <div className="title-content" style={{ marginTop: '32px' }}>
               <h2
                 className="title font-familt-jost"
                 style={{ width: "100%", textAlign: "center" }}
