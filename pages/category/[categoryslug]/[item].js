@@ -178,7 +178,7 @@ export default function Categoryslug() {
                                                             <div className="title">
                                                                 <a href="#">{y.name}</a>
                                                             </div>
-                                                            <div className="d-flex flex-row" style={{ margin: "4% 0.625rem -2% 0%" }}>
+                                                            <div className="d-flex flex-row align-items-center" style={{ margin: "4% 0.625rem -2% 0%" }}>
                                                                 <div className="p-rl-2 Price">₹ {y.price}</div>
                                                                 <div className="p-rl-2 offerPrice">₹ {y.discounted_price}</div>
                                                                 <div className="p-rl-2 discountTitle">{y.discount}%</div>

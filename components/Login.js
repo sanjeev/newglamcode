@@ -6,7 +6,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import Router from 'next/router'
 import { useDispatch } from 'react-redux';
 import { userData } from '../store/actions/index';
-export default function Login() {
+import { Modal } from "react-bootstrap";
+
+export default function Login(props) {
+    const { show, handleClose } = props
+
     const dispatch = useDispatch();
     const { pathname } = Router
     const [mainOtp, setMainotp] = React.useState(false);
@@ -108,9 +112,8 @@ export default function Login() {
                                 theme: "light",
                             });
 
-                            Router.push('/')
-
-
+                            window.location.reload()
+                            // Router.push('/checkout')
 
                         } else if (res.status === 'fail') {
                             toast(res.message, {
@@ -164,129 +167,82 @@ export default function Login() {
                 theme: "light",
             });
         }
-        // frontService.sendOtpverify(data)
-        //     .then(
-        //         res => {
-
-        //             if (res.status === 'success') {
-        //                 console.log(res.user);
-        //                 reset();
-        //                 toast(res.message, {
-        //                     position: "bottom-center",
-        //                     autoClose: 5000,
-        //                     hideProgressBar: false,
-        //                     closeOnClick: true,
-        //                     pauseOnHover: true,
-        //                     draggable: true,
-        //                     progress: undefined,
-        //                     theme: "light",
-        //                 });
-        //             } else if (res.status === 'fail') {
-        //                 toast(res.message, {
-        //                     position: "bottom-center",
-        //                     autoClose: 5000,
-        //                     hideProgressBar: false,
-        //                     closeOnClick: true,
-        //                     pauseOnHover: true,
-        //                     draggable: true,
-        //                     progress: undefined,
-        //                     theme: "light",
-        //                 });
-
-        //             } else {
-        //                 toast('Invalid', {
-        //                     position: "bottom-center",
-        //                     autoClose: 5000,
-        //                     hideProgressBar: false,
-        //                     closeOnClick: true,
-        //                     pauseOnHover: true,
-        //                     draggable: true,
-        //                     progress: undefined,
-        //                     theme: "light",
-        //                 });
-
-        //             }
-        //         }, error => {
-
-        //             toast('Invalid', {
-        //                 position: "bottom-center",
-        //                 autoClose: 5000,
-        //                 hideProgressBar: false,
-        //                 closeOnClick: true,
-        //                 pauseOnHover: true,
-        //                 draggable: true,
-        //                 progress: undefined,
-        //                 theme: "light",
-        //             });
-
-        //         }
-        //     )
     }
 
 
-    return (<>
-        <div className="section-login-background">
-            <div className="section-model-login">
-                <div className="headsecftion">
-                    <img
-                        className="imagelogo"
-                        src="https://www.glamcode.in/img/fav.png"
-                        alt="Glamcode"
-                    />
-                </div>
-                <div className="bottomsecftion">
-                    {mainOtp ? (
-                        <form onSubmit={handleSubmit(onOtp)}>
-                            <input
-                                className="inputField"
-                                placeholder="Otp"
-                                defaultValue=""
-                                maxLength={4}
-                                {...register("otp", {
-                                    required: "Otp is Required",
+    return (<Modal
+        show={show}
+        // onHide={handleClose}
+        // onHide={() => { }}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        className='mobilepopud coupon-modal login-modal'>
+        <Modal.Body>
+            <div className="section-login-background">
+                <div className="section-model-login">
+                    <div className="headsecftion">
+                        <img
+                            className="imagelogo"
+                            src="https://www.glamcode.in/img/fav.png"
+                            alt="Glamcode"
+                        />
+                    </div>
+                    <div className="bottomsecftion">
+                        {mainOtp ? (
+                            <form onSubmit={handleSubmit(onOtp)}>
+                                <input
+                                    className="inputField"
+                                    placeholder="Otp"
+                                    defaultValue=""
+                                    maxLength={4}
+                                    {...register("otp", {
+                                        required: "Otp is Required",
 
-                                })}
-                                onKeyUp={() => {
-                                    trigger("otp");
-                                }}
+                                    })}
+                                    onKeyUp={() => {
+                                        trigger("otp");
+                                    }}
 
-                            />
-                            {errors.otp && (
-                                <span style={{ marginLeft: '58px', color: 'red' }}>{errors.otp.message}</span>
-                            )}
+                                />
+                                {errors.otp && (
+                                    <span style={{ marginLeft: '58px', color: 'red' }}>{errors.otp.message}</span>
+                                )}
 
-                            <button className="button">Verify</button>
-                        </form>
-                    ) : (
-                        <form onSubmit={handleSubmit(onSubmit)}>
-                            <input
-                                className="inputField"
-                                maxLength={10}
-                                placeholder="Enter the 10 digit mobile"
-                                defaultValue=""
-                                {...register("phone", {
-                                    required: "Phone is Required",
-                                    pattern: {
-                                        value: /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/,
-                                        message: "Invalid Phone No",
-                                    },
-                                })}
-                                onKeyUp={() => {
-                                    trigger("phone");
-                                }}
+                                <button className="button">Verify</button>
+                            </form>
+                        ) : (
+                            <form onSubmit={handleSubmit(onSubmit)}>
+                                <input
+                                    className="inputField"
+                                    maxLength={10}
+                                    placeholder="Enter the 10 digit mobile"
+                                    defaultValue=""
+                                    {...register("phone", {
+                                        required: "Phone is Required",
+                                        pattern: {
+                                            value: /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/,
+                                            message: "Invalid Phone No",
+                                        },
+                                    })}
+                                    onKeyUp={() => {
+                                        trigger("phone");
+                                    }}
 
-                            />
-                            {errors.phone && (
-                                <span style={{ marginLeft: '58px', color: 'red' }}>{errors.phone.message}</span>
-                            )}
+                                />
+                                {errors.phone && (
+                                    <span style={{ marginLeft: '58px', color: 'red' }}>{errors.phone.message}</span>
+                                )}
 
-                            <button className="button">Send OTP</button>
-                        </form>
+                                <button className="button">Send OTP</button>
+                            </form>
 
-                    )}
+                        )}
+                    </div>
                 </div>
             </div>
-        </div>
-        <ToastContainer />
-    </>)
+            <ToastContainer />
+        </Modal.Body>
+    </Modal>
+    )
 }

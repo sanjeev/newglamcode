@@ -12,6 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { clearCart } from '../store/actions';
 import useRazorpay from "react-razorpay";
 import AddToCart from "../components/Cart/AddToCart";
+import Login from "../components/login";
 
 function Payment() {
     const Razorpay = useRazorpay()
@@ -28,10 +29,14 @@ function Payment() {
     const coupon_id = localStorage.getItem("coupon_id")
     const coupon_amount = localStorage.getItem("coupon_amount")
     const coupon_min = localStorage.getItem("coupon_min")
+
+    const user = JSON.parse(localStorage.getItem('gluserDetails'))
+    console.log(user)
+
     // console.log(userAddress)
     useEffect(() => {
         if (!localStorage.getItem('gluserDetails')) {
-            router.push("/login")
+            // router.push("/login")
         }
         var total = 0;
         for (let i = 0; i < cart.length; i++) {
@@ -129,7 +134,7 @@ function Payment() {
             )
     };
 
-    const user = JSON.parse(localStorage.getItem('gluserDetails'))
+
     const options = {
         key: 'rzp_test_cspHH5os0wjcRW',
         amount: finalTotal * 100, //  = INR 1
@@ -143,9 +148,9 @@ function Payment() {
             // alert(response.razorpay_signature);
         },
         prefill: {
-            name: user.name,
-            contact: user.mobile,
-            email: user.email
+            name: user?.name,
+            contact: user?.mobile,
+            email: user?.email
         },
         notes: {
             address: (userAddress?.address_heading + ", " + userAddress?.address + ", " + userAddress?.street)
@@ -169,6 +174,7 @@ function Payment() {
     }
 
     return (<>
+        {!user && <Login show={!user} />}
         <Coupon show={couponModal} coupon={coupon_id}
             setCoupon={(c) => {
                 console.log(c)

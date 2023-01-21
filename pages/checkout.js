@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import moment from 'moment';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Login from '../components/Login';
 
 function Checkout() {
     const router = useRouter();
@@ -19,6 +20,7 @@ function Checkout() {
     const [active, setActive] = useState(0);
     const [isselected, setIsselected] = useState(-1);
     const [error, setError] = useState("")
+    const user = JSON.parse(localStorage.getItem('gluserDetails'))
 
     // const handleClick = (val) => {
     //     alert(val);
@@ -33,7 +35,7 @@ function Checkout() {
 
     useEffect(() => {
         if (!localStorage.getItem('gluserDetails')) {
-            router.push("/login")
+            // router.push("/login")
         }
         if (h > 17) {
             setActive(1)
@@ -80,6 +82,8 @@ function Checkout() {
     ];
 
     return (<>
+        {!user && <Login show={!user} />}
+
         <div className="servicedesk-bg checkout-all" style={{ paddingBottom: '50px' }}>
             <div className="header-css-head">
                 <Container fluid >

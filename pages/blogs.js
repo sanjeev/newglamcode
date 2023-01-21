@@ -35,7 +35,7 @@ export default function Blogs() {
                 <div className="col-lg-12 text-center">
                     <img src="/blog.png" className="banner-img" />
                 </div>
-                <div className="col-lg-5 social">
+                {/* <div className="col-lg-5 social">
                     <div className="">
                         <ul>
                             <li><a>
@@ -63,7 +63,7 @@ export default function Blogs() {
                             </li>
                         </ul>
                     </div>
-                </div>
+                </div> */}
             </div>
             {loading ? <LoadingScreen /> : (items.length > 0 ? <div className="row">
                 <div className="col-lg-8 blog-container">

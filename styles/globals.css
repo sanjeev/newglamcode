@@ -495,10 +495,9 @@ button {
 }
 
 .Addtocart-Items-m {
-  position: absolute;
+  position: relative;
   padding: 2px 12px;
-  right: 2%;
-  top: 34%;
+  text-align: right;
   margin-top: 5.5%;
   background: #7c00b7;
   border-radius: 10px;
@@ -941,11 +940,10 @@ a:hover {
   margin-right: 10px;
 }
 
-.servicesMD .Addtocart {
-  position: absolute;
+.servicesMD .Addtocart,
+#cart-btn .Addtocart {
   padding: 3px 10px;
-  right: 2%;
-  top: 22%;
+  text-align: right;
   background: #7c00b7;
   border-radius: 10px;
   font-family: "Inter";
@@ -1041,9 +1039,9 @@ a:hover {
   color: #fff;
   display: inline-block;
   font-size: 14px;
-  height: 50px;
+  height: 42px;
   letter-spacing: 0px;
-  line-height: 37px;
+  line-height: 30px;
   padding: 5px 25px 5px 37px;
   text-align: center;
   text-transform: uppercase;
@@ -1506,7 +1504,7 @@ a:hover {
 }
 
 #blogs {
-  background: linear-gradient(180deg, rgba(221, 180, 246, 0.8) 0%, rgba(141, 208, 252, 0.8) 100%);
+  background: #FFF1F1
 }
 
 #blogs .row {
@@ -1601,11 +1599,12 @@ a:hover {
 }
 
 #blogs .recent-posts-container .title-box {
-  background: #F2F2F2;
+  background: #A854FC;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   text-align: center;
   margin-bottom: 14px;
   padding: 5px;
+  color: white;
 }
 
 #blogs .banner-img {
@@ -1713,7 +1712,37 @@ button:disabled {
   text-transform: capitalize;
 }
 
+.login-modal .section-model-login {
+  width: 100%;
+  height: auto;
+}
+
+.login-modal .modal-content,
+.login-modal .modal-body {
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 0;
+}
+
+.login-modal .section-model-login .bottomsecftion {
+  height: 30vh;
+}
+
 @media only screen and (min-width: 1px) and (max-width: 991px) {
+  .login-modal .section-model-login {
+    height: 80vh;
+  }
+
+  .login-modal .modal-content,
+  .login-modal .modal-body {
+    padding: 0 !important;
+  }
+
+  .menu-category-d {
+    transform: translate(-50%, 0);
+    bottom: 15%;
+  }
+
   .row-m-check {
     justify-content: space-between;
   }
@@ -1815,9 +1844,13 @@ button:disabled {
     width: 31%;
   }
 
+  .checkout-all .checkoutBtn-container {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .checkoutBtn-container {
     width: 100% !important;
-    position: fixed;
     bottom: 100px;
   }
 
@@ -1843,14 +1876,18 @@ button:disabled {
     display: none;
   }
 
+  .servicesMD {
+    box-shadow: none !important;
+  }
+
   .servicesMD .lineDiv {
     width: 98%;
     height: 0;
     border: 1px solid #585656;
   }
 
+  #cart-btn .Addtocart,
   .servicesMD .Addtocart {
-    top: 32%;
     padding: 0 8px;
   }
 

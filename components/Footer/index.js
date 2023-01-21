@@ -433,7 +433,7 @@ function Footer() {
             }
 
 
-            {cart.length > 0 ?
+            {(router.pathname === "/login" || router.pathname === "/payment" || router.pathname === "/checkout") ? "" : (cart.length > 0 ?
 
                 <div className="bottomservicesCheckout" key={0}>
                     <div className="topinside">
@@ -445,7 +445,7 @@ function Footer() {
                                 <p className="textHead" >Total Price ₹ {total}</p>
                             </div>
 
-                            {total >= Global.MINPRICEORDER ? (
+                            {(total >= Global.MINPRICEORDER ? (
                                 <>
                                     {localStorage.getItem('gluserDetails') ? (<a
                                         href="/checkout"
@@ -468,7 +468,7 @@ function Footer() {
                             )
 
 
-                            }
+                            )}
 
 
 
@@ -476,7 +476,7 @@ function Footer() {
                     </div>
                 </div>
 
-                : ''}
+                : '')}
 
         </>
     );

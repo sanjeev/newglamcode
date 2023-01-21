@@ -11,6 +11,7 @@ import { frontService } from "../_services/front.services";
 import Router, { useRouter } from 'next/router'
 import { useDispatch } from 'react-redux';
 import { userAddress, userData } from '../store/actions/index';
+import Login from '../components/Login';
 
 function MydModalWithGrid(props) {
 
@@ -99,6 +100,7 @@ function Myaddress() {
     const [addressl, setAddresslist] = useState([]);
     const userdetails = useSelector(state => state.userdetails?.userdetails);
     const [modalShow, setModalShow] = useState(false);
+    const user = JSON.parse(localStorage.getItem('gluserDetails'))
     const {
         register,
         handleSubmit,
@@ -106,7 +108,7 @@ function Myaddress() {
     } = useForm();
     useEffect(() => {
         if (!localStorage.getItem('gluserDetails')) {
-            router.push("/login")
+            // router.push("/login")
         }
         frontService.addressList(userdetails?.id)
             .then(
@@ -235,6 +237,8 @@ function Myaddress() {
             )
     }
     return (<>
+        {!user && <Login show={!user} />}
+
         <div className="servicedesk-bg address-all" style={{ paddingBottom: '50px' }}>
             <div className="header-css-head">
                 <Container fluid >

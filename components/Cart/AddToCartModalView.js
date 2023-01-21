@@ -19,7 +19,17 @@ export default function AddToCartModalView({ data }) {
     }
 
     return (<>
-        {inCart.length > 0 ? <div className="Addtocart-Items d-flex flex-row">
+        {inCart.length > 0 ? <div className="mt-0 Addtocart-Items-m Addtocart d-inline-flex gap-xl-3 gap-1 position-relative w-auto">
+            <div className="addcart-minus" onClick={() => onDecrement(data.id)}>-</div>
+            <div className="addcart-count">{inCart[0].qty}</div>
+            <div className="addcart-plus" onClick={() => onIncrement(data)}>+</div>
+        </div> :
+            <div id="cart-btn" className="position-relative d-inline-flex">
+                <div className="Addtocart position-relative d-inline-flex gap-3" onClick={() => onIncrement(data)}>
+                    Add
+                </div>
+            </div>}
+        {/* {inCart.length > 0 ? <div className="Addtocart-Items d-flex flex-row">
             <div className="pro-qty">
                 <div className="dec qty-btn" onClick={() => onDecrement(data.id)}>-</div>
                 <input type="text" title="Quantity" readOnly={true} value={inCart[0].qty} />
@@ -27,10 +37,10 @@ export default function AddToCartModalView({ data }) {
             </div>
         </div> :
             <div className="pro-qty" role="button">
-                <div className="align-items-center justify-content-center Addtocart d-flex gap-3 input" onClick={() => onIncrement(data)}>
+                <div className="align-items-center justify-content-center Addtocart d-inline-flex gap-3 input" onClick={() => onIncrement(data)}>
                     Add
                 </div>
-            </div>}
+            </div>} */}
     </>
     )
 }
