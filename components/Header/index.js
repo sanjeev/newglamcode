@@ -49,12 +49,15 @@ function Header() {
     const [showResults, setShowResults] = useState(false);
     const onClick = () => setShowResults(value => !value);
     const [modalShow, setModalShow] = useState(false);
+    const [noRedirect, setRedirect] = useState(false);
+
     const [sidebar, setSidebar] = useState(false);
     const [searchValue, setSearchValue] = useState("")
     const showSidebar = () => setSidebar(!sidebar);
 
     const callurl = (v) => {
         if (!localStorage.getItem("id")) {
+            setRedirect(true)
             setModalShow(true)
             return
         }
@@ -81,7 +84,18 @@ function Header() {
                                             <button onClick={() => setModalShow(true)} className="dropdown-toggle dropdownborder" type="button" id="dropdownMenuButton" >
                                                 {localStorage.getItem("cityname") ? localStorage.getItem("cityname") : 'Select your Location'}
                                             </button>
-                                            <Modalpup show={modalShow} onHide={() => setModalShow(false)} />
+                                            <Modalpup show={modalShow}
+                                                noRedirect={noRedirect}
+                                                onHide={() => {
+                                                    setRedirect(false)
+                                                    setModalShow(false)
+                                                }}
+                                                onSelect={() => {
+                                                    if (searchValue) {
+                                                        router.push('/search/' + searchValue)
+                                                    }
+                                                }}
+                                            />
 
                                         </div>
                                     </div>
@@ -223,7 +237,18 @@ function Header() {
                                     <button onClick={() => setModalShow(true)} className="dropdown-toggle dropdownborder" type="button" id="dropdownMenuButton" >
                                         {localStorage.getItem("cityname") ? localStorage.getItem("cityname") : 'Select your Location'}
                                     </button>
-                                    <Modalpup show={modalShow} onHide={() => setModalShow(false)} />
+                                    <Modalpup show={modalShow}
+                                        noRedirect={noRedirect}
+                                        onHide={() => {
+                                            setRedirect(false)
+                                            setModalShow(false)
+                                        }}
+                                        onSelect={() => {
+                                            if (searchValue) {
+                                                router.push('/search/' + searchValue)
+                                            }
+                                        }}
+                                    />
 
                                 </div>
                             </div>

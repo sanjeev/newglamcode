@@ -17,6 +17,8 @@ export default function getRoute() {
     const router = useRouter()
     const slug = router.query.data;
     const [knowmore, setKnowmore] = React.useState();
+    const [items, setItems] = React.useState();
+
     React.useEffect(() => {
         frontService.knowDataSlug(slug)
             .then(
@@ -36,18 +38,29 @@ export default function getRoute() {
                     //toast.error("Something went wrong !!", "Fashion Store");
                 }
             )
+
+        frontService.preferredPack(localStorage.getItem("id"))
+            .then(
+                res => {
+                    if (res.status === 'success') {
+                        setItems(res.preferredPack);
+                    } else {
+                        console.log('Something went wrong !!');
+                    }
+                },
+                error => {
+                    console.log('Something went wrong !!');
+                }
+            )
+
     }, [slug]);
+
     return (
 
 
         <>
 
             <div className='background2'>
-
-
-
-
-
                 {/* <div>
                     <h1>Sanjeev</h1>
                     <h2>pathname:- {router.pathname}</h2>
@@ -108,10 +121,8 @@ export default function getRoute() {
                             <hr style={{ border: '2px solid rgb(102, 102, 102)', margin: '10px', boxShadow: 'rgba(0, 0, 0, 0.25) 0px 0.5px 0.5px', backgroundColor: 'rgb(255, 255, 255)' }} />
                         </div>
 
-                        <Preferedservices />
-                        <div className="col-12 " style={{ marginTop: '50px' }}>
-                            <hr style={{ border: '2px solid rgb(102, 102, 102)', margin: '10px', boxShadow: 'rgba(0, 0, 0, 0.25) 0px 0.5px 0.5px', backgroundColor: 'rgb(255, 255, 255)' }} />
-                        </div>
+                        <Preferedservices data={items} />
+
 
                         <Faqs />
                         <div className="col-12 " style={{ marginTop: '50px' }}>

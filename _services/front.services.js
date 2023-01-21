@@ -21,7 +21,8 @@ export const frontService = {
     coupons,
     bookOrder,
     myBookings,
-    cancelBooking
+    cancelBooking,
+    preferredPack
 };
 async function search(s, location) {
     const requestOptions = {
@@ -319,6 +320,25 @@ async function cancelBooking(data) {
     };
 
     return fetch(Global.BASE_API_PATH + `/cancel-reschedule`, requestOptions)
+        .then(handleResponse)
+        .then(res => {
+            return res;
+        });
+}
+
+
+async function preferredPack(id) {
+    const data = {
+        location_id: id
+    }
+
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    };
+
+    return fetch(Global.BASE_API_PATH + `/preferredpack`, requestOptions)
         .then(handleResponse)
         .then(res => {
             return res;

@@ -86,7 +86,7 @@ const Item = ({ e, user, getBookings, update = false }) => {
     const [open, setOpen] = useState(false)
 
     const cancelBooking = (data) => {
-        const booking = { user_id: user.id, bookingid: data.booking_id, date_time: "", ty: "1" }
+        const booking = { user_id: user.id, bookingid: data.booking_id, ty: "1" }
         setSending(true)
         frontService.cancelBooking(booking)
             .then(

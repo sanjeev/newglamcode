@@ -9,20 +9,20 @@ function Modalpup(props) {
 
     const dataloctions = useSelector(state => state.loctions);
     const handleClose = () => props.onHide();
-
+    const { noRedirect, onSelect } = props
 
     const selecthandleclick = (locId, locName, locAddress, locationslug) => {
-
-
         localStorage.setItem("id", locId);
         localStorage.setItem("cityname", locName);
         localStorage.setItem("locAddress", locAddress);
 
-
-        Router.push('/' + locationslug);
-        window.location.href = '/' + locationslug;
-        //Router.reload(window.location.pathname)
-
+        if (noRedirect) {
+            onSelect()
+        } else {
+            Router.push('/' + locationslug);
+            window.location.href = '/' + locationslug;
+            //Router.reload(window.location.pathname)
+        }
     }
     return (
         <>
