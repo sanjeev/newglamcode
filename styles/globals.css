@@ -572,6 +572,7 @@ button {
   background: #d9bef4;
   border-radius: 4px;
   padding: 5px;
+  height: 100%;
 }
 
 .timeslots-texts {
@@ -1015,7 +1016,8 @@ a:hover {
   position: relative;
 }
 
-.pro-qty input {
+.pro-qty input,
+.pro-qty .input {
   width: 170px;
   height: 50px;
   font-size: 13px;
@@ -1712,6 +1714,10 @@ button:disabled {
 }
 
 @media only screen and (min-width: 1px) and (max-width: 991px) {
+  .row-m-check {
+    justify-content: space-between;
+  }
+
   .coupon-modal .modal-content .btn-close {
     top: 0px;
     right: 0px;

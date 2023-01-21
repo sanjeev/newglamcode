@@ -3,14 +3,13 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { useRouter } from 'next/router'
 import { useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import LoadingScreen from "../../../components/LoadingScreen/loadingScreen";
 import { frontService } from "../../../_services/front.services";
 import { Audio } from 'react-loader-spinner'
 import Head from 'next/head'
 import ViewDetails from '../../../components/ViewDetails/ViewDetails'
-import { addtoCartData, decrementQty, removeFromCart } from '../../../store/actions';
-import AddToCart from '../../../components/AddToCard';
+import AddToCart from '../../../components/Cart/AddToCart';
 import { Link } from 'react-scroll';
 export default function Categoryslug() {
     const router = useRouter()
@@ -20,27 +19,6 @@ export default function Categoryslug() {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const datacat = useSelector(state => state.maincat);
-    const dispatch = useDispatch();
-    const [itemCount, setItemCount] = React.useState(0);
-
-    const onDecrement = (itemsid) => {
-        setItemCount(Math.max(itemCount - 1, 0));
-        if (Math.max(itemCount - 1, 0) === 0) {
-            dispatch(removeFromCart(itemsid))
-        } else {
-            dispatch(decrementQty(itemsid, 1))
-        }
-
-    }
-    const onIncrement = (items) => {
-        setItemCount(itemCount + 1);
-
-        //     dispatch({
-        //         type: 'FETCH_DATA',
-        //         data: responseData
-        //    })
-        dispatch(addtoCartData(items, 1));
-    }
 
     useEffect(() => {
         frontService.datamancat()
@@ -105,31 +83,29 @@ export default function Categoryslug() {
                     {categories ? (<>
                         <div className="g-3 g-sm-6 gap-2 categories-top-header" style={{ padding: '20px', background: '#f3f3f3' }}>
                             {categories?.map((x, i) =>
-                                <>
-                                    <Link spy={true}
-                                        // smooth={true}
-                                        activeClass="product-category-item-selected"
-                                        id="cat210"
-                                        to={`${x.slug}`}
-                                        className="pcats product-category-item cat210 mt-0"
-                                        style={{ backgroundColor: "rgb(255, 255, 255)", padding: 15 }}
-                                        key={i}>
-                                        <h3 className="fontFamily-alata-only"
-                                            style={{
-                                                fontSize: 13,
-                                                fontWeight: 500,
-                                                textAlign: "center",
-                                                marginBottom: 0,
-                                                position: "relative",
-                                                marginTop: 0
-                                            }}
-                                        >
-                                            {x.name}
-                                        </h3>
+                                <Link spy={true}
+                                    // smooth={true}
+                                    activeClass="product-category-item-selected"
+                                    id="cat210"
+                                    to={`${x.slug}`}
+                                    className="pcats product-category-item cat210 mt-0"
+                                    style={{ backgroundColor: "rgb(255, 255, 255)", padding: 15 }}
+                                    key={i}>
+                                    <h3 className="fontFamily-alata-only"
+                                        style={{
+                                            fontSize: 13,
+                                            fontWeight: 500,
+                                            textAlign: "center",
+                                            marginBottom: 0,
+                                            position: "relative",
+                                            marginTop: 0
+                                        }}
+                                    >
+                                        {x.name}
+                                    </h3>
 
-                                    </Link>
+                                </Link>
 
-                                </>
                             )}
 
 
@@ -205,7 +181,7 @@ export default function Categoryslug() {
                                                             <div className="d-flex flex-row" style={{ margin: "4% 0.625rem -2% 0%" }}>
                                                                 <div className="p-rl-2 Price">₹ {y.price}</div>
                                                                 <div className="p-rl-2 offerPrice">₹ {y.discounted_price}</div>
-                                                                <div className="p-rl-2 discountTitle">{y.discount} %</div>
+                                                                <div className="p-rl-2 discountTitle">{y.discount}%</div>
                                                             </div>
                                                             <div
                                                                 className="d-flex flex-row"

@@ -5,8 +5,7 @@ import { useEffect } from 'react';
 import LoadingScreen from "../../components/LoadingScreen/loadingScreen";
 import { frontService } from "../../_services/front.services";
 import ViewDetails from '../../components/ViewDetails/ViewDetails';
-import AddToCart from '../../components/AddToCard';
-import { isArray } from 'util';
+import AddToCart from '../../components/Cart/AddToCart';
 
 export default function SearchItem() {
     const router = useRouter()

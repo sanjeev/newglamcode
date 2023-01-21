@@ -1,14 +1,10 @@
-import React, { use, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Container, Row, Col } from 'react-bootstrap';
 import { useRouter } from 'next/router'
-import { Datepicker, DatepickerEvent } from "@meinefinsternis/react-horizontal-date-picker";
-import { enUS } from "date-fns/locale";
-import Datedata from "./datedata";
 import moment from 'moment';
-
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Coupon from '../components/Coupon/Coupon';
+
 function Checkout() {
     const router = useRouter();
     var settings = {
@@ -167,14 +163,14 @@ function Checkout() {
                     <p className='text-danger text-center my-2 fw-bold'>{error}</p>
                 </div>}
                 <div className="checkoutBtn-container"
-                    style={{ width: "30%", marginLeft: "auto", marginRight: "auto" }}>
-                    <button className="checkoutBtn-all" type='button'
+                    style={{ width: "30%", marginLeft: "auto", marginRight: "auto", textAlign: "center" }}>
+                    <button className="checkoutBtn-all w-auto px-5" type='button'
                         onClick={() => {
                             if (isselected === -1) {
                                 setError("Please Select slot to continue")
                                 return
                             } else {
-                                const time = (timeslots.find(e => e.id === isselected) || {}).slotstart
+                                const time = (timeslots.find((e, i) => i === isselected) || {}).slotstart
                                 const date = moment(moment().add(active, 'days').toString()).format('yyyy-MM-DD').toString()
                                 localStorage.setItem("booking_time", `${date} ${time}:00`)
                                 router.push("/payment")

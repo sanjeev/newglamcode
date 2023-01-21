@@ -5,6 +5,8 @@ import LoadingScreen from "../components/LoadingScreen/loadingScreen";
 import { frontService } from "../_services/front.services";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import moment from "moment";
+import ConfirmBooking from "../components/Modal/ConfirmBooking";
 
 export default function Bookings() {
     const router = useRouter()
@@ -18,25 +20,24 @@ export default function Bookings() {
             router.push("/login")
         }
         getBookings()
+
     }, []);
 
     const getBookings = () => {
         frontService.myBookings(user.id)
-            .then(
-                res => {
-                    if (res.status === 'success') {
-                        setItems(res.OngoingBookingsArr);
-                        setHistoryItems(res.HistoryBookingsArr);
-                        setLoading(false)
-                    } else {
-                        console.log('Something went wrong !!');
-                        setLoading(false)
-                    }
-                },
-                error => {
+            .then(res => {
+                if (res.status === 'success') {
+                    setItems(res.OngoingBookingsArr);
+                    setHistoryItems(res.HistoryBookingsArr);
+                    setLoading(false)
+                } else {
                     console.log('Something went wrong !!');
                     setLoading(false)
                 }
+            }, error => {
+                console.log('Something went wrong !!');
+                setLoading(false)
+            }
             )
     }
 
@@ -53,7 +54,7 @@ export default function Bookings() {
                 </Container>
             </div>
             {loading ? <LoadingScreen /> : <Container>
-                <div className='mt-4 pt-xl-5 pt-4 row card-container'>
+                <div className='mt-4 pt-xl-5 pt-4  card-container'>
                     <h4 className="font-12 fw-bold mb-xl-4 mb-2">Ongoing Bookings</h4>
                     <div className='row'>
                         {items && items.length > 0 ?
@@ -82,6 +83,7 @@ export default function Bookings() {
 const Item = ({ e, user, getBookings, update = false }) => {
     const router = useRouter()
     const [sending, setSending] = useState(false)
+    const [open, setOpen] = useState(false)
 
     const cancelBooking = (data) => {
         const booking = { user_id: user.id, bookingid: data.booking_id, date_time: "", ty: "1" }
@@ -90,6 +92,7 @@ const Item = ({ e, user, getBookings, update = false }) => {
             .then(
                 res => {
                     if (res.status === 'success') {
+                        setOpen(false)
                         toast.success("Booking Cancelled", "success");
                         getBookings()
                     } else {
@@ -105,12 +108,17 @@ const Item = ({ e, user, getBookings, update = false }) => {
             )
     }
 
-    return <div className="col-lg-4" key={e.booking_id}>
-        <div className="servicesMD p-3   servicesMD-bg-color-1 d-flex justify-content-between   align-ites-center flex-column">
+    return <div className="col-lg-4 col-12 mb-xl-4 mb-3" key={e.booking_id}>
+        <ConfirmBooking sending={sending} show={open} onHide={() => setOpen(false)} cancelBooking={cancelBooking} item={e} />
+        <div className="servicesMD p-3   servicesMD-bg-color-1 d-flex justify-content-between  h-100 flex-column">
             <h5 className="text-center">{e.service_name}</h5>
             <div className="d-flex flex-row justify-content-between-flex">
-                <p className="booking-title">Booking time</p>
-                <p className="booking-desc">{e.booking_time}</p>
+                <p className="booking-title">Booking Date</p>
+                <p className="booking-desc">{moment(e.booking_time).format('MM/DD/YYYY')}</p>
+            </div>
+            <div className="d-flex flex-row justify-content-between-flex">
+                <p className="booking-title">Booking Time</p>
+                <p className="booking-desc">{moment(e.booking_time).format('h:mm a')}</p>
             </div>
             <div className="d-flex flex-row justify-content-between-flex">
                 <p className="booking-title">Payment Type</p>
@@ -118,20 +126,22 @@ const Item = ({ e, user, getBookings, update = false }) => {
             </div>
             <div className="d-flex flex-row justify-content-between-flex">
                 <p className="booking-title">Total Amount</p>
-                <p className="booking-desc">{e.total_amount}</p>
+                <p className="booking-desc">₹{" "}{e.total_amount}</p>
             </div>
             <div className="d-flex flex-row justify-content-between-flex">
                 <p className="booking-title">Order Status</p>
                 <p className="booking-desc">{e.order_status}</p>
             </div>
-            {update && e.order_status === "pending" && <div className="row mt-2">
-                <div className="col-lg-6">
-                    <button className="btn btn-danger w-100 btn-sm" onClick={() => cancelBooking(e)} disabled={sending}>Cancel Order</button>
+            {update && e.order_status === "pending" &&
+                <div className="row mt-2">
+                    <div className="col-lg-6 col-6 px-2">
+                        <button style={{ background: "rgb(124, 0, 183)", border: "1px solid rgb(124, 0, 183)" }} className="btn btn-danger w-100" onClick={() => setOpen(true)} >Cancel Order</button>
+                    </div>
+                    <div className="col-lg-6 col-6 px-2">
+                        <button style={{ background: "rgb(124, 0, 183)", border: "1px solid rgb(124, 0, 183)" }} className="btn btn-primary w-100" onClick={() => router.push(`/reschedule/${e.booking_id}`)}>Reschedule</button>
+                    </div>
                 </div>
-                <div className="col-lg-6">
-                    <button className="btn btn-secondary w-100 btn-sm" onClick={() => router.push(`/reschedule/${e.booking_id}`)} disabled={sending}>Reschedule</button>
-                </div>
-            </div>}
+            }
         </div>
     </div>
 }

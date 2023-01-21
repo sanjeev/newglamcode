@@ -78,11 +78,11 @@ export default function Coupon(props) {
                                 if (code) {
                                     const c = coupons.find(e => e.title === code)
                                     if (c) {
-                                        if (total > c.minimum_purchase_amount) {
+                                        if (total >= c.minimum_purchase_amount) {
                                             setCoupon(c)
                                             handleClose()
                                         } else {
-                                            setError("Minimum amount to avail coupon is " + e.minimum_purchase_amount)
+                                            setError("Minimum amount to avail coupon is " + c.minimum_purchase_amount)
                                         }
                                     } else {
                                         setError("Invalid coupon code")
@@ -112,7 +112,7 @@ export default function Coupon(props) {
                                 <p className="t-and-c">View T&C</p>
                             </div>
                             <div className="col-lg-2 col-3 text-end" onClick={() => {
-                                if (total > e.minimum_purchase_amount) {
+                                if (total >= e.minimum_purchase_amount) {
                                     setCoupon(e)
                                     handleClose()
                                 } else {

@@ -3,7 +3,6 @@ import { Container, } from 'react-bootstrap';
 import { useRouter } from 'next/router'
 import moment from 'moment';
 import { ToastContainer, toast } from 'react-toastify';
-
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { frontService } from '../../_services/front.services';
@@ -193,21 +192,21 @@ export default function Reschedule() {
                     <p className='text-danger text-center my-2 fw-bold'>{error}</p>
                 </div>}
                 <div className="checkoutBtn-container"
-                    style={{ width: "30%", marginLeft: "auto", marginRight: "auto" }}>
-                    <button className="checkoutBtn-all" type='button'
+                    style={{ width: "30%", marginLeft: "auto", marginRight: "auto", textAlign: "center" }}>
+                    <button className="checkoutBtn-all w-auto px-5" type='button'
                         onClick={() => {
                             if (isselected === -1) {
                                 setError("Please Select slot to continue")
                                 return
                             } else {
-                                const time = (timeslots.find(e => e.id === isselected) || {}).slotstart
+                                const time = (timeslots.find((e, i) => i === isselected) || {}).slotstart
                                 const date = moment(moment().add(active, 'days').toString()).format('yyyy-MM-DD').toString()
                                 localStorage.setItem("booking_time", `${date} ${time}:00`)
                                 rescheduleBooking()
                             }
                         }}
                         disabled={sending}
-                    >Proceed</button>
+                    >{sending ? "Proceeding" : "Proceed"}</button>
                 </div>
             </div>
 

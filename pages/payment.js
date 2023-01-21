@@ -3,16 +3,16 @@ import React, { useEffect, useState } from 'react'
 import { Container, Row, Col } from 'react-bootstrap';
 import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux';
-import Addcart from '../components/Cart'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Coupon from '../components/Coupon/Coupon';
 import { frontService } from '../_services/front.services';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 import { clearCart } from '../store/actions';
 import useRazorpay from "react-razorpay";
+import AddToCart from "../components/Cart/AddToCart";
+
 function Payment() {
     const Razorpay = useRazorpay()
     const router = useRouter();
@@ -21,10 +21,13 @@ function Payment() {
     const userAddress = useSelector(state => state.userAddress?.useraddress);
     const [total, setTotal] = React.useState(0);
     const [couponModal, setCouponModal] = useState(false)
-    const [coupon, setCoupon] = useState(null)
+    // const [coupon, setCoupon] = useState(null)
     const [sending, setSending] = useState(false)
     const [pType, setPType] = useState("cash")
-
+    const [update, setUpdate] = useState(1)
+    const coupon_id = localStorage.getItem("coupon_id")
+    const coupon_amount = localStorage.getItem("coupon_amount")
+    const coupon_min = localStorage.getItem("coupon_min")
     // console.log(userAddress)
     useEffect(() => {
         if (!localStorage.getItem('gluserDetails')) {
@@ -37,7 +40,7 @@ function Payment() {
         setTotal(total);
     }, [cart]);
 
-    const finalTotal = (total + 49) - (coupon ? coupon.amount : 0)
+    const finalTotal = (total + 49) - (coupon_id ? coupon_amount : 0)
 
     const onSubmit = () => {
         const id = JSON.parse(localStorage.getItem('gluserDetails')).id
@@ -45,7 +48,7 @@ function Payment() {
         const data = {
             deal_id: "", deal_quantity: "", user_id: id, date_time: dateTime,
             status: "pending", payment_gateway: pType, total_amount: total, discount: "",
-            coupon_id: coupon ? coupon.id : "", coupon_discount: coupon ? coupon.amount : "",
+            coupon_id: coupon_id ? coupon_id : "", coupon_discount: coupon_id ? coupon_amount : "",
             discount_percent: "0", tax_name: "",
             tax_percent: "", tax_amount: "",
             extra_fees: "49", distance_fee: "",
@@ -64,6 +67,9 @@ function Payment() {
             .then(
                 res => {
                     if (res?.status == 'success') {
+                        localStorage.removeItem("coupon_id")
+                        localStorage.removeItem("coupon_amount")
+                        localStorage.removeItem("coupon_min")
                         dispatch(clearCart())
                         toast(res.message, {
                             position: "bottom-center",
@@ -163,7 +169,13 @@ function Payment() {
     }
 
     return (<>
-        <Coupon show={couponModal} coupon={coupon} setCoupon={setCoupon}
+        <Coupon show={couponModal} coupon={coupon_id}
+            setCoupon={(c) => {
+                console.log(c)
+                localStorage.setItem("coupon_id", c.id)
+                localStorage.setItem("coupon_amount", c.amount)
+                localStorage.setItem("coupon_min", c.minimum_purchase_amount)
+            }}
             total={total}
             handleClose={() => { setCouponModal(!couponModal) }} />
         <div className="servicedesk-bg checkout-all" style={{ paddingBottom: '50px' }}>
@@ -215,7 +227,7 @@ function Payment() {
                                                     {item.time + ` ` + item.time_type}
                                                 </p>
                                             </div>
-                                            <Addcart data={item} />
+                                            <AddToCart data={item} />
 
                                             <div className="lineDiv" />
                                             <div className="descriptionServices">
@@ -273,10 +285,10 @@ function Payment() {
                             </div>
 
 
-                            {!coupon ? null : <div className="col-12">
+                            {!coupon_id ? null : <div className="col-12">
                                 <div className="d-flex flex-row justify-content-between-flex">
                                     <p className="p-1 font-family-alata">Coupon</p>
-                                    <p className="p-1 font-family-alata">-₹ {coupon.amount}</p>
+                                    <p className="p-1 font-family-alata">-₹ {coupon_amount}</p>
                                 </div>
                             </div>}
 
@@ -293,10 +305,14 @@ function Payment() {
                         <p className="inside-title">Summary</p>
                         <div className="col-12 mt-2">
                             <div className="background-deflex" onClick={() => {
-                                if (!coupon) {
+                                if (!coupon_id) {
                                     setCouponModal(true)
+                                    setUpdate(update - 1)
                                 } else {
-                                    setCoupon(null)
+                                    setUpdate(update + 1)
+                                    localStorage.removeItem("coupon_id")
+                                    localStorage.removeItem("coupon_amount")
+                                    localStorage.removeItem("coupon_min")
                                 }
                             }
                             }>
@@ -306,7 +322,7 @@ function Payment() {
                                             <i className="fa fa-tag fontSize-m-20"></i>
                                         </div>
                                         <div style={{ marginLeft: '10px' }} >
-                                            {!coupon ? "Apply Coupon" : "Remove Coupon"}
+                                            {!coupon_id ? "Apply Coupon" : "Remove Coupon"}
                                         </div>
                                     </div>
 

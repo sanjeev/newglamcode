@@ -4,6 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 import { Row, Col } from 'react-bootstrap';
 import { addtoCartData, decrementQty, removeFromCart } from '../../store/actions';
 import { useDispatch } from 'react-redux';
+import AddToCartModalView from "../Cart/AddToCartModalView";
 export default function ViewCenteredModal(props) {
     const handleClose = () => props.onHide();
     const dispatch = useDispatch();
@@ -72,17 +73,7 @@ export default function ViewCenteredModal(props) {
                                 </ul>}
                                 <p className="mb-6"> </p>
                                 <div className="product-details-pro-qty">
-                                    <div className="Addtocart-Items d-flex flex-row">
-                                        <div className="pro-qty">
-                                            <div className="dec qty-btn" onClick={() => onDecrement(props.datato.id)}>-</div>
-                                            <input type="text" title="Quantity" readOnly={true} value={itemCount} />
-
-                                            <div className="inc qty-btn" onClick={() => onIncrement(props.datato)}>+</div>
-                                        </div>
-                                        {/* <div className="addcart-plus" >-</div>
-                                        <div className="addcart-count">{itemCount}</div>
-                                        <div className="addcart-minus" >+</div> */}
-                                    </div>
+                                    <AddToCartModalView data={props.datato} />
                                 </div>
                                 <div className="product-details-action">
                                     <div className="product-item prices">
