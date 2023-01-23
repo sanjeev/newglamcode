@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 import { userData } from '../store/actions/index';
 import { Modal } from "react-bootstrap";
 
-export default function Login(props) {
+export default function LoginModal(props) {
     const { show, handleClose } = props
 
     const dispatch = useDispatch();

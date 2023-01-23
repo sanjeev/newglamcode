@@ -24,7 +24,7 @@ export default function Bookings() {
     }, []);
 
     const getBookings = () => {
-        frontService.myBookings(user.id)
+        frontService.myBookings(user?.id)
             .then(res => {
                 if (res.status === 'success') {
                     setItems(res.OngoingBookingsArr);

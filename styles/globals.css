@@ -1728,9 +1728,95 @@ button:disabled {
   height: 30vh;
 }
 
+.about-desc {
+  font-size: 14pt;
+  font-family: 'Alata';
+  color: #5F5F5F;
+  margin-bottom: 40px;
+}
+
+.about-desc p,
+.terms-conditions p {
+  margin-bottom: 0.2rem;
+}
+
+.loc-container {
+  padding-top: 40px;
+  padding-bottom: 60px;
+  width: 60%;
+  justify-content: center;
+  margin: auto !important;
+}
+
+.loc-title {
+  text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+  color: #5F5F5F;
+  font-family: 'Alata';
+}
+
+.team-member {
+  min-height: 400px;
+  background-color: #A854FC;
+  border-radius: 4px;
+  text-align: center;
+  padding: 40px;
+}
+
+.team-member .team-img {
+  height: 100px;
+  width: 100px;
+  background-color: white;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10000px;
+}
+
+.terms-conditions {
+  font-size: 14pt;
+  font-family: 'Alata';
+  color: #000;
+  list-style: decimal;
+}
+
+.terms-conditions a {
+  color: #000000;
+}
+
+.terms-conditions ul {
+  list-style: decimal;
+}
+
+.terms-conditions ul ul {
+  list-style: lower-alpha;
+}
+
 @media only screen and (min-width: 1px) and (max-width: 991px) {
+  .loc-container {
+    width: 100%;
+    row-gap: 24px;
+    justify-content: flex-start;
+  }
+
   .login-modal .section-model-login {
     height: 80vh;
+  }
+
+  .leadership-team .row {
+    row-gap: 1rem;
+  }
+
+  .team-member {
+    padding: 20px;
+  }
+
+  .team-member .team-img {
+    height: 50px;
+    width: 50px;
+  }
+
+  .team-member {
+    min-height: 200px;
   }
 
   .login-modal .modal-content,

@@ -12,7 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { clearCart } from '../store/actions';
 import useRazorpay from "react-razorpay";
 import AddToCart from "../components/Cart/AddToCart";
-import Login from "../components/login";
+import LoginModal from "../components/Login";
 
 function Payment() {
     const Razorpay = useRazorpay()
@@ -174,7 +174,7 @@ function Payment() {
     }
 
     return (<>
-        {!user && <Login show={!user} />}
+        {!user && <LoginModal show={!user} />}
         <Coupon show={couponModal} coupon={coupon_id}
             setCoupon={(c) => {
                 console.log(c)

@@ -112,11 +112,15 @@ function Header() {
                                 </div>
                                 {showResults ? (
                                     <div className="sidemenu-modal-d" style={{ display: 'block' }}>
-                                        <div className="sidemenu-outbox-d">
+                                        <div className="sidemenu-outbox-d" onClick={() => {
+                                            router.push("/about-us")
+                                        }}>
                                             <i className="fa fa-info-circle  icon-m" aria-hidden="true" />
                                             <span style={{ marginLeft: '20px' }}>About us</span>
                                         </div>
-                                        <div className="sidemenu-outbox-d">
+                                        <div className="sidemenu-outbox-d" onClick={() => {
+                                            router.push("/contact-us")
+                                        }}>
                                             <i className="fa fa-comment  icon-m" aria-hidden="true" />
                                             <span style={{ marginLeft: '20px' }}>Contact us</span>
                                         </div>
