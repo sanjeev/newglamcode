@@ -108,7 +108,7 @@ export default function Coupon(props) {
                             <div className="col-lg-7 col-9">
                                 <p className="title">{e.title}</p>
                                 <p className="disacount-amount">Upto ₹500 off</p>
-                                <p className="save-amount">Save ₹{e.amount} on this order</p>
+                                <p className="save-amount">Save ₹{Math.round(e.amount)} on this order</p>
                                 <p className="t-and-c">View T&C</p>
                             </div>
                             <div className="col-lg-2 col-3 text-end" onClick={() => {

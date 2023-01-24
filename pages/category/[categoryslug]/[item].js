@@ -179,8 +179,8 @@ export default function Categoryslug() {
                                                                 <a href="#">{y.name}</a>
                                                             </div>
                                                             <div className="d-flex flex-row align-items-center" style={{ margin: "4% 0.625rem -2% 0%" }}>
-                                                                <div className="p-rl-2 Price">₹ {y.price}</div>
-                                                                <div className="p-rl-2 offerPrice">₹ {y.discounted_price}</div>
+                                                                <div className="p-rl-2 Price">₹ {Math.round(y.price)}</div>
+                                                                <div className="p-rl-2 offerPrice">₹ {Math.round(y.discounted_price)}</div>
                                                                 <div className="p-rl-2 discountTitle">{y.discount}%</div>
                                                             </div>
                                                             <div
@@ -229,7 +229,6 @@ export default function Categoryslug() {
 
 
                                         {datacat.maincategory?.map((item, index) => {
-
                                             return (
                                                 <div key={index}>
                                                     <a
@@ -242,7 +241,7 @@ export default function Categoryslug() {
                                                             <span
                                                                 style={{ fontSize: 13 }}
                                                             >
-                                                                {item.name}
+                                                                {item.name}kjnk
                                                             </span>
                                                         </div>
                                                     </a>

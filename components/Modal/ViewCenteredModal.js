@@ -77,12 +77,12 @@ export default function ViewCenteredModal(props) {
                                 </div>
                                 <div className="product-details-action">
                                     <div className="product-item prices">
-                                        <span className="price">₹ {props.datato.discounted_price}</span>
+                                        <span className="price">₹ {Math.round(props.datato.discounted_price)}</span>
                                         <span
                                             className="price-old"
                                             style={{ textDecorationLine: "line-through" }}
                                         >
-                                            ₹ {props.datato.price}
+                                            ₹ {Math.round(props.datato.price)}
                                         </span>
                                     </div>
                                     <div className="product-details-cart-wishlist" style={{ marginLeft: '35px' }}>

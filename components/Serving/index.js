@@ -1,7 +1,6 @@
 
 import React from "react";
 import { Container, Row, Col } from 'react-bootstrap';
-import { frontService } from "../../_services/front.services";
 import { useSelector } from 'react-redux';
 import Link from "next/link";
 export default function Serving() {
@@ -20,7 +19,8 @@ export default function Serving() {
                         >
                             {dataloctions.location?.map((x, i) => {
                                 return (<div className="p-2" key={i}>
-                                    <Link className="salonehome-all-Category" href={"/" + x.slug}>
+                                    <Link className="salonehome-all-Category" href={"/" + x.slug}
+                                        onClick={() => localStorage.setItem("loc_min_booking_amount", x.price)}>
                                         <div
                                             className="salonehome-all-Category-box"
                                             style={{ backgroundColor: "rgb(255, 255, 255)" }}

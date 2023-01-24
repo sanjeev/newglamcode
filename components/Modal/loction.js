@@ -11,10 +11,11 @@ function Modalpup(props) {
     const handleClose = () => props.onHide();
     const { noRedirect, onSelect } = props
 
-    const selecthandleclick = (locId, locName, locAddress, locationslug) => {
+    const selecthandleclick = (locId, locName, locAddress, locationslug, locMinBookingAmount) => {
         localStorage.setItem("id", locId);
         localStorage.setItem("cityname", locName);
         localStorage.setItem("locAddress", locAddress);
+        localStorage.setItem("loc_min_booking_amount", locMinBookingAmount);
 
         if (noRedirect) {
             onSelect()
@@ -42,7 +43,7 @@ function Modalpup(props) {
                 <Modal.Body>
                     <div className='row mb-2'>
                         {dataloctions.location?.map((x, i) =>
-                            <div className="col-4 " style={{ marginTop: 10 }} key={i}  {...props} onClick={() => selecthandleclick(x.id, x.city, x.name, x.slug)}>
+                            <div className="col-4 " style={{ marginTop: 10 }} key={i}  {...props} onClick={() => selecthandleclick(x.id, x.city, x.name, x.slug, x.price)}>
                                 <div className={`image-d-location-head servicesMD-bg-color-${i}`}>
                                     <div className="image-d-location">
                                         <img

@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Row, Col } from 'react-bootstrap';
 import { frontService } from "../../_services/front.services";
 import Accordion from 'react-bootstrap/Accordion';
-export default function Faqs() {
+export default function Faqs({ slug = "" }) {
     const [showfaqsResults, setShowfaqsResults] = React.useState([]);
     React.useEffect(() => {
         frontService.allfaqs()
@@ -25,6 +25,7 @@ export default function Faqs() {
 
 
     }, []);
+
     return (
         <>
             <Container fluid>
@@ -36,10 +37,10 @@ export default function Faqs() {
                     <Row>
                         {showfaqsResults.map((item, index) => {
                             return (
-                                <Col md="6" key={index}>
+                                <Col md="6" key={index} id={slug}>
                                     <Accordion.Item eventKey={index}>
                                         <Accordion.Header>{item.topic}</Accordion.Header>
-                                        <Accordion.Body dangerouslySetInnerHTML={{ __html: item.content }}></Accordion.Body>
+                                        <Accordion.Body className="faq-desc" dangerouslySetInnerHTML={{ __html: item.content }}></Accordion.Body>
                                     </Accordion.Item>
                                 </Col>
                             );

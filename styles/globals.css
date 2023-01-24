@@ -1812,7 +1812,17 @@ button:disabled {
   list-style: lower-alpha;
 }
 
+#lucknow-home-salon-services .faq-desc {
+  font-size: 18px;
+}
+
 @media only screen and (min-width: 1px) and (max-width: 991px) {
+  .modal-fullscreen .modal-content {
+    width: 94% !important;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .contact-data {
     font-size: 16px !important;
   }

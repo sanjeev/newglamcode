@@ -124,7 +124,7 @@ export default function getRoute() {
                         <Preferedservices data={items} />
 
 
-                        <Faqs />
+                        <Faqs slug={slug} />
                         <div className="col-12 " style={{ marginTop: '50px' }}>
                             <hr style={{ border: '2px solid rgb(102, 102, 102)', margin: '10px', boxShadow: 'rgba(0, 0, 0, 0.25) 0px 0.5px 0.5px', backgroundColor: 'rgb(255, 255, 255)' }} />
                         </div>

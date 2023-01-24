@@ -45,7 +45,7 @@ function Payment() {
         setTotal(total);
     }, [cart]);
 
-    const finalTotal = (total + 49) - (coupon_id ? coupon_amount : 0)
+    const finalTotal = (Math.round(total) + 49) - (coupon_id ? Math.round(coupon_amount) : 0)
 
     const onSubmit = () => {
         const id = JSON.parse(localStorage.getItem('gluserDetails')).id
@@ -61,9 +61,9 @@ function Payment() {
             additional_notes: "", item_details: cart.map(e => {
                 return {
                     business_service_id: e.business_service_id || e.id,
-                    unit_price: e.price,
+                    unit_price: Math.round(e.price),
                     quantity: e.qty,
-                    amount: e.price * e.qty
+                    amount: Math.round(e.price) * e.qty
                 }
             })
         }
@@ -219,8 +219,8 @@ function Payment() {
                                                 <a href="#"> {item.name}</a>
                                             </div>
                                             <div className="d-flex flex-row mt-2">
-                                                <div className="Price">₹{item.price}</div>
-                                                <div className="p-rl-2 offerPrice">₹{item.discounted_price}</div>
+                                                <div className="Price">₹{Math.round(item.price)}</div>
+                                                <div className="p-rl-2 offerPrice">₹{Math.round(item.discounted_price)}</div>
                                                 <div className="p-rl-2 discountTitle">{item.discount}%</div>
                                             </div>
                                             <div className="d-flex flex-column-m mt-2">
@@ -294,7 +294,7 @@ function Payment() {
                             {!coupon_id ? null : <div className="col-12">
                                 <div className="d-flex flex-row justify-content-between-flex">
                                     <p className="p-1 font-family-alata">Coupon</p>
-                                    <p className="p-1 font-family-alata">-₹ {coupon_amount}</p>
+                                    <p className="p-1 font-family-alata">-₹ {Math.round(coupon_amount)}</p>
                                 </div>
                             </div>}
 

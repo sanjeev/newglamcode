@@ -87,8 +87,8 @@ const Item = ({ x, i, mapItems }) => {
                     <a href="#">{x.name}</a>
                 </div>
                 <div className="d-flex flex-row align-items-center" style={{ margin: "4% 0.625rem -2% 0%" }}>
-                    <div className="p-rl-2 Price">₹ {x.price}</div>
-                    <div className="p-rl-2 offerPrice">₹ {x.discounted_price}</div>
+                    <div className="p-rl-2 Price">₹ {Math.round(x.price)}</div>
+                    <div className="p-rl-2 offerPrice">₹ {Math.round(x.discounted_price)}</div>
                     {x.discount && <div className="p-rl-2 discountTitle">{x.discount + "%"}</div>}
                 </div>
                 <div

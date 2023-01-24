@@ -437,7 +437,8 @@ function Footer() {
 
                 <div className="bottomservicesCheckout" key={0}>
                     <div className="topinside">
-                        <p className="text">{`Minimum Booking Amount :- ₹  ${Global.MINPRICEORDER}`}</p>
+                        {/* <p className="text">{`Minimum Booking Amount :- ₹  ${Global.MINPRICEORDER}`}</p> */}
+                        <p className="text">{`Minimum Booking Amount :- ₹  ${localStorage.getItem("loc_min_booking_amount")}`}</p>
                     </div>
                     <div className="bottominside">
                         <div className="d-flex justify-content-between" >
