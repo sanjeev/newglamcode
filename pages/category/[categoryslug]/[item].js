@@ -132,7 +132,7 @@ export default function Categoryslug() {
                                         className="col-md-12 col-12 "
                                         key={i}>
                                         <div
-                                            className='p-md-5 pt-md-3 pb-md-0 p-2'
+                                            className='p-md-5 pt-md-3 pb-md-0 p-2 d-xl-none'
                                             id={x.slug}
                                             style={{ marginTop: 0 }}>
                                             <div className='row justify-content-center'>

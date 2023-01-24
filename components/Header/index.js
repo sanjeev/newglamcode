@@ -334,7 +334,7 @@ function Header() {
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="/" className="side-menu-box">
+                                                <a href="/contact-us" className="side-menu-box">
                                                     <span className="side-text">
                                                         <i className="fa fa-comment  icon-m" aria-hidden="true" />
                                                         Contact us

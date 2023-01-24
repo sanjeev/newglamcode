@@ -11,13 +11,14 @@ export default function Login() {
     const { pathname } = Router
     const [mainOtp, setMainotp] = React.useState(false);
     const [dataMb, setDataMb] = React.useState([]);
+    const [sending, setSending] = React.useState(false)
     const { register,
         handleSubmit,
         formState: { errors },
         reset,
         trigger } = useForm(); // initialize the hook
     const onSubmit = (data) => {
-
+        setSending(true)
         frontService.sendOtpcode(data)
             .then(
                 res => {
@@ -62,6 +63,7 @@ export default function Login() {
                         });
 
                     }
+                    setSending(false)
                 }, error => {
 
                     toast('Invalid', {
@@ -74,14 +76,14 @@ export default function Login() {
                         progress: undefined,
                         theme: "light",
                     });
-
+                    setSending(false)
                 }
             )
     };
     const onOtp = (data) => {
         //console.log(dataMb.otp)
         //console.log(data.otp);
-
+        setSending(true)
         if (parseInt(data.otp) === parseInt(dataMb.otp)) {
 
             const dat = {
@@ -137,6 +139,7 @@ export default function Login() {
                             });
 
                         }
+                        setSending(false)
                     }, error => {
 
                         toast('Invalid', {
@@ -149,6 +152,7 @@ export default function Login() {
                             progress: undefined,
                             theme: "light",
                         });
+                        setSending(false)
 
                     }
                 )
@@ -223,7 +227,6 @@ export default function Login() {
         //     )
     }
 
-
     return (<>
         <div className="section-login-background">
             <div className="section-model-login">
@@ -255,7 +258,7 @@ export default function Login() {
                                 <span style={{ marginLeft: '58px', color: 'red' }}>{errors.otp.message}</span>
                             )}
 
-                            <button className="button">Verify</button>
+                            <button className="button" disabled={sending}>Verify</button>
                         </form>
                     ) : (
                         <form onSubmit={handleSubmit(onSubmit)}>
@@ -280,7 +283,7 @@ export default function Login() {
                                 <span style={{ marginLeft: '58px', color: 'red' }}>{errors.phone.message}</span>
                             )}
 
-                            <button className="button">Send OTP</button>
+                            <button className="button" disabled={sending}>Send OTP</button>
                         </form>
 
                     )}

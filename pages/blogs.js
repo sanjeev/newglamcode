@@ -33,7 +33,7 @@ export default function Blogs() {
         <Container fluid>
             <div className="row">
                 <div className="col-lg-12 text-center">
-                    <img src="/blog.png" className="banner-img" />
+                    <img src="/images/blog-logo.png" className="w-auto banner-img" />
                 </div>
                 {/* <div className="col-lg-5 social">
                     <div className="">
@@ -77,19 +77,21 @@ export default function Blogs() {
                     </div>
                 </div>
                 <div className="col-lg-4 recent-posts-container">
-                    <div className="row">
-                        <div className="col-lg-12">
-                            <div className="title-box">
-                                Recent Post
+                    <div className="recent-post-card">
+                        <div className="row">
+                            <div className="col-lg-12">
+                                <div className="title-box">
+                                    Recent Post
+                                </div>
                             </div>
-                        </div>
-                        <div className="col-lg-12 recent-posts">
-                            {items.map((e) => {
-                                return <Link key={e.ID} className="d-flex recent-post" href={"/blog/" + e.ID}>
-                                    <div className="img-box"><img src={e.image_url} /></div>
-                                    <div className="post-title">{e.post_title}</div>
-                                </Link>
-                            })}
+                            <div className="col-lg-12 recent-posts">
+                                {items.map((e) => {
+                                    return <Link key={e.ID} className="d-flex recent-post" href={"/blog/" + e.ID}>
+                                        <div className="img-box"><img src={e.image_url} /></div>
+                                        <div className="post-title">{e.post_title}</div>
+                                    </Link>
+                                })}
+                            </div>
                         </div>
                     </div>
                 </div>

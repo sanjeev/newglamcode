@@ -9,6 +9,7 @@
     "@meinefinsternis/react-horizontal-date-picker": "^1.0.1",
     "bootstrap": "^5.2.3",
     "font-awesome": "^4.7.0",
+    "google-map-react": "^2.2.0",
     "moment": "^2.29.4",
     "next": "latest",
     "next-redux-wrapper": "^8.0.0",

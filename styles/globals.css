@@ -1538,7 +1538,7 @@ a:hover {
 #blogs .blogs .blog-item {
   padding-left: 0;
   padding-right: 0;
-  width: 47%;
+  width: 30%;
   padding-bottom: 40px;
 }
 
@@ -1554,11 +1554,30 @@ a:hover {
   object-fit: cover;
 }
 
-#blogs .recent-posts {}
+#blogs .recent-posts::-webkit-scrollbar {
+  background-color: #D9D9D9;
+}
+
+#blogs .recent-posts::-webkit-scrollbar-thumb {
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 2px;
+}
+
+#blogs .recent-posts {
+  max-height: 80vh;
+  overflow-y: scroll;
+  padding-top: 20px;
+}
+
+#blogs .recent-post-card {
+  background-color: #fff;
+  padding: 20px;
+}
 
 #blogs .recent-posts .recent-post {
   justify-content: space-between;
-  padding-bottom: 15px;
+  padding-bottom: 28px;
 }
 
 #blogs .blog-item .post-title {
@@ -1591,6 +1610,7 @@ a:hover {
   width: 100%;
   max-height: 150px;
   object-fit: cover;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 #blogs .recent-post .post-title {
@@ -1608,7 +1628,8 @@ a:hover {
 }
 
 #blogs .banner-img {
-  height: 150px;
+  padding-top: 24px;
+  padding-bottom: 24px;
 }
 
 .coupon-modal .modal-content {
@@ -1792,6 +1813,10 @@ button:disabled {
 }
 
 @media only screen and (min-width: 1px) and (max-width: 991px) {
+  .contact-data {
+    font-size: 16px !important;
+  }
+
   .loc-container {
     width: 100%;
     row-gap: 24px;
@@ -1888,6 +1913,8 @@ button:disabled {
     padding-left: 12px;
     padding-right: 12px;
   }
+
+
 
   .search-items {
     padding-top: 60px;

@@ -22,7 +22,8 @@ export const frontService = {
     bookOrder,
     myBookings,
     cancelBooking,
-    preferredPack
+    preferredPack,
+    contact
 };
 async function search(s, location) {
     const requestOptions = {
@@ -339,6 +340,22 @@ async function preferredPack(id) {
     };
 
     return fetch(Global.BASE_API_PATH + `/preferredpack`, requestOptions)
+        .then(handleResponse)
+        .then(res => {
+            return res;
+        });
+}
+
+
+
+async function contact(data) {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    };
+
+    return fetch(Global.BASE_API_PATH + `/contact`, requestOptions)
         .then(handleResponse)
         .then(res => {
             return res;
