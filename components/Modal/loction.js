@@ -18,7 +18,7 @@ function Modalpup(props) {
         localStorage.setItem("loc_min_booking_amount", locMinBookingAmount);
 
         if (noRedirect) {
-            onSelect()
+            onSelect(locId, locName)
         } else {
             Router.push('/' + locationslug);
             window.location.href = '/' + locationslug;

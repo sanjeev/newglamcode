@@ -31,7 +31,14 @@ export default function Card(props) {
                         </div>
                         <div className="salone-all-category-text">{props.name}</div>
                     </div >
-                    <Modalpup show={modalShow} onHide={() => setModalShow(false)} /></>
+                    <Modalpup show={modalShow} onHide={() => setModalShow(false)}
+                        noRedirect={true}
+                        onSelect={(id, name) => {
+                            localStorage.setItem('mid', props.id);
+                            localStorage.setItem('tid', id);
+                            router.push('/category/' + props.slug + '/' + name.toLowerCase())
+                        }}
+                    /></>
             )
             }
 

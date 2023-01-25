@@ -82,7 +82,7 @@ export default function Reschedule() {
                     setSending(false)
                 },
                 error => {
-                    console.log('Something went wrong !!');
+                    // console.log('Something went wrong !!');
                     //toast.error("Something went wrong !!", "Fashion Store");
                 }
             )

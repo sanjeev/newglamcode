@@ -34,7 +34,7 @@ export function mainLocation(payload) {
     }
 }
 export function addToCart(product, qty) {
-    console.log("Item Added to Cart !!");
+    // console.log("Item Added to Cart !!");
     dispatch(addtoCartData(product, qty))
 }
 

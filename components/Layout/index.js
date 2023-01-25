@@ -6,6 +6,7 @@ import { frontService } from "../../_services/front.services";
 import { menuSave, mainCategory, mainLocation } from '../../store/actions/index';
 import { useDispatch, useSelector } from 'react-redux';
 import { responsiveReturn } from '../../responsiveCheck'
+import { ToastContainer } from "react-toastify";
 function Layout({ children }) {
     const dispatch = useDispatch();
     const val = responsiveReturn("D", "M", 991);
@@ -80,6 +81,8 @@ function Layout({ children }) {
 
     return (
         <>
+            <ToastContainer />
+
             {!loading ?
                 (
                     <>

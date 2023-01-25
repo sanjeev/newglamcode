@@ -205,7 +205,7 @@ async function datamancat() {
         method: 'GET',
 
     };
-    return fetch(Global.BASE_API_PATH + `/category/${localStorage.getItem("mid")}/${localStorage.getItem("id")}`, requestOptions)
+    return fetch(Global.BASE_API_PATH + `/category/${localStorage.getItem("mid")}/${(localStorage.getItem("id") || localStorage.getItem("tid"))}`, requestOptions)
         .then(handleResponse)
         .then(res => {
             return res;
@@ -283,7 +283,7 @@ function handleResponse(response) {
 
             if (!response.ok) {
                 if (response.status === 401) {
-                    console.log(response);
+                    // console.log(response);
                 }
                 const error = (data && data.message) || response.statusText;
                 return Promise.reject(error);

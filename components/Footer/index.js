@@ -1,18 +1,25 @@
 import React, { useEffect, useState } from "react";
+
+import { toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
+
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router'
-import Global from '../../_helpers/global';
 import facebook2 from '../../assets/img/facebook2.svg'
 import instargram from '../../assets/img/instargram.svg'
 import pin from '../../assets/img/pin.svg'
 import reddit from '../../assets/img/reddit.svg'
 import twitter from '../../assets/img/twitter.svg'
 import youtube from '../../assets/img/youtube.svg'
+import moment from "moment";
+import { frontService } from "../../_services/front.services";
 
 function Footer() {
     const router = useRouter()
     const cart = useSelector(state => state.cardAdd?.cart);
     const [total, setTotal] = React.useState(0);
+    const [coupons, setCoupons] = useState([])
+
 
     const renderInput = () => {
 
@@ -25,6 +32,57 @@ function Footer() {
         }
         setTotal(total);
     }, [cart]);
+
+    useEffect(() => {
+        // setError("")
+        var day = moment().format('dddd');
+
+        frontService.coupons()
+            .then(
+                res => {
+                    if (res.status === 'success') {
+                        setCoupons(arr => [...res.couponData.filter(e => isDay(e.days, day))]);
+                    } else {
+                        // setError('Something went wrong !!');
+                    }
+                    // setLoading(false)
+                },
+                error => {
+                    // setLoading(false)
+                    // setError('Something went wrong !!');
+                }
+            )
+
+    }, []);
+
+    const shortedCoupons = coupons.sort((a, b) => a.minimum_purchase_amount - b.minimum_purchase_amount)
+
+    let dif = ((shortedCoupons[0] || {}).minimum_purchase_amount || 0) - total
+
+    let minAmount = localStorage.getItem("loc_min_booking_amount") || "0"
+    minAmount = parseInt(minAmount)
+    if (minAmount > total) {
+        dif = 0
+    }
+
+    const isDay = (s, day) => {
+        let string = s.replaceAll('\"', "")
+        string = string.replace('[', "")
+        string = string.replace(']', "")
+        string = string.replaceAll('"', "")
+        string = string.split(',')
+
+        let has = false
+        string.forEach(element => {
+            if (!has) {
+                if (element === day) {
+                    has = true
+                }
+            }
+
+        });
+        return has
+    }
 
     return (
         <>
@@ -437,44 +495,34 @@ function Footer() {
 
                 <div className="bottomservicesCheckout" key={0}>
                     <div className="topinside">
-                        {/* <p className="text">{`Minimum Booking Amount :- ₹  ${Global.MINPRICEORDER}`}</p> */}
                         <p className="text">{`Minimum Booking Amount :- ₹  ${localStorage.getItem("loc_min_booking_amount")}`}</p>
                     </div>
                     <div className="bottominside">
                         <div className="d-flex justify-content-between" >
                             <div className="d-flex flex-column-m">
-                                <p className="textHead" >Total Price ₹ {total}</p>
+                                <p className="textHead" >Total Price ₹ {total} {" "}
+                                    {dif > 0 && <span style={{ paddingLeft: "6px" }}>{` Add ₹${dif} more to avail coupon`}</span>}
+                                </p>
                             </div>
 
-                            {(total >= Global.MINPRICEORDER ? (
-                                <>
-                                    {localStorage.getItem('gluserDetails') ? (<a
-                                        href="/checkout"
-                                        className="textHead">Checkout <i className="fa fa-chevron-right" style={{ marginLeft: 10 }} aria-hidden="true"></i>
-                                    </a>) : <a
-                                        href="/login"
-                                        className="textHead">Checkout <i className="fa fa-chevron-right" style={{ marginLeft: 10 }} aria-hidden="true"></i>
-                                    </a>}
-
-
-
-
-
-                                </>
-
-                            ) : (<a
-                                href={router.asPath}
-                                className="textHead">Checkout <i className="fa fa-chevron-right" style={{ marginLeft: 10 }} aria-hidden="true"></i>
-                            </a>
-                            )
-
-
-                            )}
-
-
-
+                            <span
+                                onClick={() => {
+                                    let minAmount = localStorage.getItem("loc_min_booking_amount") || "0"
+                                    minAmount = parseInt(minAmount)
+                                    if (minAmount > total) {
+                                        toast("Add more items to checkout");
+                                    } else if (!localStorage.getItem('gluserDetails')) {
+                                        router.push("/login")
+                                    } else {
+                                        router.push("/checkout")
+                                    }
+                                }}
+                                className="textHead" style={{ cursor: "pointer" }}>
+                                Checkout <i className="fa fa-chevron-right" style={{ marginLeft: 10 }} aria-hidden="true"></i>
+                            </span>
                         </div>
                     </div>
+
                 </div>
 
                 : '')}

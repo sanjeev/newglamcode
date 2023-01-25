@@ -23,11 +23,13 @@ export default function getRoute() {
         frontService.knowDataSlug(slug)
             .then(
                 res => {
-
                     if (res.status === 'success') {
-
-                        setKnowmore(res.knowdataslug[0]);
-                        console.log(res.knowdataslug[0]);
+                        if (!res.knowdataslug[0]) {
+                            router.push("/404")
+                        } else {
+                            setKnowmore(res.knowdataslug[0]);
+                        }
+                        // console.log(res.knowdataslug[0]);
                     } else {
                         console.log('Something went wrong !!');
                         //toast.error(res.errors[0], "Fashion Store");

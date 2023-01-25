@@ -24,7 +24,7 @@ export default function Categoryslug() {
         frontService.datamancat()
             .then(
                 res => {
-                    if (res.status === 'success') {
+                    if (res?.status === 'success') {
                         setMaincategory(res.mainCategory);
                         setCategories(res.categories);
                     } else {
